@@ -690,6 +690,43 @@ body.on-chapter .pgpos{color:#DCEBFA}
 .benef .b .bi{color:var(--demand)}
 .sdk-chip.old{background:#FFF1E2;color:#B3560A}
 
+/* ---- chapter screens: light, same palette as every other page ---- */
+body.on-chapter,body.on-chapter .content{background:var(--bg)}
+.chapter{max-width:960px}
+.ch-kick{color:var(--demand)}
+.ch-num{color:var(--demand);opacity:.9}
+.ch-title{color:var(--ink)}
+.ch-sub{color:var(--body)}
+.ch-sec{background:var(--surface);border:1px solid var(--line)}
+.ch-sec b{color:var(--ink)}
+.ch-sec span{color:var(--muted)}
+.ch-sec:hover{background:var(--demandSoft);border-color:var(--demand)}
+body.on-chapter .pgbtn{background:var(--surface);color:var(--ink);border-color:var(--line)}
+body.on-chapter .pgpos{color:var(--muted)}
+/* ---- agenda: one screen, grouped by chapter ---- */
+.agenda2{max-width:1240px;margin:0 auto}
+.ag-sub{font-size:13.5px;color:var(--body);max-width:760px;line-height:1.5;margin-bottom:16px}
+.rs-bar{display:flex;gap:4px;height:46px;margin-bottom:18px}
+.rs-seg{display:flex;flex-direction:column;justify-content:center;padding:0 12px;border-radius:9px;background:var(--demand);color:#fff;min-width:0;overflow:hidden}
+.rs-seg span{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.85;white-space:nowrap}
+.rs-seg b{font-size:13px;font-weight:800;white-space:nowrap}
+.rs-seg:nth-child(2){background:#0B5BB5}.rs-seg:nth-child(3){background:#0A4FA0}.rs-seg:nth-child(4){background:#0A2A5E}
+.rs-seg.rs-disc{background:#FFF1D6;color:#7A4E00;border:1px dashed #E0B45A}
+.ag-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ag-col{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 12px 8px}
+.ag-colhead{display:flex;gap:10px;align-items:flex-start;padding:4px 6px 12px;border-bottom:1px solid var(--line);margin-bottom:6px}
+.ag-cn{font-size:22px;font-weight:850;color:var(--demand);line-height:1;letter-spacing:-.02em}
+.ag-cg{font-size:14px;font-weight:800;color:var(--ink)}
+.ag-ct{font-size:11px;color:var(--muted);line-height:1.35;margin-top:2px}
+.ag-it{display:grid;grid-template-columns:24px 1fr auto;align-items:center;gap:8px;width:100%;text-align:left;background:none;border:0;border-radius:9px;padding:9px 6px;cursor:pointer;font-family:var(--font)}
+.ag-it:hover{background:var(--demandSoft)}
+.ag-in{font-size:11px;font-weight:800;color:var(--demand)}
+.ag-itt{font-size:13px;font-weight:700;color:var(--ink);line-height:1.25}
+.ag-im{font-size:10.5px;font-weight:700;color:var(--muted);background:var(--lineSoft);border-radius:20px;padding:3px 7px}
+.ag-foot{font-size:11.5px;color:var(--muted);margin-top:14px}
+@media(max-width:1100px){.ag-cols{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.ag-cols{grid-template-columns:1fr}.rs-seg span{display:none}}
+
 </style>
 </head>
 <body>
@@ -920,14 +957,21 @@ V.welcome=`
    <button class="cv-btn ghost" onclick="go('overview')">Skip to the numbers</button>
   </div>
  </section>`;
-V.agenda=`
- <div class="agenda-page">
+V.agenda=(function(){
+ const main=AGENDA.filter(x=>x.g!=='Appendix'); const total=main.reduce((s,x)=>s+x.m,0);
+ const groups=GROUPS.filter(g=>g!=='Appendix').map((g,gi)=>({g,gi,items:main.filter(x=>x.g===g),mins:main.filter(x=>x.g===g).reduce((s,x)=>s+x.m,0)}));
+ const bar=groups.map(gr=>`<div class="rs-seg" style="flex:${gr.mins}" data-tip="${gr.g}: ${gr.mins} min"><span>${gr.g}</span><b>${gr.mins} min</b></div>`).join('');
+ const cols=groups.map(gr=>`<div class="ag-col"><div class="ag-colhead"><span class="ag-cn">0${gr.gi+1}</span><div><div class="ag-cg">${gr.g}</div><div class="ag-ct">${GTHEME[gr.g]}</div></div></div>${gr.items.map(it=>`<button class="ag-it" onclick="go('${it.id}')"><span class="ag-in">${('0'+(main.indexOf(it)+1)).slice(-2)}</span><span class="ag-itt">${it.t}</span><span class="ag-im">${it.m}m</span></button>`).join('')}</div>`).join('');
+ return `
+ <div class="agenda2">
   <div class="agenda-label">Agenda</div>
-  <h2 class="ap-title">What we'll cover today</h2>
-  <div class="agenda-list">${AGENDA.filter(a=>a.g!=='Appendix').map((a,i)=>`<button class="ag-row" onclick="go('${a.id}')"><span class="ag-n">${('0'+(i+1)).slice(-2)}</span><span class="ag-t">${a.t}</span><span class="ag-d">${a.d}</span><span class="ag-time">${a.m} min</span></button>`).join('')}</div>
-  <div class="ap-total">Suggested run of show · about ${AGENDA.reduce((s,a)=>s+a.m,0)} minutes across ${AGENDA.filter(a=>a.g!=='Appendix').length} sections, leaving 15 to 20 minutes of the hour for discussion. Halfway mark: be into the Product chapter. 15 minutes left: be at the ask. Appendix sections sit behind the divider for questions.</div>
-  <div class="ap-total" style="margin-top:6px">Your topics go first. Tell us what you want covered and we will reorder.</div>
+  <h2 class="ap-title" style="margin-bottom:6px">What we'll cover today</h2>
+  <div class="ag-sub">About ${total} minutes of content across ${main.length} sections, leaving 15 to 20 minutes of the hour for discussion. Your topics go first; tell us what to reorder.</div>
+  <div class="rs-bar">${bar}<div class="rs-seg rs-disc" style="flex:15"><span>Discussion</span><b>15+ min</b></div></div>
+  <div class="ag-cols">${cols}</div>
+  <div class="ag-foot">Halfway mark: into Product. 15 minutes left: at the ask. Appendix sits behind the last chapter for questions.</div>
  </div>`;
+})();
 
 /* ---------- 01 overview ---------- */
 V.overview=`
