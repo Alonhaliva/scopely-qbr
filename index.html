@@ -1273,7 +1273,7 @@ V.networks=`
  <table class="t" style="min-width:820px"><thead><tr><th style="padding-left:30px">Title</th><th style="text-align:right">Reach DUV/DAU</th><th style="text-align:right">Conversion DUC/DUV</th><th style="text-align:right">ARPDUV</th><th style="text-align:right">ARPDUC</th><th style="text-align:right;padding-right:30px">Net ARPDAU</th></tr></thead><tbody>
  ${OW.titles.map(r=>`<tr><td class="lead2" style="padding-left:30px">${gimg(owIcon(r.app),20)}${owName(r.app)}</td><td class="n" style="color:${r.duv<0.005?'var(--neg)':r.duv>=0.02?'var(--pos)':'var(--ink)'}">${(r.duv*100).toFixed(2)}%</td><td class="n">${(r.duc*100).toFixed(1)}%</td><td class="n">${usd(r.arpduv)}</td><td class="n">${usd(r.arpduc)}</td><td class="n" style="padding-right:30px">${usd(r.arpdau,4)}</td></tr>`).join('')}
  </tbody></table>
- <div class="cap" style="padding:8px 30px 4px">Offerwall funnel by publisher app, Tapjoy reporting, net payout. Reach in red is below 0.5% of DAU; green is 2% or above. The "- Unity" rows in the same report (offerwall sessions that start from Unity Ads placements) are small today and listed in the appendix.</div>
+ <div class="cap" style="padding:8px 30px 4px">Offerwall funnel by publisher app, Jul 1 to Sep 30, 2026, Tapjoy reporting, net payout. Reach in red is below 0.5% of DAU; green is 2% or above. The "- Unity" rows in the same report (offerwall sessions that start from Unity Ads placements) are small today and listed in the appendix.</div>
  </div>
  <div class="grid g2" style="margin-top:22px">
   <div class="card" style="padding:12px 30px">${nlist([
@@ -1628,7 +1628,7 @@ V.apx_method=`
   ['Window.','Jun 24 to Sep 23, 2026 (92 days), compared with the prior 92 days, Mar 24 to Jun 23, 2026.'],
   ['Unity Ads.','Unity Ads publisher export by title and day, with the prior-period columns from the same export. Payout, impressions, fill rate.'],
   ['ironSource Ads and Tapjoy Offerwall.','Grow Ads export for the same window, with prior-period payout, impressions and conversion. Store-listing variants of the same title are combined.'],
-  ['Offerwall funnel.','Tapjoy offerwall report by publisher app: CVR on opens, DUV/DAU, DUC/DUV, cost eCPM, net ARPDAU, ARPDUV and ARPDUC. Rows suffixed "- Unity" are offerwall sessions that start from Unity Ads placements and are shown in their own appendix table.'],
+  ['Offerwall funnel.','Tapjoy offerwall report by publisher app, Jul 1 to Sep 30, 2026 (a slightly different window from the Unity Ads export): CVR on opens, DUV/DAU, DUC/DUV, cost eCPM, net ARPDAU, ARPDUV and ARPDUC. Rows suffixed "- Unity" are offerwall sessions that start from Unity Ads placements and are shown in their own appendix table.'],
   ['SDK versions.','Unity Ads publisher export by SDK version and month (Jun 24 to Sep 23) plus a daily export by version for Jun 1 to Jul 31, used for the June migration curve and the Jun 1 to 23 share.'],
   ['eCPM.','Payout divided by impressions, times 1,000, everywhere in this review. Your Grow dashboard shows a gross eCPM that runs about 40% higher on the same rows; the rankings and trends are identical. Offerwall eCPM is not shown because it is on an engagement basis and not comparable.'],
   ['Payout.','All revenue figures are publisher payout after revenue share, matching the payout column in your dashboard and your remittances.'],
