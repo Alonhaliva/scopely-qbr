@@ -1080,6 +1080,7 @@ V.roadmap=`
   ])}
   ${rmCol('Coming','soon','Next',[
    ['Rewarded Offers','A new offers product inside Unity Ads: same SDK, new offer types, Vector integration. Alpha Q4 2026, beta Q1 2027. Tapjoy Offerwall continues, no forced migration.'],
+   ['Multi-currency offerwall','Players earn more than one in-game currency from the same wall, hard and soft. We are collecting publisher interest now to bring it to product; Stumble Guys is already logged.'],
    ['CPI billing and tROAS for MR-CPE (Offerwall, demand side)','In testing, Q4 2026. Relevant to your UA team.'],
    ['Google Analytics linking for Vector','Your SDK already qualifies; one permission in the dashboard turns behavioral signals into better pricing on your impressions.'],
    ['Unity Vector, continued','Network spend ×2.5 since Vector; US D28 ad-revenue ARPU up 140% in a year. More spend through the network means more demand for your inventory.'],
@@ -1265,6 +1266,21 @@ V.ow_plan=`
   <div class="b"><div class="bi">◎</div><h4>3 · Country multipliers in tier 2 and 3 geos</h4><div class="big">Up to +20% in those countries*</div><p>Higher exchange rates where IAP is low. Stumble Guys skews global and is the natural first test, measured on ARPDUV and conversion rate.</p></div>
  </div>
  <div class="note-row">*Projected ranges from similar Unity publishers, not Scopely results. Each is set up as an A/B test.</div>
+ ${sec('Coming: multi-currency offerwall','chip','s')}
+ <div class="grid g2">
+  <div class="card" style="padding:10px 0;overflow-x:auto">
+   <table class="t" style="min-width:460px"><thead><tr><th style="padding-left:30px">Title</th><th>Second currency</th><th style="text-align:right">Share of wallet</th><th style="text-align:right;padding-right:30px">Est. added payout / qtr</th></tr></thead><tbody>
+   ${[['Stumble Guys','Hard (gems)',0.45,'logged'],['Yahtzee with Buddies','Soft (coins, Adventure mode)',0.30,'propose'],['Dice With Buddies','Soft (coins)',0.30,'propose'],['Scrabble GO','Soft',0.30,'propose'],['WWE Champions','Hard',0.45,'propose']].map(([n,cur,sow,st])=>{const t=TJQ.find(x=>x.name===n);const base=t?t.pay:0;return `<tr><td class="lead2" style="padding-left:30px">${gimg(titleIcon(n),20)}${n}</td><td>${cur}</td><td class="n">${(sow*100).toFixed(0)}%</td><td class="n" style="padding-right:30px">${money(base*sow)} <span class="${st==='logged'?'tag-live':'tag-ask'}" style="margin-left:6px">${st==='logged'?'interest logged':'to confirm'}</span></td></tr>`;}).join('')}
+   <tr class="tot"><td style="padding-left:30px">Total</td><td></td><td></td><td class="n" style="padding-right:30px">${money([['Stumble Guys',0.45],['Yahtzee with Buddies',0.30],['Dice With Buddies',0.30],['Scrabble GO',0.30],['WWE Champions',0.45]].reduce((s,[n,w])=>s+((TJQ.find(x=>x.name===n)||{pay:0}).pay*w),0))}</td></tr>
+   </tbody></table>
+   <div class="cap" style="padding:8px 30px 4px">Method: this quarter's offerwall payout per title times the share-of-wallet assumption for the added currency, 45% hard and 30% soft, the same assumptions Unity uses across publishers. An estimate to size interest, not a forecast.</div>
+  </div>
+  <div class="card" style="padding:12px 30px">${nlist([
+   ['What it is.','Today an offerwall pays out one currency per integration. Multi-currency lets players choose which currency to earn from the same wall, so a second currency does not need a second integration.'],
+   ['Why it fits your titles.','Yahtzee with Buddies already runs bonus rolls and coins, Dice With Buddies the same, and Stumble Guys has gems and a soft economy. Each is a natural second currency.'],
+   ['What we need from you.','Which titles and which currency you would add. Interest from publishers like you is what moves this up the product roadmap; Stumble Guys is already on the list.'],
+  ])}</div>
+ </div>
  <div class="grid g2" style="margin-top:16px">
   <div class="card" style="padding:12px 30px">
    <div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;margin:10px 0 4px">Levers we have used with you before</div>
@@ -1364,7 +1380,8 @@ V.plan=`
  <tr><td class="n" style="text-align:center">5</td><td>Enable Ad Quality on Stumble Guys now and on each title as it reaches 4.19+; first churn and competitor-ad read within 30 days</td><td class="indigo">Unity + Scopely</td><td style="padding-right:30px">Q4</td></tr>
  <tr><td class="n" style="text-align:center">6</td><td>Align MONOPOLY GO rewarded and interstitial placements with the SDK integration; scope the Offerwall for Bingo Bash</td><td class="indigo">Unity + Scopely</td><td style="padding-right:30px">Q4</td></tr>
  <tr><td class="n" style="text-align:center">7</td><td>Share the Google Analytics linking guide and book a 15-minute walkthrough; confirm the Vector data checklist</td><td class="indigo">Unity + Scopely</td><td style="padding-right:30px">Next 2 weeks</td></tr>
- <tr><td class="n" style="text-align:center">8</td><td>Recap with decisions, owners and dates; six-week checkpoint on 4.20.1 progress</td><td class="indigo">Unity</td><td style="padding-right:30px">Within 24 hours</td></tr>
+ <tr><td class="n" style="text-align:center">8</td><td>Confirm which titles and currencies to log for multi-currency offerwall support (Stumble Guys already logged)</td><td class="indigo">Scopely</td><td style="padding-right:30px">October</td></tr>
+ <tr><td class="n" style="text-align:center">9</td><td>Recap with decisions, owners and dates; six-week checkpoint on 4.20.1 progress</td><td class="indigo">Unity</td><td style="padding-right:30px">Within 24 hours</td></tr>
  </tbody></table></div>
  <div class="foot">Prepared by Alon Haliva · Client Partner, Unity · Ad Monetization<br>Sources and method in the appendix. Publisher payout throughout; eCPM is payout per 1,000 impressions. Figures rounded.</div>`;
 
@@ -1380,7 +1397,7 @@ V.twoway=`
    ['Planning cycle.','When do Q1 roadmap and engineering priorities lock, and where does an SDK or mediation ticket need to land to make the cut?'],
    ['Share.','Which networks or mediation partners are gaining share on your titles, and what would make you consolidate more with one?'],
    ['What is changing.','New titles, MONOPOLY GO ad placements, platform or privacy changes we should plan around?'],
-   ['Offerwall.','How has the player experience with the offerwall been, and have offerwall competitors approached you this year?'],
+   ['Offerwall.','How has the player experience with the offerwall been, have competitors approached you, and which second currency would you add per title if the wall supported more than one?'],
    ['Friction.','Where are we hardest to work with: reporting, payments, SDK cadence, support?'],
   ])}</div>
   <div class="card" style="padding:12px 30px">
@@ -1516,6 +1533,7 @@ V.apx_method=`
   ['Advertiser categories.','The export genre column describes the source game, so categories are our classification of the top 25 buyers; the rest is the long tail. No advertiser is named.'],
   ['Unity network share.','Share of Unity Ads publisher revenue by demand source: Unity network vs exchange bidders.'],
   ['SDK 4.20.1 and offerwall ranges.','Unity published "up to" ranges (same-game comparisons, Aug 25 and Mar 1 to May 14, 2026) and similar-publisher projections. Not Scopely results.'],
+  ['Multi-currency estimate.','This quarter\'s offerwall payout per title times a share-of-wallet assumption for the added currency (45% hard, 30% soft), the assumptions used in Unity\'s publisher interest tracker. Sizing only.'],
   ['Ad Quality.','Unity Ad Experience Customer Survey, July 2025 (2,200 US respondents) and the Ad Quality 2026 product overview. Enable status per title to be confirmed on the call.'],
  ])}</div>
  ${sec('Questions we usually get on the SDK','star','s')}
