@@ -939,31 +939,30 @@ const sepFill=(t)=>t.monthly[t.monthly.length-1].fill;
 /* ---------- agenda (product chapters) ---------- */
 const V={};
 const AGENDA=[
- {id:'overview',t:'The quarter at a glance',d:'Payout, eCPM, the one ask, and where we left off.',m:6,g:'Overview'},
- {id:'ua_perf',t:'Unity Ads performance',d:'Every title and format against last quarter.',m:6,g:'Unity Ads'},
- {id:'ua_sdk',t:'The SDK story and 4.20.1',d:'What 4.16 did for Scrabble GO, and the next step.',m:7,g:'Unity Ads'},
- {id:'ua_demand',t:'Who buys your inventory',d:'Unity network vs ironSource Ads, advertiser mix, new demand.',m:5,g:'Unity Ads'},
- {id:'isx',t:'ironSource Ads',d:'What changed, by title.',m:3,g:'ironSource Ads'},
- {id:'ow_perf',t:'Offerwall performance',d:'Payout, reach, conversion and value per converter.',m:6,g:'Offerwall'},
- {id:'ow_plan',t:'Offerwall plan',d:'Three reach levers and what is new.',m:4,g:'Offerwall'},
- {id:'levelplay',t:'LevelPlay',d:'Live on Stumble Guys; what is new and the next title.',m:4,g:'LevelPlay and Ad Quality'},
- {id:'adquality',t:'Ad Quality',d:'See what your players see, and the plan to switch it on.',m:4,g:'LevelPlay and Ad Quality'},
+ {id:'overview',t:'The quarter at a glance',d:'The numbers in one page, and the one ask.',m:5,g:'Overview'},
+ {id:'roadmap',t:'What changed, what is changing, what comes next',d:'Across Unity Ads, the Exchange, LevelPlay, the Offerwall and Ad Quality.',m:8,g:'What is changing'},
+ {id:'ua_sdk',t:'The SDK story and 4.20.1',d:'What 4.16 did for Scrabble GO, and the next step.',m:6,g:'What is changing'},
+ {id:'levelplay',t:'LevelPlay',d:'Live on Stumble Guys; what is new and the next title.',m:4,g:'What is changing'},
+ {id:'adquality',t:'Ad Quality',d:'See what your players see, and the plan to switch it on.',m:4,g:'What is changing'},
+ {id:'ow_plan',t:'Offerwall: new product and reach levers',d:'M2E Promo, Rewarded Offers, and three reach levers.',m:4,g:'What is changing'},
+ {id:'ua_demand',t:'Who buys your inventory',d:'Unity network vs ironSource Ads, advertiser mix, new demand, benchmarks.',m:6,g:'What you cannot see in your own data'},
+ {id:'ow_perf',t:'Offerwall funnel',d:'Reach, conversion and value per converter, by title.',m:5,g:'What you cannot see in your own data'},
+ {id:'ua_perf',t:'Unity Ads, briefly',d:'Every title and format against last quarter.',m:4,g:'The quarter, briefly'},
+ {id:'isx',t:'ironSource Ads, briefly',d:'What changed, by title.',m:2,g:'The quarter, briefly'},
  {id:'plan',t:'Q4 plan',d:'Three priorities, owners and dates.',m:6,g:'Plan'},
- {id:'twoway',t:'Questions for you',d:'What we need to hear, and how we are doing.',m:5,g:'Plan'},
+ {id:'twoway',t:'Questions for you',d:'What we need to hear, and how we are doing.',m:4,g:'Plan'},
  {id:'summary',t:'One page to take with you',d:'Headline, five numbers and the ask.',m:2,g:'Plan'},
  {id:'apx_vector',t:'Appendix · Unity Vector and your data',d:'The signals that sharpen optimization.',m:0,g:'Appendix'},
- {id:'apx_bench',t:'Appendix · benchmarks',d:'Casual-category mediation benchmarks.',m:0,g:'Appendix'},
- {id:'apx_formats',t:'Appendix · formats by title',d:'Format mix and platform split per game.',m:0,g:'Appendix'},
+ {id:'apx_formats',t:'Appendix · formats by title',d:'Format mix, platform split, daily trend, fill by month.',m:0,g:'Appendix'},
  {id:'apx_sdk',t:'Appendix · SDK by title',d:'September payout by SDK version, every title.',m:0,g:'Appendix'},
  {id:'apx_ow',t:'Appendix · offerwall via Unity Ads',d:'The "- Unity" rows of the offerwall funnel report.',m:0,g:'Appendix'},
  {id:'apx_method',t:'Appendix · sources and method',d:'Windows, exports and how eCPM is calculated.',m:0,g:'Appendix'},
 ];
-const GROUPS=['Overview','Unity Ads','ironSource Ads','Offerwall','LevelPlay and Ad Quality','Plan','Appendix'];
+const GROUPS=['Overview','What is changing','What you cannot see in your own data','The quarter, briefly','Plan','Appendix'];
 const GTHEME={Overview:'The quarter in one page, and the one decision we are asking for',
- 'Unity Ads':'Performance, the SDK story, and who is buying your inventory',
- 'ironSource Ads':'What changed after the direct-demand sunset',
- 'Offerwall':'Reach is the lever; conversion and value already work',
- 'LevelPlay and Ad Quality':'A live auction for your impressions, and control over the ads players see',
+ 'What is changing':'Product changes that affect your yield, shipped, rolling out and coming',
+ 'What you cannot see in your own data':'Demand, benchmarks and the offerwall funnel from the Unity side',
+ 'The quarter, briefly':'The numbers you already have, with what we would call out',
  'Plan':'Three priorities, your questions, one page to forward',
  'Appendix':'Backup detail, for when a question comes up'};
 const NQ=DATA.NETQ, IAQ=DATA.iAdsQ, TJQ=DATA.tjQ, OW=DATA.OW, FQ=DATA.FQ, ADV=DATA.ADV;
@@ -999,10 +998,10 @@ V.agenda=(function(){
  const bar=groups.map(gr=>`<div class="rs-seg" style="flex:${gr.mins}" data-tip="${gr.g}: ${gr.mins} min"><span>${gr.g}</span><b>${gr.mins} min</b></div>`).join('');
  const cols=groups.map(gr=>`<div class="ag-col"><div class="ag-colhead"><span class="ag-cn">0${gr.gi+1}</span><div><div class="ag-cg">${gr.g}</div><div class="ag-ct">${GTHEME[gr.g]}</div></div></div>${gr.items.map(it=>`<button class="ag-it" onclick="go('${it.id}')"><span class="ag-in">${('0'+(main.indexOf(it)+1)).slice(-2)}</span><span class="ag-itt">${it.t}</span><span class="ag-im">${it.m}m</span></button>`).join('')}</div>`).join('');
  return `<div class="agenda2"><div class="agenda-label">Agenda</div><h2 class="ap-title" style="margin-bottom:6px">What we'll cover today</h2>
-  <div class="ag-sub">About ${total} minutes across ${main.length} short pages, one product at a time, leaving room in the hour for discussion. Your topics go first; tell us what to reorder.</div>
+  <div class="ag-sub">Built around Ammar's note: forward first (what changed, what is changing, what comes next), then the insights you cannot see in your own data, then the quarter briefly. About ${total} minutes across ${main.length} short pages, with room in the hour for discussion.</div>
   <div class="rs-bar">${bar}<div class="rs-seg rs-disc" style="flex:15"><span>Discussion</span><b>15+ min</b></div></div>
   <div class="ag-cols">${cols}</div>
-  <div class="ag-foot">Halfway mark: into the Offerwall. 15 minutes left: at the plan. Appendix sits behind the last chapter for questions.</div></div>`;
+  <div class="ag-foot">Halfway mark: into the insights chapter. 15 minutes left: at the plan. Appendix sits behind the last chapter for questions.</div></div>`;
 })();
 
 /* ---------- 01 overview ---------- */
@@ -1056,12 +1055,44 @@ V.overview=`
   </div>
  </div>`;
 
+/* ---------- roadmap: changed / changing / coming ---------- */
+function rmCol(title,badgeCls,badge,items){return `<div class="ag-col" style="padding:14px 16px 10px"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span class="lp-badge ${badgeCls}">${badge}</span><div class="ag-cg" style="font-size:15px">${title}</div></div>${items.map(it=>`<div class="gb-item"><div class="git">${it[0]}</div>${it[1]}</div>`).join('')}</div>`;}
+V.roadmap=`
+ <div class="ey">What is changing · across the Unity stack</div>
+ <div class="lead">What changed, what is changing, what comes next</div>
+ <div class="sublead">The product changes that move your yield, grouped by timing. Each one has a page behind it if you want to go deeper.</div>
+ ${takeaway('Three things to take away: the SDK is the biggest yield lever you control (4.20.1), the Unity Exchange is bringing new buyers to the same requests, and the Offerwall is getting a Unity-native sibling (Rewarded Offers) without any forced migration.')}
+ <div class="ag-cols" style="grid-template-columns:repeat(3,1fr);margin-top:22px">
+  ${rmCol('Shipped this year','live','Changed',[
+   ['Unity Ads SDK 4.16 to 4.17 on your titles','Scrabble GO eCPM ${usd(SGO.pecpm)} to ${usd(SGO.ecpm)}; versions below 4.16 fell from ${(DATA.below416.jun*100).toFixed(0)}% to ${(DATA.below416.sep*100).toFixed(0)}% of payout.'],
+   ['ironSource direct demand deprecated, Apr 30','Programmatic demand keeps serving through the exchange; the Unity network carries the growth.'],
+   ['18 new DSPs on the Unity Exchange','Plus RampID, ID5 and TCF: more addressable requests, more buyers per impression.'],
+   ['LevelPlay AI-assisted integration','From package install to a live ad in one guided session.'],
+   ['M2E Promo updated','Custom copy and background image for the rewarded-video-to-offerwall banner.'],
+   ['Ad Quality: AI tagging and the Ad Controls link','Sensitive content tagged automatically; blocked store IDs traced across networks.'],
+  ])}
+  ${rmCol('Rolling out now','ea','Changing',[
+   ['Unity Ads SDK 4.20.1','Current release: up to 10% more impression opportunities and up to 15% more revenue per impression, plus dashboard activation of Ad Quality.'],
+   ['Dynamic bid floors (LevelPlay)','Early access. Floors that follow live auction conditions, built for the Stumble Guys Android gap.'],
+   ['Ad UX control (LevelPlay)','Early access. A retention-optimized ad experience only for your most ad-sensitive players, measured with A/B.'],
+   ['Unity Exchange buyers','Index Exchange, Nexxen and Attain pipes; brand partnerships from Kraft to McDonald’s.'],
+   ['Ad Quality in the unified dashboard','Creative monitoring alongside Unity Ads, LevelPlay and the Offerwall, H2.'],
+  ])}
+  ${rmCol('Coming','soon','Next',[
+   ['Rewarded Offers','A new offers product inside Unity Ads: same SDK, new offer types, Vector integration. Alpha Q4 2026, beta Q1 2027. Tapjoy Offerwall continues, no forced migration.'],
+   ['CPI billing and tROAS for MR-CPE (Offerwall, demand side)','In testing, Q4 2026. Relevant to your UA team.'],
+   ['Google Analytics linking for Vector','Your SDK already qualifies; one permission in the dashboard turns behavioral signals into better pricing on your impressions.'],
+   ['Unity Vector, continued','Network spend ×2.5 since Vector; US D28 ad-revenue ARPU up 140% in a year. More spend through the network means more demand for your inventory.'],
+  ])}
+ </div>
+ <div class="note-row">Roadmap items reflect Unity's current intentions and are not a commitment to deliver any feature on a given date.</div>`;
+
 /* ---------- 02 Unity Ads performance ---------- */
 const qoqRows=TT.filter(t=>t.rev>3000).map(t=>`<tr><td class="lead2" style="padding-left:30px">${gimg(t.icon,20)}${t.name}</td><td class="n">${money(t.rev)}</td><td class="n" style="color:${t.chg>=0?'var(--pos)':'var(--neg)'}">${pct(t.chg)}</td><td class="n">${M(t.imp)}</td><td class="n" style="color:${t.impChg>=0?'var(--pos)':'var(--neg)'};font-weight:600">${pct(t.impChg)}</td><td class="n">${usd(t.ecpm)}</td><td class="n" style="color:var(--muted);font-weight:600">${usd(t.pecpm)}</td><td class="n" style="padding-right:30px;color:${t.fill<0.95?'var(--neg)':'var(--ink)'}">${(t.fill*100).toFixed(1)}%</td></tr>`).join('');
 V.ua_perf=`
- <div class="ey">Unity Ads · performance</div>
- <div class="lead">Unity Ads performance</div>
- <div class="sublead">Every title and format against the prior 92 days. Payout is publisher payout; eCPM is payout per 1,000 impressions.</div>
+ <div class="ey">The quarter, briefly · Unity Ads</div>
+ <div class="lead">Unity Ads, briefly</div>
+ <div class="sublead">You have this data already. Here it is in one page, with the two things we would call out: yield did the work, and fill slipped in September.</div>
  ${takeaway(`Payout ${pct(T.chg)} on ${pct(T.impChg).replace('−','')} fewer impressions: the account earned more from less inventory. Seven of nine titles grew. Interstitial carried the growth; banners retired by design.`)}
  <div class="dstat-grid">
   ${dstat('Payout',money(T.rev),T.chg,`Prior ${money(T.prev)}`,true)}
@@ -1153,13 +1184,30 @@ V.ua_demand=`
    ['Identity that survives signal loss.','LiveRamp RampID and ID5 live on Unity Exchange inventory; Unity is an IAB Europe TCF participant. More addressable requests price higher.'],
    ['New buyers.','Index Exchange, Nexxen and Attain widen the pipes; brands including Kraft, Best Buy, CVS, Nintendo, Disney and McDonald’s are active on the exchange.'],
   ])}</div>
-  <div class="callbox"><h4>Where the eCPM upside is, in order</h4><p><b>1. SDK 4.20.1</b> on every title. <b>2. Stumble Guys Android rewarded</b>, where dynamic bid floors can do the tuning. <b>3. Fill</b> back to 99%+ on the Scrabble and Wheel of Fortune titles. <b>4. A second LevelPlay title</b>, so the network bids for the impressions it wants.</p><p style="margin-bottom:0"><b>Better inputs, live competition, higher clearing price.</b> Category benchmarks are in the appendix.</p></div>
+  <div class="callbox"><h4>Where the eCPM upside is, in order</h4><p><b>1. SDK 4.20.1</b> on every title. <b>2. Stumble Guys Android rewarded</b>, where dynamic bid floors can do the tuning. <b>3. Fill</b> back to 99%+ on the Scrabble and Wheel of Fortune titles. <b>4. A second LevelPlay title</b>, so the network bids for the impressions it wants.</p><p style="margin-bottom:0"><b>Better inputs, live competition, higher clearing price.</b></p></div>
+ </div>
+ ${sec('Casual-category mediation benchmarks, US','chart','s')}
+ <div class="grid g2">
+  <div class="card" style="padding:10px 0;overflow-x:auto">
+   <table class="t" style="min-width:420px"><thead><tr><th style="padding-left:30px">KPI</th><th style="text-align:right">25th</th><th style="text-align:right">Median</th><th style="text-align:right;padding-right:30px">75th</th></tr></thead><tbody>
+   <tr><td class="lead2" style="padding-left:30px">eCPM (gross, all networks)</td><td class="n">$16.42</td><td class="n">$21.61</td><td class="n" style="padding-right:30px">$34.53</td></tr>
+   <tr><td class="lead2" style="padding-left:30px">Engagement rate</td><td class="n">35.8%</td><td class="n">46.7%</td><td class="n" style="padding-right:30px">58.6%</td></tr>
+   <tr><td class="lead2" style="padding-left:30px">Impressions per DAU</td><td class="n">1.6</td><td class="n">2.8</td><td class="n" style="padding-right:30px">5.5</td></tr>
+   <tr><td class="lead2" style="padding-left:30px">ARPDAU</td><td class="n">2.75¢</td><td class="n">4.56¢</td><td class="n" style="padding-right:30px">7.71¢</td></tr>
+   <tr><td class="lead2" style="padding-left:30px">ARPDEU</td><td class="n">7.36¢</td><td class="n">11.81¢</td><td class="n" style="padding-right:30px">16.96¢</td></tr></tbody></table>
+   <div class="cap" style="padding:8px 30px 4px">Unity mediation benchmarks, Q3 2026, casual category, US. Rest of world in the appendix sources.</div>
+  </div>
+  <div class="card" style="padding:12px 30px">${nlist([
+   ['How to read it.','These are gross, all-network mediation numbers, so they sit above the payout-basis Unity Ads eCPM elsewhere in this review. Use them for shape, not for a one-to-one comparison.'],
+   ['Where Stumble Guys lands.','Once we pull its LevelPlay ARPDAU, engagement and impressions per DAU, it reads directly against this table. The word and dice titles follow once DAU is shared.'],
+   ['Why it is here.','You asked for insights you cannot get from your own data. Where your titles sit in the casual quartiles is exactly that, and it tells us which lever (ad load, engagement or price) has the most room.'],
+  ])}</div>
  </div>`;
 
 /* ---------- 05 ironSource Ads ---------- */
 V.isx=`
- <div class="ey">ironSource Ads</div>
- <div class="lead">ironSource Ads</div>
+ <div class="ey">The quarter, briefly · ironSource Ads</div>
+ <div class="lead">ironSource Ads, briefly</div>
  <div class="sublead">The second Unity network on the same titles, against the prior 92 days.</div>
  ${takeaway(`Payout ${pct(NQ.iAds.pay/NQ.iAds.ppay-1)} to ${money(NQ.iAds.pay)} on ${pct(NQ.iAds.imp/NQ.iAds.pimp-1)} impressions. Direct demand on the network was deprecated on April 30; programmatic demand keeps serving through the exchange, which is also why the Unity network matters more.`)}
  <div class="dstat-grid">
