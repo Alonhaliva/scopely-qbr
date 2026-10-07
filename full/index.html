@@ -756,6 +756,7 @@ body.onpage-on .pagenav{right:0}
 .bench-grid{display:grid;grid-template-columns:1fr;gap:14px}
 .bench-grid .t th{white-space:nowrap}
 .bench-grid .t td.lead2{white-space:nowrap;font-size:12px}
+.sg-table th,.sg-table td.lead2{white-space:nowrap}
 
 </style>
 </head>
@@ -1324,40 +1325,22 @@ V.ow_plan=`
 
 /* ---------- benchmark tables (slides 17-18 pattern) ---------- */
 const B=DATA.BENCH;
-const bNum=s=>parseFloat(String(s).replace(/[%$,]/g,""));
 const bk=v=>"$"+(v>=1e6?(v/1e6).toFixed(2)+"M":v>=1e3?(v/1e3).toFixed(0)+"k":v.toFixed(0));
 const bDau=v=>v>=1e6?(v/1e6).toFixed(2)+"M":(v/1e3).toFixed(0)+"k";
-/* Stumble Guys Q3 actuals as table cells, in the metric order of B.metrics */
-function sgCells(q){return [(q.eng*100).toFixed(1)+"%",q.usage.toFixed(2),usd(q.ecpm),q.arpdau.toFixed(2),q.arpdeu.toFixed(2),q.impdau.toFixed(2)];}
-const GEO_FAIR=[0,1,5]; /* engagement, usage, imp/DAU: compare cleanly across geo */
-function benchTable(p){const m=B.metrics;const fm=B.platforms[p];const q=B.sg[p].q3;const sg=sgCells(q);
- const quart=(fmt,k)=>{const vals=fm[fmt][k];return `<tr class="${k==="Median"?"bmed":""}"><td class="lead2" style="padding-left:24px;color:var(--muted);font-weight:600">${fmt} · ${k}</td>${vals.map(v=>`<td class="n">${v}</td>`).join("")}</tr>`;};
- const sgRow=`<tr style="background:var(--demandSoft)"><td class="lead2" style="padding-left:24px">${gimg("stumble",18)}Stumble Guys · Q3 2026</td>${sg.map((v,i)=>{let col="var(--ink)";if(GEO_FAIR.includes(i)){const a=bNum(v),mi=bNum(fm.Interstitial.Median[i]),mr=bNum(fm.Rewarded.Median[i]);col=a>=Math.min(mi,mr)?"var(--pos)":"var(--neg)";}return `<td class="n" style="color:${col};font-weight:800">${v}</td>`;}).join("")}</tr>`;
- return `<div class="card" style="padding:10px 0;overflow-x:auto"><div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;padding:8px 24px 0">${p}</div>
- <table class="t" style="min-width:640px;font-size:12.5px"><thead><tr><th style="padding-left:24px">Cut</th>${m.map(x=>`<th style="text-align:right">${x}</th>`).join("")}</tr></thead><tbody>
- ${["25th","Median","75th"].map(k=>quart("Interstitial",k)).join("")}
- ${["25th","Median","75th"].map(k=>quart("Rewarded",k)).join("")}
- ${sgRow}
- </tbody></table></div>`;}
-function sgMonthly(){const ms=["Jul","Aug","Sep"];const cell=(v)=>`<td class="n">${v}</td>`;
- return `<div class="card" style="padding:10px 0;overflow-x:auto"><div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;padding:8px 24px 0">By month, ${B.sgWindow}</div>
- <table class="t" style="min-width:640px;font-size:12.5px"><thead><tr><th style="padding-left:24px">Platform · month</th><th style="text-align:right">Revenue</th><th style="text-align:right">eCPM</th><th style="text-align:right">Avg DAU</th><th style="text-align:right">ARPDAU ¢</th><th style="text-align:right">Engagement</th><th style="text-align:right">Imp / DAU</th></tr></thead><tbody>
- ${["Android","iOS"].map(p=>B.sg[p].months.map((o,i)=>`<tr><td class="lead2" style="padding-left:24px">${i===0?gimg("stumble",18)+p:""}<span style="color:var(--muted);font-weight:600">${i===0?" · ":""}${ms[i]}</span></td>${cell(bk(o.rev))}${cell(usd(o.ecpm))}${cell(bDau(o.dau))}${cell(o.arpdau.toFixed(2))}${cell((o.eng*100).toFixed(1)+"%")}${cell(o.impdau.toFixed(2))}</tr>`).join("")).join("")}
- </tbody></table></div>`;}
-const sgA=B.sg.Android.q3, sgI=B.sg.iOS.q3, sgTot=sgA.rev+sgI.rev;
-const BENCH_READ=(()=>{const mA=bNum(B.platforms.Android.Interstitial.Median[0]),mI=bNum(B.platforms.iOS.Interstitial.Median[0]);
- return `Stumble Guys engaged ${(sgA.eng*100).toFixed(0)}% of Android and ${(sgI.eng*100).toFixed(0)}% of iOS daily players with at least one ad in Q3, against an interstitial median of ${mA}% and ${mI}% for the genre. Impressions per DAU sit near the rewarded median and well under the interstitial one on both platforms. The price per impression is a geo story (worldwide blend against US quartiles); the reach story is not. More players seeing an ad, and more often, is where the Stumble Guys upside is.`;})();
+const sgA=B.sg.Android.q3, sgI=B.sg.iOS.q3;
+const sgT=(()=>{const rev=sgA.rev+sgI.rev,imps=sgA.imps+sgI.imps,dau=sgA.dau+sgI.dau;const au=sgA.rev/sgA.arpdau*100+sgI.rev/sgI.arpdau*100;const eng=sgA.eng*(sgA.rev/sgA.arpdau*100)+sgI.eng*(sgI.rev/sgI.arpdau*100);return {rev,imps,dau,ecpm:rev/imps*1000,arpdau:rev/au*100,eng:eng/au,usage:imps/eng,impdau:imps/au};})();
+function sgRow(label,q,hl){const c=v=>`<td class="n" style="${hl?"font-weight:800":""}">${v}</td>`;
+ return `<tr style="${hl?"background:var(--demandSoft)":""}"><td class="lead2" style="padding-left:24px">${label}</td>${c(bk(q.rev))}${c(usd(q.ecpm))}${c(bDau(q.dau))}${c(q.arpdau.toFixed(2))}${c((q.eng*100).toFixed(1)+"%")}${c(q.usage.toFixed(2))}${c(q.impdau.toFixed(2))}</tr>`;}
 const BENCH_BLOCK=`
- ${sec("Stumble Guys against "+B.genre.toLowerCase()+" benchmarks","chart","s")}
- <div class="grid g3" style="margin-bottom:14px">
-  ${kpi("LevelPlay revenue, Q3",bk(sgTot),"Android "+bk(sgA.rev)+" · iOS "+bk(sgI.rev)+" · "+B.sgWindow,"coin")}
-  ${kpi("Blended eCPM",usd(sgA.ecpm)+" / "+usd(sgI.ecpm),"Android / iOS, all formats, worldwide. Android up "+pct(B.sg.Android.months[2].ecpm/B.sg.Android.months[0].ecpm-1)+" Jul to Sep","chart")}
-  ${kpi("Engagement rate",(sgA.eng*100).toFixed(0)+"% / "+(sgI.eng*100).toFixed(0)+"%","Share of daily players who saw an ad. "+sgA.impdau.toFixed(1)+" and "+sgI.impdau.toFixed(1)+" impressions per DAU","star")}
- </div>
- <div class="note-row" style="margin-bottom:10px"><span class="tag-todo">${B.label}</span> &nbsp; Green and red only on the columns that compare cleanly across geos: engagement rate, usage rate (impressions per engaged user) and impressions per DAU, against the lower of the two format medians.</div>
- <div class="bench-grid">${["Android","iOS"].map(benchTable).join("")}${sgMonthly()}</div>
- <div class="cap" style="margin-top:10px">${BENCH_READ}</div>
- <div class="cap" style="margin-top:6px;color:var(--muted)">${B.caveat}</div>`;
+ ${sec("Stumble Guys on LevelPlay, Q3 2026","chart","s")}
+ <div class="card" style="padding:10px 0;overflow-x:auto"><div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;padding:8px 24px 0">${B.sgWindow} · all formats · worldwide</div>
+ <table class="t sg-table" style="min-width:640px;font-size:13px"><thead><tr><th style="padding-left:24px">Platform</th><th style="text-align:right">Revenue</th><th style="text-align:right">eCPM</th><th style="text-align:right">Avg DAU</th><th style="text-align:right">ARPDAU ¢</th><th style="text-align:right">Engagement rate</th><th style="text-align:right">Usage rate</th><th style="text-align:right">Imp / DAU</th></tr></thead><tbody>
+ ${sgRow(gimg("stumble",18)+"Stumble Guys · Android",sgA)}
+ ${sgRow(gimg("stumble",18)+"Stumble Guys · iOS",sgI)}
+ ${sgRow("Both platforms",sgT,true)}
+ <tr><td class="lead2" style="padding-left:24px;color:var(--muted);font-weight:600">Network benchmark, same genre</td><td class="n" colspan="7" style="color:var(--muted);font-weight:500;text-align:right">to be added</td></tr>
+ </tbody></table></div>
+ <div class="cap" style="margin-top:10px">Engagement rate is the share of daily players who saw at least one ad. Usage rate is impressions per engaged player. Android eCPM moved from ${usd(B.sg.Android.months[0].ecpm)} in July to ${usd(B.sg.Android.months[2].ecpm)} in September.</div>`;
 
 /* ---------- 08 LevelPlay ---------- */
 function rItem(t,why,st,cls){return `<div class="r-item"><div class="r-top"><b>${t}</b><span class="r-st ${cls||''}">${st}</span></div><div class="r-why" style="color:var(--body);font-weight:500">${why}</div></div>`;}
