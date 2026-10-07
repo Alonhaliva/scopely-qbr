@@ -750,6 +750,9 @@ body.onpage-on .pagenav{right:0}
 .ag-col{padding:10px 10px 6px}
 @media(max-width:1100px){.ag-cols{grid-template-columns:1fr 1fr}}
 
+@media(max-width:1100px){.lp-notes{grid-template-columns:1fr 1fr !important}}
+@media(max-width:700px){.lp-notes{grid-template-columns:1fr !important}}
+
 </style>
 </head>
 <body>
@@ -1067,6 +1070,7 @@ V.roadmap=`
    ['Unity Ads SDK 4.16 to 4.17 on your titles',`Scrabble GO eCPM ${usd(SGO.pecpm)} to ${usd(SGO.ecpm)}; versions below 4.16 fell from ${(DATA.below416.jun*100).toFixed(0)}% to ${(DATA.below416.sep*100).toFixed(0)}% of payout.`],
    ['ironSource direct demand deprecated, Apr 30','Programmatic demand keeps serving through the exchange; the Unity network carries the growth.'],
    ['18 new DSPs on the Unity Exchange','Plus RampID, ID5 and TCF: more addressable requests, more buyers per impression.'],
+   ['LevelPlay dynamic loading on rewarded video, Sep 3','Instances load in parallel; rewarded waterfall latency down about 70%. Needs LevelPlay SDK 9.0 or newer.'],
    ['LevelPlay AI-assisted integration','From package install to a live ad in one guided session.'],
    ['M2E Promo updated','Custom copy and background image for the rewarded-video-to-offerwall banner.'],
    ['Ad Quality: AI tagging and the Ad Controls link','Sensitive content tagged automatically; blocked store IDs traced across networks.'],
@@ -1303,7 +1307,8 @@ V.levelplay=`
  <div class="lead">LevelPlay</div>
  <div class="sublead">Live on Stumble Guys today, the one place Unity competes in a live auction for your impressions. Three highlights from the roadmap, and a proposal for a second title.</div>
  ${takeaway(`Stumble Guys Unity Ads payout grew ${pct(STG.chg)} inside LevelPlay. Its Android rewarded clears at ${usd(ecpm(stgA.fmt.Rewarded))} against ${usd(ecpm(stgI.fmt.Rewarded))} on iOS, exactly the gap dynamic bid floors are built for.`)}
- <div class="lp-notes" style="margin-top:22px">
+ <div class="lp-notes" style="margin-top:22px;grid-template-columns:repeat(4,1fr)">
+  <div class="lp-note"><span class="lp-badge live">Live · Sep 3</span><h4>Dynamic loading on rewarded video</h4><p>Rewarded instances now load in parallel instead of one at a time; waterfall latency from load to success is down about 70%. Already live on interstitial. Needs LevelPlay SDK 9.0 or newer; auction pricing and floors unchanged.</p></div>
   <div class="lp-note"><span class="lp-badge live">Q3 · Live</span><h4>AI-assistance integration</h4><p>Ask the Unity AI Assistant to monetize your game and it integrates LevelPlay for you, from package install to a live ad in one guided session. Also a public LevelPlay skill for Claude Code and other coding agents.</p></div>
   <div class="lp-note"><span class="lp-badge ea">Q3 · Early access</span><h4>Dynamic bid floors</h4><p>Floors that adjust automatically to live auction conditions, pushing the auction to surface higher-value demand on every impression.</p></div>
   <div class="lp-note"><span class="lp-badge soon">Live · early access</span><h4>Ad UX control</h4><p>A retention-optimized ad experience applied only to your most ad-sensitive users, measured with LevelPlay A/B testing.</p></div>
@@ -1313,7 +1318,7 @@ V.levelplay=`
    <div class="ai-vid"><video class="ai-vid-el" src="assets/levelplay_assistant.mp4" poster="assets/levelplay_poster.jpg" preload="metadata" playsinline controls></video><button class="ai-vid-play" type="button" aria-label="Play" onclick="var v=this.previousElementSibling; v.play(); this.parentNode.classList.add('playing');">&#9654;</button></div>
    <div class="cap" style="padding-top:10px">AI-assisted integration in action. Unity Assistant (Beta), shown for context.</div>
   </div>
-  <div class="callbox"><h4>Proposal: A/B test LevelPlay on one more title in Q4</h4><p>Scrabble GO is the largest candidate and already first for 4.20.1, so both tests share one engineering window. Yahtzee with Buddies is the smaller alternative. Success metric: ARPDAU on the LevelPlay arm against the current setup, retention read alongside through Ad UX control.</p><p style="margin-bottom:0">Two practical reads for Stumble Guys meanwhile: add a floor where engagement falls with flat DAU, and keep remaining waterfall lines at higher price points. With ironSource direct demand gone there is also room for one more competitive bidder, up to +10% on the title.</p></div>
+  <div class="callbox"><h4>Proposal: A/B test LevelPlay on one more title in Q4</h4><p>Scrabble GO is the largest candidate and already first for 4.20.1, so both tests share one engineering window. Yahtzee with Buddies is the smaller alternative. Success metric: ARPDAU on the LevelPlay arm against the current setup, retention read alongside through Ad UX control.</p><p><b>First check: is Stumble Guys on LevelPlay SDK 9.0 or newer?</b> If yes, dynamic loading on rewarded video is already working for you. If not, that app update is the quickest latency win available, and it pairs with the 4.20.1 ticket.</p><p style="margin-bottom:0">Two practical reads for Stumble Guys meanwhile: add a floor where engagement falls with flat DAU, and keep remaining waterfall lines at higher price points. With ironSource direct demand gone there is also room for one more competitive bidder, up to +10% on the title.</p></div>
  </div>`;
 
 /* ---------- 09 Ad Quality ---------- */
@@ -1375,7 +1380,7 @@ V.plan=`
  <table class="t" style="min-width:640px"><thead><tr><th style="padding-left:30px;text-align:center;width:44px">#</th><th>Action</th><th>Owner</th><th style="padding-right:30px">Timing</th></tr></thead><tbody>
  <tr><td class="n" style="text-align:center">1</td><td>Root-cause the September fill-rate dip on Scrabble GO, Scrabble and Wheel of Fortune and share the read</td><td class="indigo">Unity</td><td style="padding-right:30px">Next 2 weeks</td></tr>
  <tr><td class="n" style="text-align:center">2</td><td>Ticket the Unity Ads SDK 4.20.1 + mediation adapter update, Scrabble GO first</td><td class="indigo">Scopely engineering</td><td style="padding-right:30px">October</td></tr>
- <tr><td class="n" style="text-align:center">3</td><td>Joint review of Stumble Guys Android rewarded floors and placements; agree the LevelPlay A/B test title</td><td class="indigo">Unity + Scopely</td><td style="padding-right:30px">October</td></tr>
+ <tr><td class="n" style="text-align:center">3</td><td>Confirm Stumble Guys' LevelPlay SDK version (9.0+ for dynamic loading on rewarded video); joint review of Android rewarded floors and placements; agree the LevelPlay A/B test title</td><td class="indigo">Unity + Scopely</td><td style="padding-right:30px">October</td></tr>
  <tr><td class="n" style="text-align:center">4</td><td>Scale the M2E Promo on all six titles; share the Q4 currency-sale calendar</td><td class="indigo">Scopely + Unity</td><td style="padding-right:30px">October</td></tr>
  <tr><td class="n" style="text-align:center">5</td><td>Enable Ad Quality on Stumble Guys now and on each title as it reaches 4.19+; first churn and competitor-ad read within 30 days</td><td class="indigo">Unity + Scopely</td><td style="padding-right:30px">Q4</td></tr>
  <tr><td class="n" style="text-align:center">6</td><td>Align MONOPOLY GO rewarded and interstitial placements with the SDK integration; scope the Offerwall for Bingo Bash</td><td class="indigo">Unity + Scopely</td><td style="padding-right:30px">Q4</td></tr>
