@@ -1324,7 +1324,7 @@ function benchTable(tb){const m=DATA.BENCH.metrics;const med=tb.rows['Median'];c
  ${Object.entries(tb.rows).map(([k,vals])=>{const isSG=k==='Stumble Guys';return `<tr style="${isSG?'background:var(--demandSoft)':''}"><td class="lead2" style="padding-left:24px">${isSG?gimg('stumble',18):''}${k}</td>${vals.map((v,i)=>{let col='var(--ink)';if(isSG){const a=num(v),b=num(med[i]);if(isFinite(a)&&isFinite(b))col=a>=b?'var(--pos)':'var(--neg)';}return `<td class="n" style="color:${col};${isSG?'font-weight:800':''}">${v}</td>`;}).join('')}</tr>`;}).join('')}
  </tbody></table></div>`;}
 const BENCH_BLOCK=`
- ${sec('Stumble Guys against ${DATA.BENCH.genre.toLowerCase()} benchmarks, ${DATA.BENCH.geo}','chart','s')}
+ ${sec('Stumble Guys against '+DATA.BENCH.genre.toLowerCase()+' benchmarks, '+DATA.BENCH.geo,'chart','s')}
  <div class="note-row" style="margin-bottom:10px"><span class="tag-todo">${DATA.BENCH.label}</span> &nbsp; Stumble Guys row in green where it is at or above the genre median, red where below. Updated numbers drop into one data file.</div>
  <div class="grid g2">${DATA.BENCH.tables.map(benchTable).join('')}</div>
  <div class="cap" style="margin-top:10px">${DATA.BENCH.read}</div>`;
