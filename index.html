@@ -752,6 +752,9 @@ body.onpage-on .pagenav{right:0}
 
 @media(max-width:1100px){.lp-notes{grid-template-columns:1fr 1fr !important}}
 @media(max-width:700px){.lp-notes{grid-template-columns:1fr !important}}
+/* Benchmark tables: two across on wide screens, one column below 1240px (incl. the sidebar) */
+.bench-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.bench-grid .t th{white-space:nowrap}
 
 </style>
 </head>
@@ -1326,7 +1329,7 @@ function benchTable(tb){const m=DATA.BENCH.metrics;const med=tb.rows['Median'];c
 const BENCH_BLOCK=`
  ${sec('Stumble Guys against '+DATA.BENCH.genre.toLowerCase()+' benchmarks, '+DATA.BENCH.geo,'chart','s')}
  <div class="note-row" style="margin-bottom:10px"><span class="tag-todo">${DATA.BENCH.label}</span> &nbsp; Stumble Guys row in green where it is at or above the genre median, red where below. Updated numbers drop into one data file.</div>
- <div class="grid g2">${DATA.BENCH.tables.map(benchTable).join('')}</div>
+ <div class="bench-grid">${DATA.BENCH.tables.map(benchTable).join('')}</div>
  <div class="cap" style="margin-top:10px">${DATA.BENCH.read}</div>`;
 
 /* ---------- 08 LevelPlay ---------- */
