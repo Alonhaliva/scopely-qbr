@@ -945,10 +945,11 @@ const AGENDA=[
  {id:'overview',t:'The quarter at a glance',d:'The numbers in one page, and the one ask.',m:5,g:'Overview'},
  {id:'roadmap',t:'What changed, what is changing, what comes next',d:'Across Unity Ads, the Exchange, LevelPlay, the Offerwall and Ad Quality.',m:8,g:'What is changing'},
  {id:'ua_sdk',t:'The SDK story and 4.20.1',d:'What 4.16 did for Scrabble GO, and the next step.',m:6,g:'What is changing'},
- {id:'levelplay',t:'LevelPlay',d:'Live on Stumble Guys; what is new and the next title.',m:4,g:'What is changing'},
+ {id:'levelplay',t:'LevelPlay',d:'Roadmap, what is live, and the next title.',m:5,g:'What is changing'},
+ {id:'exchange',t:'Unity Exchange',d:'New buyers, identity and measurement on your inventory.',m:3,g:'What is changing'},
  {id:'adquality',t:'Ad Quality',d:'See what your players see, and the plan to switch it on.',m:4,g:'What is changing'},
  {id:'ow_plan',t:'Offerwall: new product and reach levers',d:'M2E Promo, Rewarded Offers, and three reach levers.',m:4,g:'What is changing'},
- {id:'ua_demand',t:'Who buys your inventory',d:'Unity network vs ironSource Ads, advertiser mix, new demand, benchmarks.',m:6,g:'What you cannot see in your own data'},
+ {id:'ua_demand',t:'Who buys your inventory',d:'Unity network vs ironSource Ads, advertiser mix, benchmarks.',m:5,g:'What you cannot see in your own data'},
  {id:'ow_perf',t:'Offerwall funnel',d:'Reach, conversion and value per converter, by title.',m:5,g:'What you cannot see in your own data'},
  {id:'ua_perf',t:'Unity Ads, briefly',d:'Every title and format against last quarter.',m:4,g:'The quarter, briefly'},
  {id:'isx',t:'ironSource Ads, briefly',d:'What changed, by title.',m:2,g:'The quarter, briefly'},
@@ -956,6 +957,7 @@ const AGENDA=[
  {id:'twoway',t:'Questions for you',d:'What we need to hear, and how we are doing.',m:4,g:'Plan'},
  {id:'summary',t:'One page to take with you',d:'Headline, five numbers and the ask.',m:2,g:'Plan'},
  {id:'apx_vector',t:'Appendix · Unity Vector and your data',d:'The signals that sharpen optimization.',m:0,g:'Appendix'},
+ {id:'apx_uaroadmap',t:'Appendix · Unity Ads 2026 roadmap (UA)',d:'For your user acquisition team.',m:0,g:'Appendix'},
  {id:'apx_formats',t:'Appendix · formats by title',d:'Format mix, platform split, daily trend, fill by month.',m:0,g:'Appendix'},
  {id:'apx_sdk',t:'Appendix · SDK by title',d:'September payout by SDK version, every title.',m:0,g:'Appendix'},
  {id:'apx_ow',t:'Appendix · offerwall via Unity Ads',d:'The "- Unity" rows of the offerwall funnel report.',m:0,g:'Appendix'},
@@ -1077,15 +1079,17 @@ V.roadmap=`
   ])}
   ${rmCol('Rolling out now','ea','Changing',[
    ['Unity Ads SDK 4.20.1','Current release: up to 10% more impression opportunities and up to 15% more revenue per impression, plus dashboard activation of Ad Quality.'],
-   ['Dynamic bid floors (LevelPlay)','Early access. Floors that follow live auction conditions, built for the Stumble Guys Android gap.'],
+   ['Dynamic bid floors and smart segmentation (LevelPlay)','Early access. Floors that follow live auction conditions, and ML-driven player segments for retention-optimized ads.'],
+   ['Bidding-first demand stack (LevelPlay)','New bidders live, legacy non-bidding instances retiring through 2026: fewer wasted calls, lower latency.'],
    ['Ad UX control (LevelPlay)','Early access. A retention-optimized ad experience only for your most ad-sensitive players, measured with A/B.'],
    ['Unity Exchange buyers','Index Exchange, Nexxen and Attain pipes; brand partnerships from Kraft to McDonald’s.'],
-   ['Ad Quality in the unified dashboard','Creative monitoring alongside Unity Ads, LevelPlay and the Offerwall, H2.'],
+   ['Unified monetization dashboard','LevelPlay, Ad Quality, Offerwall and Unity Ads in one place, Q4.'],
   ])}
   ${rmCol('Coming','soon','Next',[
    ['Rewarded Offers','A new offers product inside Unity Ads: same SDK, new offer types, Vector integration. Alpha Q4 2026, beta Q1 2027. Tapjoy Offerwall continues, no forced migration.'],
    ['Multi-currency offerwall','Players earn more than one in-game currency from the same wall, hard and soft. We are collecting publisher interest now to bring it to product; Stumble Guys is already logged.'],
    ['CPI billing and tROAS for MR-CPE (Offerwall, demand side)','In testing, Q4 2026. Relevant to your UA team.'],
+   ['Ad content control (LevelPlay)','Block bundles and creatives across participating bidding networks, A/B the impact per segment. Early 2027.'],
    ['Google Analytics linking for Vector','Your SDK already qualifies; one permission in the dashboard turns behavioral signals into better pricing on your impressions.'],
    ['Unity Vector, continued','Network spend ×2.5 since Vector; US D28 ad-revenue ARPU up 140% in a year. More spend through the network means more demand for your inventory.'],
   ])}
@@ -1182,12 +1186,12 @@ V.ua_demand=`
    <div class="cap">${ADV.paying} advertisers paid over $100; the top 10 are ${(ADV.top10*100).toFixed(0)}% and no single buyer is over ${(Math.max(...Object.values(ADV.byTitle).map(t=>t.top1))*100).toFixed(0)}% of a title. Puzzle and match-3 buyers pay the most per impression; brand demand is the one category that fell.</div>
   </div>
  </div>
- ${sec('More demand competing for your requests','users','s')}
+ ${sec('Where the eCPM upside is','star','s')}
  <div class="grid g2">
   <div class="card" style="padding:12px 30px">${nlist([
-   ['18 new DSPs in the first half of 2026','on the Unity Exchange, all bidding on the same requests as the Unity network.'],
-   ['Identity that survives signal loss.','LiveRamp RampID and ID5 live on Unity Exchange inventory; Unity is an IAB Europe TCF participant. More addressable requests price higher.'],
-   ['New buyers.','Index Exchange, Nexxen and Attain widen the pipes; brands including Kraft, Best Buy, CVS, Nintendo, Disney and McDonald’s are active on the exchange.'],
+   ['The Unity network is pricing your inventory higher than last quarter,','and higher than the second Unity network on four of five shared titles.'],
+   ['The demand base is wide,',`${ADV.paying} paying advertisers, so the lever is price per impression, not finding buyers.`],
+   ['New exchange demand is arriving (next page),','and a current SDK is what lets those buyers see what they are bidding on.'],
   ])}</div>
   <div class="callbox"><h4>Where the eCPM upside is, in order</h4><p><b>1. SDK 4.20.1</b> on every title. <b>2. Stumble Guys Android rewarded</b>, where dynamic bid floors can do the tuning. <b>3. Fill</b> back to 99%+ on the Scrabble and Wheel of Fortune titles. <b>4. A second LevelPlay title</b>, so the network bids for the impressions it wants.</p><p style="margin-bottom:0"><b>Better inputs, live competition, higher clearing price.</b></p></div>
  </div>
@@ -1302,23 +1306,73 @@ V.ow_plan=`
  </div>`;
 
 /* ---------- 08 LevelPlay ---------- */
+function rItem(t,why,st,cls){return `<div class="r-item"><div class="r-top"><b>${t}</b><span class="r-st ${cls||''}">${st}</span></div><div class="r-why" style="color:var(--body);font-weight:500">${why}</div></div>`;}
 V.levelplay=`
  <div class="ey">LevelPlay · mediation</div>
  <div class="lead">LevelPlay</div>
- <div class="sublead">Live on Stumble Guys today, the one place Unity competes in a live auction for your impressions. Three highlights from the roadmap, and a proposal for a second title.</div>
- ${takeaway(`Stumble Guys Unity Ads payout grew ${pct(STG.chg)} inside LevelPlay. Its Android rewarded clears at ${usd(ecpm(stgA.fmt.Rewarded))} against ${usd(ecpm(stgI.fmt.Rewarded))} on iOS, exactly the gap dynamic bid floors are built for.`)}
- <div class="lp-notes" style="margin-top:22px;grid-template-columns:repeat(4,1fr)">
-  <div class="lp-note"><span class="lp-badge live">Live · Sep 3</span><h4>Dynamic loading on rewarded video</h4><p>Rewarded instances now load in parallel instead of one at a time; waterfall latency from load to success is down about 70%. Already live on interstitial. Needs LevelPlay SDK 9.0 or newer; auction pricing and floors unchanged.</p></div>
-  <div class="lp-note"><span class="lp-badge live">Q3 · Live</span><h4>AI-assistance integration</h4><p>Ask the Unity AI Assistant to monetize your game and it integrates LevelPlay for you, from package install to a live ad in one guided session. Also a public LevelPlay skill for Claude Code and other coding agents.</p></div>
-  <div class="lp-note"><span class="lp-badge ea">Q3 · Early access</span><h4>Dynamic bid floors</h4><p>Floors that adjust automatically to live auction conditions, pushing the auction to surface higher-value demand on every impression.</p></div>
-  <div class="lp-note"><span class="lp-badge soon">Live · early access</span><h4>Ad UX control</h4><p>A retention-optimized ad experience applied only to your most ad-sensitive users, measured with LevelPlay A/B testing.</p></div>
+ <div class="sublead">Live on Stumble Guys today, the one place Unity competes in a live auction for your impressions. Where the platform is investing, what is live, and a proposal for a second title.</div>
+ ${takeaway(`Stumble Guys Unity Ads payout grew ${pct(STG.chg)} inside LevelPlay. Three investment areas drive the roadmap: intelligent management, competitive demand and publisher ad controls. Dynamic bid floors are built for the Android rewarded gap (${usd(ecpm(stgA.fmt.Rewarded))} vs ${usd(ecpm(stgI.fmt.Rewarded))} on iOS).`)}
+ <div class="strip">
+  <div class="st"><div class="lbl">01 · Intelligent management</div><div class="val" style="font-size:20px">Less manual ops</div><div class="note">Automation and AI for setup, optimization and decisioning</div></div>
+  <div class="st"><div class="lbl">02 · Competitive demand</div><div class="val" style="font-size:20px">Smart auction</div><div class="note">Dynamic bid floors, Vector improvements, network certification</div></div>
+  <div class="st"><div class="lbl">03 · Publisher ad controls</div><div class="val" style="font-size:20px">Your rules</div><div class="note">Content blocking, UX controls, segment-level ad experience</div></div>
  </div>
+ ${sec('The roadmap, by timing','chip','s')}
+ <div class="roadmap" style="grid-template-columns:repeat(3,1fr)">
+  <div class="rq"><h4>Live</h4>
+   ${rItem('Dynamic loading on rewarded video','Rewarded instances load in parallel; waterfall latency down about 70%. Live Sep 3 on SDK 9.0+.','LIVE','live')}
+   ${rItem('AI-assisted integration','The Unity AI Assistant integrates LevelPlay from package install to a live ad. Also a public skill for Claude Code.','LIVE','live')}
+   ${rItem('LevelPlay SDK 9.6.0 and refactored adapters','Single boolean consent for GDPR, split impression-level revenue APIs, Swift Package Manager official; all network adapters refactored, AdMob Next Gen supported.','LIVE','live')}
+   ${rItem('Bidding-first demand stack','PubMatic and Voodoo live as bidders, LINE and YSO ramping; legacy non-bidding instances retiring through 2026 for fewer wasted calls and lower latency.','ROLLING','live')}
+  </div>
+  <div class="rq"><h4>Early access</h4>
+   ${rItem('Dynamic bid floors','Floors adjust to live auction conditions on every impression; enable per group with custom segments; measure with LevelPlay A/B.','Q3 · EA','alpha')}
+   ${rItem('Ad UX control','A retention-optimized ad experience applied only to the most ad-sensitive players, measured with A/B (Unity Ads in the auction first).','LIVE · EA','alpha')}
+   ${rItem('Smart segmentation','Monetization tailored per player: retention-optimized ads and smarter gating via ML-driven segments.','Q3 · EA','alpha')}
+  </div>
+  <div class="rq"><h4>Coming</h4>
+   ${rItem('Unified dashboard','LevelPlay, Ad Quality, Offerwall and Unity Ads in one monetization dashboard.','Q4','')}
+   ${rItem('Ad content control','Block bundles and creatives across participating bidding networks from LevelPlay; A/B the impact per segment; Ad Quality reporting for compliance.','EARLY 2027','')}
+   ${rItem('Optimized configuration','Every mediation configuration tuned to device, player and session, optimizing total player LTV rather than ad ARPDAU alone.','FUTURE','')}
+  </div>
+ </div>
+ <div class="note-row">The flywheel behind it: LevelPlay and Ad Quality data strengthen Vector, and Vector's models power the intelligent features inside LevelPlay. No conditional feature access. Roadmap items reflect current intentions, not commitments.</div>
  <div class="grid g2" style="margin-top:22px">
   <div>
    <div class="ai-vid"><video class="ai-vid-el" src="assets/levelplay_assistant.mp4" poster="assets/levelplay_poster.jpg" preload="metadata" playsinline controls></video><button class="ai-vid-play" type="button" aria-label="Play" onclick="var v=this.previousElementSibling; v.play(); this.parentNode.classList.add('playing');">&#9654;</button></div>
    <div class="cap" style="padding-top:10px">AI-assisted integration in action. Unity Assistant (Beta), shown for context.</div>
   </div>
-  <div class="callbox"><h4>Proposal: A/B test LevelPlay on one more title in Q4</h4><p>Scrabble GO is the largest candidate and already first for 4.20.1, so both tests share one engineering window. Yahtzee with Buddies is the smaller alternative. Success metric: ARPDAU on the LevelPlay arm against the current setup, retention read alongside through Ad UX control.</p><p><b>First check: is Stumble Guys on LevelPlay SDK 9.0 or newer?</b> If yes, dynamic loading on rewarded video is already working for you. If not, that app update is the quickest latency win available, and it pairs with the 4.20.1 ticket.</p><p style="margin-bottom:0">Two practical reads for Stumble Guys meanwhile: add a floor where engagement falls with flat DAU, and keep remaining waterfall lines at higher price points. With ironSource direct demand gone there is also room for one more competitive bidder, up to +10% on the title.</p></div>
+  <div class="callbox"><h4>Proposal: A/B test LevelPlay on one more title in Q4</h4><p>Scrabble GO is the largest candidate and already first for 4.20.1, so both tests share one engineering window. Yahtzee with Buddies is the smaller alternative. Success metric: ARPDAU on the LevelPlay arm, retention read alongside through Ad UX control.</p><p><b>First check:</b> is Stumble Guys on LevelPlay SDK 9.0 or newer? If yes, dynamic loading on rewarded video is already working for you; if not, that app update is the quickest latency win and pairs with the 4.20.1 ticket.</p><p style="margin-bottom:0"><b>Where we would like to go deeper:</b> early access and design input on Ad UX control and dynamic bid floors, and working together on what signals the mediation layer can pass so demand competes harder for your inventory.</p></div>
+ </div>`;
+
+/* ---------- Unity Exchange ---------- */
+V.exchange=`
+ <div class="ey">Unity Exchange · demand</div>
+ <div class="lead">Unity Exchange</div>
+ <div class="sublead">The programmatic side of the demand on your impressions: new buyers, durable identity, outcome measurement and consent. Each one is a reason more bidders show up for the same request.</div>
+ ${takeaway('18 new DSPs in the first half of 2026 and durable identity now live on exchange inventory. Your titles skew US and iOS, exactly where identity and brand demand price highest.')}
+ <div class="strip" style="grid-template-columns:repeat(4,1fr)">
+  <div class="st"><div class="lbl">Identity and addressability</div><div class="val" style="font-size:20px">RampID · ID5 · UID</div><div class="note">Durable, post-cookie addressability in mobile gaming</div></div>
+  <div class="st"><div class="lbl">Measurement and outcomes</div><div class="val" style="font-size:20px">Attain · Fetch</div><div class="note">Sales lift and omnichannel measurement push gaming toward accountable media</div></div>
+  <div class="st"><div class="lbl">Privacy and compliance</div><div class="val" style="font-size:20px">IAB Europe TCF</div><div class="note">Consent-verified activation keeps EU inventory sellable</div></div>
+  <div class="st"><div class="lbl">Market expansion</div><div class="val" style="font-size:20px">18 new DSPs</div><div class="note">6 live in Q1 2026, 12 more in Q2</div></div>
+ </div>
+ ${sec('Six partnerships and what each means for you','users','s')}
+ <div class="card" style="padding:10px 0;overflow-x:auto">
+ <table class="t" style="min-width:760px"><thead><tr><th style="padding-left:30px">Partnership</th><th>What it is</th><th style="padding-right:30px">What it means for your inventory</th></tr></thead><tbody>
+ <tr><td class="lead2" style="padding-left:30px">LiveRamp RampID</td><td>Durable, interoperable identity live across Unity Exchange (US and Canada)</td><td style="padding-right:30px">Your supply is worth more to identity-driven buyers, supporting fill and CPM</td></tr>
+ <tr><td class="lead2" style="padding-left:30px">ID5</td><td>Identity that helps advertisers combat signal loss in mobile gaming</td><td style="padding-right:30px">Keeps your inventory addressable, and therefore monetizable, as device IDs fade</td></tr>
+ <tr><td class="lead2" style="padding-left:30px">IAB Europe TCF</td><td>Unity is a registered TCF participant</td><td style="padding-right:30px">Compliant consent signalling keeps your European inventory sellable to consent-sensitive buyers</td></tr>
+ <tr><td class="lead2" style="padding-left:30px">Index Exchange</td><td>Brings mobile gaming inventory and first-party data into standard programmatic workflows</td><td style="padding-right:30px">Wider pipes carrying your inventory to demand; more buyer access</td></tr>
+ <tr><td class="lead2" style="padding-left:30px">Nexxen</td><td>Positions mobile gaming video as the scaled alternative to declining cookie-based web inventory</td><td style="padding-right:30px">A demand driver for your rewarded and interstitial video</td></tr>
+ <tr><td class="lead2" style="padding-left:30px">Attain</td><td>Purchase-based audiences and verified sales-lift measurement across Unity's users</td><td style="padding-right:30px">Better outcome measurement makes your supply more attractive to performance and commerce buyers</td></tr>
+ </tbody></table></div>
+ <div class="grid g2" style="margin-top:22px">
+  <div class="card" style="padding:12px 30px">${nlist([
+   ['Brands buying gaming.','Kraft, Best Buy, CVS, Nintendo, Chick-fil-A, Disney, NBC, Progressive and McDonald’s are among the brand partnerships now active on Unity Exchange.'],
+   ['What it needs from you.','A current SDK, so each request carries the signals these buyers pay for. The exchange and the 4.20.1 ask are the same story from two sides.'],
+  ])}</div>
+  <div class="callbox"><h4>Why this is in a monetization review</h4><p>${(DATA.cometShare*100).toFixed(0)}% of your Unity Ads payout is Unity's own demand today; the rest comes from exchange bidders competing for the same request. Every new DSP, identity source and brand partner is another price on your impression.</p><p style="margin-bottom:0"><b>Brand demand on your titles fell ${pct(ADV.cats.find(c=>c.name.startsWith('Brand')).chg).replace('−','')} last quarter.</b> These partnerships are the route to growing it back at a better price.</p></div>
  </div>`;
 
 /* ---------- 09 Ad Quality ---------- */
@@ -1488,6 +1542,23 @@ function platRows(){
  return Object.entries(pT).filter(([k,v])=>((v.iOS?.pay||0)+(v.Android?.pay||0))>3000).sort((x,y)=>((y[1].iOS?.pay||0)+(y[1].Android?.pay||0))-((x[1].iOS?.pay||0)+(x[1].Android?.pay||0))).map(([k,v])=>{const i=v.iOS||{pay:0,imp:0},an=v.Android||{pay:0,imp:0};const nm=k.replace('YUX','Yahtzee with Buddies').replace('Scrabble Go','Scrabble GO').replace('Scrabble Mobile','Scrabble').replace('™','');
   return '<tr><td class="lead2" style="padding-left:30px">'+nm+'</td><td class="n">'+money(i.pay)+'</td><td class="n">'+(i.imp?usd(i.pay/i.imp*1000):'–')+'</td><td class="n">'+money(an.pay)+'</td><td class="n">'+(an.imp?usd(an.pay/an.imp*1000):'–')+'</td><td class="n" style="padding-right:30px">'+(i.pay/(i.pay+an.pay)*100).toFixed(0)+'%</td></tr>';}).join('');
 }
+V.apx_uaroadmap=`
+ <div class="ey">Appendix · for your UA team</div>
+ <div class="lead">Unity Ads 2026 roadmap</div>
+ <div class="sublead">The advertiser side of Unity Ads, in case it is useful for your MONOPOLY GO and With Buddies acquisition teams. Open-beta dates unless stated.</div>
+ <div class="roadmap" style="margin-top:22px">
+  <div class="rq"><h4>Q1</h4>${rItem('D28 IAP ROAS campaign','Optimizes to 28-day purchase revenue.','LIVE','live')}${rItem('Simplified ROAS onboarding','','LIVE','live')}</div>
+  <div class="rq"><h4>Q2</h4>${rItem('D28 ad revenue and hybrid ROAS','','LIVE','live')}${rItem('CPE retention optimization','','LIVE','live')}${rItem('CPE payer optimization','','LIVE','live')}${rItem('Multi-country budget','','LIVE','live')}</div>
+  <div class="rq"><h4>Q3</h4>${rItem('CPE custom event optimization','','ALPHA','alpha')}${rItem('Unified creative library','','ALPHA','alpha')}${rItem('Campaign Assistant','','ALPHA','alpha')}${rItem('Unity Ads MCP','','ALPHA','alpha')}</div>
+  <div class="rq"><h4>Q4</h4>${rItem('AI creative generation','','ALPHA','alpha')}${rItem('Dynamic creative optimization','','ALPHA','alpha')}${rItem('Creative insights','','ALPHA','alpha')}</div>
+ </div>
+ <div class="strip" style="margin-top:22px">
+  <div class="st"><div class="lbl">Unity network spend since Vector</div><div class="val">× 2.5</div><div class="note">Feb 2025 to May 2026</div></div>
+  <div class="st"><div class="lbl">US average D28 IAP ARPU</div><div class="val">↑ 73%</div><div class="note">Jun 2025 to May 2026</div></div>
+  <div class="st"><div class="lbl">US average D28 ad-revenue ARPU</div><div class="val">↑ 140%</div><div class="note">Same period</div></div>
+ </div>
+ <div class="note-row">This roadmap represents Unity's current intentions and is not a commitment to deliver any specific feature or functionality; dates and content may change.</div>`;
+
 V.apx_formats=`
  <div class="ey">Appendix</div>
  <div class="lead">Formats, platforms and daily trends</div>
