@@ -1203,6 +1203,7 @@ V.isx=`
  <div class="ey">The quarter, briefly · ironSource Ads</div>
  <div class="lead">ironSource Ads, briefly</div>
  <div class="sublead">The second Unity network on the same titles, against the prior 92 days.</div>
+ ${sec('The quarter','chart','s')}
  ${takeaway(`Payout ${pct(NQ.iAds.pay/NQ.iAds.ppay-1)} to ${money(NQ.iAds.pay)} on ${pct(NQ.iAds.imp/NQ.iAds.pimp-1)} impressions. Direct demand on the network was deprecated on April 30; programmatic demand keeps serving through the exchange, which is also why the Unity network matters more.`)}
  <div class="dstat-grid">
   ${dstat('Payout',money(NQ.iAds.pay),NQ.iAds.pay/NQ.iAds.ppay-1,`Prior ${money(NQ.iAds.ppay)}`,true)}
@@ -1210,7 +1211,8 @@ V.isx=`
   ${dstat('eCPM',usd(NQ.iAds.pay/NQ.iAds.imp*1000),(NQ.iAds.pay/NQ.iAds.imp)/(NQ.iAds.ppay/NQ.iAds.pimp)-1,`Prior ${usd(NQ.iAds.ppay/NQ.iAds.pimp*1000)}`)}
   ${dstat('Share of total supply',(NQ.iAds.pay/netTotal*100).toFixed(0)+'%',null,'Of all Unity supply payout')}
  </div>
- <div class="grid g2" style="margin-top:22px">
+ ${sec('By title, and what to do','plan','s')}
+ <div class="grid g2">
   <div class="card">${hbars(IAQ.filter(t=>t.pay>500).map(t=>({label:t.name,v:t.pay,c:C.orange,img:titleIcon(t.name),tip:usd(t.imp?t.pay/t.imp*1000:0)+' eCPM'})),{fmt:v=>money(v),lblW:250,rh:54,fs:15})}
   <div class="cap">Payout by title. Title attribution moved between store listings across the two periods, so the comparison is at network level only.</div></div>
   <div class="card" style="padding:12px 30px">${nlist([
@@ -1297,6 +1299,7 @@ V.levelplay=`
  <div class="lead">LevelPlay</div>
  <div class="sublead">Live on Stumble Guys today, the one place Unity competes in a live auction for your impressions. Where the platform is investing, what is live, and a proposal for a second title.</div>
  ${takeaway(`Stumble Guys Unity Ads payout grew ${pct(STG.chg)} inside LevelPlay. Three investment areas drive the roadmap: intelligent management, competitive demand and publisher ad controls. Dynamic bid floors are built for the Android rewarded gap (${usd(ecpm(stgA.fmt.Rewarded))} vs ${usd(ecpm(stgI.fmt.Rewarded))} on iOS).`)}
+ ${sec('Where LevelPlay is investing','star','s')}
  <div class="strip">
   <div class="st"><div class="lbl">01 · Intelligent management</div><div class="val" style="font-size:20px">Less manual ops</div><div class="note">Automation and AI for setup, optimization and decisioning</div></div>
   <div class="st"><div class="lbl">02 · Competitive demand</div><div class="val" style="font-size:20px">Smart auction</div><div class="note">Dynamic bid floors, Vector improvements, network certification</div></div>
@@ -1322,7 +1325,8 @@ V.levelplay=`
   </div>
  </div>
  <div class="note-row">The flywheel behind it: LevelPlay and Ad Quality data strengthen Vector, and Vector's models power the intelligent features inside LevelPlay. No conditional feature access. Roadmap items reflect current intentions, not commitments.</div>
- <div style="margin-top:22px">
+ ${sec('Stumble Guys today, and the next title','plan','s')}
+ <div>
   <div class="callbox"><h4>Proposal: A/B test LevelPlay on one more title in Q4</h4><p>Scrabble GO is the largest candidate and already first for 4.20.1, so both tests share one engineering window. Yahtzee with Buddies is the smaller alternative. Success metric: ARPDAU on the LevelPlay arm, retention read alongside through Ad UX control.</p><p><b>First check:</b> is Stumble Guys on LevelPlay SDK 9.0 or newer? If yes, dynamic loading on rewarded video is already working for you; if not, that app update is the quickest latency win and pairs with the 4.20.1 ticket.</p><p style="margin-bottom:0"><b>Where we would like to go deeper:</b> early access and design input on Ad UX control and dynamic bid floors, and working together on what signals the mediation layer can pass so demand competes harder for your inventory.</p></div>
  </div>`;
 
@@ -1332,6 +1336,7 @@ V.exchange=`
  <div class="lead">Unity Exchange</div>
  <div class="sublead">The programmatic side of the demand on your impressions: new buyers, durable identity, outcome measurement and consent. Each one is a reason more bidders show up for the same request.</div>
  ${takeaway('18 new DSPs in the first half of 2026 and durable identity now live on exchange inventory. Your titles skew US and iOS, exactly where identity and brand demand price highest.')}
+ ${sec('What is new on the exchange','star','s')}
  <div class="strip" style="grid-template-columns:repeat(4,1fr)">
   <div class="st"><div class="lbl">Identity and addressability</div><div class="val" style="font-size:20px">RampID · ID5 · UID</div><div class="note">Durable, post-cookie addressability in mobile gaming</div></div>
   <div class="st"><div class="lbl">Measurement and outcomes</div><div class="val" style="font-size:20px">Attain · Fetch</div><div class="note">Sales lift and omnichannel measurement push gaming toward accountable media</div></div>
@@ -1348,7 +1353,8 @@ V.exchange=`
  <tr><td class="lead2" style="padding-left:30px">Nexxen</td><td>Positions mobile gaming video as the scaled alternative to declining cookie-based web inventory</td><td style="padding-right:30px">A demand driver for your rewarded and interstitial video</td></tr>
  <tr><td class="lead2" style="padding-left:30px">Attain</td><td>Purchase-based audiences and verified sales-lift measurement across Unity's users</td><td style="padding-right:30px">Better outcome measurement makes your supply more attractive to performance and commerce buyers</td></tr>
  </tbody></table></div>
- <div class="grid g2" style="margin-top:22px">
+ ${sec('Why it is in a monetization review','users','s')}
+ <div class="grid g2">
   <div class="card" style="padding:12px 30px">${nlist([
    ['Brands buying gaming.','Kraft, Best Buy, CVS, Nintendo, Chick-fil-A, Disney, NBC, Progressive and McDonald’s are among the brand partnerships now active on Unity Exchange.'],
    ['What it needs from you.','A current SDK, so each request carries the signals these buyers pay for. The exchange and the 4.20.1 ask are the same story from two sides.'],
@@ -1362,19 +1368,22 @@ V.adquality=`
  <div class="lead">Ad Quality</div>
  <div class="sublead">More ads should not mean less control over the player experience. Ad Quality shows you the ads your players actually see, which ones cost you players, and lets you act.</div>
  ${takeaway('Nearly half of players say a poor ad experience would make them stop playing. Ad Quality is free, works with any mediation, and on Unity Ads SDK 4.19 or newer it switches on from the dashboard. The 4.20.1 move pays twice.')}
+ ${sec('Why it matters','star','s')}
  <div class="strip">
   <div class="st"><div class="lbl">Would very likely stop playing over a poor ad experience</div><div class="val">47%</div><div class="note">Unity survey, July 2025, 2,200 US players</div></div>
   <div class="st"><div class="lbl">Would very likely uninstall</div><div class="val">44%</div><div class="note">Same survey. Retention is an ad-quality metric too</div></div>
   <div class="st"><div class="lbl">Networks covered</div><div class="val">27+</div><div class="note">Free for every publisher, any mediation</div></div>
  </div>
- <div class="benef" style="margin-top:16px">
+ ${sec('What it does','eye','s')}
+ <div class="benef">
   <div class="b"><div class="bi">◉</div><h4>See every creative</h4><div class="big">Gallery of the ads in your app</div><p>Every creative shown, with revenue, impressions, CTR and quality CTR. Search by any of them.</p></div>
   <div class="b"><div class="bi">↯</div><h4>Find the friction</h4><div class="big">Churn by advertiser, source, creative</div><p>Where monetization value comes with a retention cost. Genuine clicks separated from auto-redirects to the store.</p></div>
   <div class="b"><div class="bi">⚑</div><h4>Act on it</h4><div class="big">AI tagging, alerts, blocking</div><p>AI tags violence, nudity, drugs and other sensitive content; custom tags catch competitor ads. Alerts fire; block Unity Ads creatives in one click.</p></div>
  </div>
- <div class="grid g2" style="margin-top:16px">
+ ${sec('The plan for your titles','plan','s')}
+ <div class="grid g2">
   <div class="card" style="padding:10px 0;overflow-x:auto">
-   <div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;padding:8px 30px 6px">The plan: enable order and path</div>
+   <div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;padding:8px 30px 6px">Enable order and path</div>
    <table class="t" style="min-width:420px"><thead><tr><th style="padding-left:30px">Title</th><th style="text-align:right">Path</th><th style="text-align:right;padding-right:30px">Status</th></tr></thead><tbody>
    ${TT.filter(t=>t.rev>3000&&t.name!=='Wheel of Fortune 2').map(t=>`<tr><td class="lead2" style="padding-left:30px">${gimg(t.icon,20)}${t.name}</td><td class="n" style="font-weight:600;color:var(--body)">${t.name==='Stumble Guys'?'LevelPlay, no integration':'4.20.1, then dashboard'}</td><td class="n" style="padding-right:30px"><span class="tag-ask">to confirm</span></td></tr>`).join('')}
    <tr><td class="lead2" style="padding-left:30px">WWE Champions</td><td class="n" style="font-weight:600;color:var(--body)">Standalone SDK</td><td class="n" style="padding-right:30px"><span class="tag-ask">to confirm</span></td></tr>
