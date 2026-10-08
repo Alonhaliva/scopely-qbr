@@ -1342,21 +1342,21 @@ function sgRow(label,q,hl){const c=v=>`<td class="n" style="${hl?"font-weight:80
  return `<tr style="${hl?"background:var(--demandSoft)":""}"><td class="lead2" style="padding-left:24px">${label}</td>${c(bk(q.rev))}${c(usd(q.ecpm))}${c(bDau(q.dau))}${c(q.arpdau.toFixed(2))}${c((q.eng*100).toFixed(1)+"%")}${c(q.usage.toFixed(2))}${c(q.impdau.toFixed(2))}</tr>`;}
 const BENCH_BLOCK=`
  ${sec("Stumble Guys on LevelPlay, Q3 2026","chart","s")}
- <div class="card" style="padding:10px 0;overflow-x:auto"><div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;padding:8px 24px 0">${B.sgWindow} · all formats · worldwide</div>
+ <div class="card" style="padding:10px 0;overflow-x:auto"><div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;padding:8px 24px 0">${B.sgWindow} · video (rewarded + interstitial) · worldwide</div>
  <table class="t sg-table" style="min-width:640px;font-size:13px"><thead><tr><th style="padding-left:24px">Platform</th><th style="text-align:right">Revenue</th><th style="text-align:right">eCPM</th><th style="text-align:right">Avg DAU</th><th style="text-align:right">ARPDAU ¢</th><th style="text-align:right">Engagement rate</th><th style="text-align:right">Usage rate</th><th style="text-align:right">Imp / DAU</th></tr></thead><tbody>
  ${sgRow(gimg("stumble",18)+"Stumble Guys · Android",sgA)}
  ${sgRow(gimg("stumble",18)+"Stumble Guys · iOS",sgI)}
  ${sgRow("Both platforms",sgT,true)}
  </tbody></table></div>
  <div class="cap" style="margin-top:10px">Engagement rate is the share of daily players who saw at least one ad. Usage rate is impressions per engaged player. Android eCPM moved from ${usd(B.sg.Android.months[0].ecpm)} in July to ${usd(B.sg.Android.months[2].ecpm)} in September.</div>
- ${sec("Stumble Guys against "+B.genre.toLowerCase()+" benchmarks","chart","s")}
- <div class="note-row" style="margin-bottom:10px"><span class="tag-live" style="background:var(--demandSoft);color:var(--demandInk)">${B.label}</span> &nbsp; Stumble Guys row is the Q3 LevelPlay figure above, blended across formats and geos, so read engagement, usage and impressions per DAU against both format rows; eCPM is not like for like.</div>
+ ${sec("Stumble Guys against "+B.genre.toLowerCase()+" video benchmarks","chart","s")}
+ <div class="note-row" style="margin-bottom:10px"><span class="tag-live" style="background:var(--demandSoft);color:var(--demandInk)">${B.label}</span> &nbsp; Video only: rewarded and interstitial. Stumble Guys row is the Q3 LevelPlay figure above, blended across the two formats and all geos, so read engagement, usage and impressions per DAU against both format tables; eCPM is not like for like.</div>
  <div class="bench-grid">${B.tables.map(benchSlide).join("")}</div>`;
 function benchSlide(tb){const q=B.sg[tb.os].q3;const sg=[(q.eng*100).toFixed(1)+"%",q.usage.toFixed(2),usd(q.ecpm),q.arpdau.toFixed(2),q.arpdeu.toFixed(2),q.impdau.toFixed(2)];
  return `<div class="card bslide"><div class="bs-title">${B.genre} · ${tb.title} <span style="font-weight:600;color:var(--muted)">· ${tb.apps} apps</span></div>
  <table class="t sg-table"><thead><tr><th>Quartile</th>${B.metrics.map(m=>`<th style="text-align:right">${m}</th>`).join("")}</tr></thead><tbody>
  ${tb.rows.map(r=>`<tr><td class="lead2">${r[0]}</td>${r.slice(1).map(v=>`<td class="n">${v}</td>`).join("")}</tr>`).join("")}
- <tr class="bs-sg"><td class="lead2">${gimg("stumble",18)}Stumble Guys <span style="font-weight:600;color:var(--muted)">Q3, all formats, worldwide</span></td>${sg.map(v=>`<td class="n">${v}</td>`).join("")}</tr>
+ <tr class="bs-sg"><td class="lead2">${gimg("stumble",18)}Stumble Guys <span style="font-weight:600;color:var(--muted)">Q3, RV + IS blended, worldwide</span></td>${sg.map(v=>`<td class="n">${v}</td>`).join("")}</tr>
  </tbody></table></div>`;}
 
 /* ---------- 08 LevelPlay ---------- */
