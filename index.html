@@ -766,6 +766,7 @@ body.onpage-on .pagenav{right:0}
 .bslide .t th:first-child,.bslide .t td:first-child{padding-left:18px}
 .bslide .t td{text-align:right}.bslide .t td.lead2{text-align:left}
 .bslide tr.bs-sg td{font-weight:800;background:#F3F6FA}
+.ow-check td,.ow-check th{vertical-align:top;line-height:1.4}.ow-check td.lead2{white-space:nowrap}.ow-check td.n{white-space:nowrap}
 
 </style>
 </head>
@@ -1755,6 +1756,21 @@ V.offerwall=`
    <div class="reco" style="margin-top:10px">Lifting reach from ${(OW.overall.duv*100).toFixed(2)}% to 1.2% of DAU at today's conversion and value is <b>${pct(owLift)}</b> payout, about <b>${money(NQ.TJ.pay*owLift)} a quarter</b>. Confidence: medium.</div>
   </div>
  </div>
+ ${sec('Offerwall optimization checklist, 2026 edition','star','s')}
+ <div class="card" style="padding:6px 0;overflow-x:auto"><table class="t ow-check" style="font-size:12.5px"><thead><tr><th style="padding-left:20px">Lever</th><th>What it does</th><th>Seen elsewhere*</th><th style="text-align:right">Scopely</th></tr></thead><tbody>
+ ${[
+  ["Visible entry point","Wall button on the home or store screen, not buried in settings. Where the button sits matters more than the copy; most of the gap between 0.8% and 2% reach is here.","Only about 1 in 10 monthly players open a buried wall","Review per title"],
+  ["Offer maturity setting","Currency maturity set to Medium (13+) or higher where the store rating allows. Stricter than needed silently filters out part of the offer pool.","+16% to +22% more offers; +93% incremental on one RPG","Check setting"],
+  ["Country multipliers","Higher exchange rate in tier 2 to 4 markets where IAP is low: 2x tier 2, up to 4x tier 4. A/B 70/30 for two weeks, DUC/DUV primary, IAP per DAU as guardrail.","+82% conversions, +181% wall revenue in those geos, no IAP impact","Stumble Guys first"],
+  ["Tiered exchange rate","Richer reward on high-value offers, standard on the rest, so the economy stays balanced while deeper completions pay more.","+13% wall revenue","Scrabble GO, Yahtzee"],
+  ["Currency sales + messaging","Preset sales (holiday weekends, Black Friday, World Cup) at 2x to 3x, each with in-app message and push deep-linked to the wall. Sale plus message beats sale alone.","Up to +53% revenue, +100% opens during a sale","Share Q4 calendar"],
+  ["Messaging-to-earn","In-app message and push for players who opened but never converted, deep-linked back to the wall.","3x to 5x more effective than promoting without a deep link","Yahtzee, Dice"],
+  ["Player tags","Publisher sends tags (payer, non-payer, geo, VIP) on init; wall exchange rate and content vary per segment, all on your side.","Standard on top offerwall publishers","Discuss"],
+  ["Unity Ads M2E Promo","Rewarded video placement promotes the wall with the top live offers in the creative. Players tap straight into an offer.","Up to +10% wall revenue","All six titles eligible"],
+  ["Multi-currency wall","Hard and soft currency from the same wall. Stumble Guys is logged; Yahtzee, Dice and Scrabble GO are natural adds.","Sizing only","Logged"],
+ ].map(r=>`<tr><td class="lead2" style="padding-left:20px">${r[0]}</td><td style="color:var(--body)">${r[1]}</td><td style="color:var(--body)">${r[2]}</td><td class="n" style="color:var(--demandInk);font-weight:700">${r[3]}</td></tr>`).join("")}
+ </tbody></table></div>
+ <div class="cap" style="margin-top:8px">Under the hood this year, no action on your side: offer ranking moved to a new model on iOS US (+2.3% revenue per user), a mixture-of-experts conversion model on iOS US (+4.0%), and a staged onboarding that shows new players only high-quality offers first (+5.6% per user, +11% per visit). Android and other markets follow.</div>
  ${sec('What is coming','chip','s')}
  <div class="lp-notes" style="grid-template-columns:repeat(3,1fr)">
   <div class="lp-note"><span class="lp-badge live">Updated</span><h4>Unity Ads M2E Promo</h4><p>Custom copy and background image for the rewarded-video-to-offerwall banner.</p></div>
