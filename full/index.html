@@ -1073,7 +1073,7 @@ V.overview=`
   <div class="card" style="padding:12px 30px">${nlist([
    ['Yield did the work on Unity Ads.',`eCPM ${usd(T.pecpm)} to ${usd(T.ecpm)} while impressions fell ${pct(T.impChg).replace('−','')}. Most of the drop is Scrabble GO banners retiring; interstitial and rewarded both grew.`],
    ['Scrabble GO is the proof point.',`${pct(SGO.chg)} payout on ${pct(SGO.impChg).replace('−','')} fewer impressions after moving from SDK 4.14 to 4.16.05.`],
-   ['The offerwall slipped on reach, not conversion.',`${pct(NQ.TJ.pay/NQ.TJ.ppay-1)} payout; conversion held, fewer players reached the wall. Only ${(OW.overall.duv*100).toFixed(2)}% of daily players open it.`],
+   ['The offerwall slipped on reach, not conversion.',`${pct(NQ.TJ.pay/NQ.TJ.ppay-1)} payout; conversion held, fewer players reached the offerwall. Only ${(OW.overall.duv*100).toFixed(2)}% of daily players open it.`],
    ['Fill rate dipped in September',`on Scrabble GO, Scrabble and Wheel of Fortune. We flagged it ahead of this review and are tracing the cause.`],
   ])}</div>
   <div class="card" style="padding:10px 0;overflow-x:auto">
@@ -1117,7 +1117,7 @@ V.roadmap=`
   ])}
   ${rmCol('Coming','soon','Next',[
    ['Rewarded Offers','A new offers product inside Unity Ads: same SDK, new offer types, Vector integration. Alpha Q4 2026, beta Q1 2027. Tapjoy Offerwall continues, no forced migration.'],
-   ['Multi-currency offerwall','Players earn more than one in-game currency from the same wall, hard and soft. We are collecting publisher interest now to bring it to product; Stumble Guys is already logged.'],
+   ['Multi-currency offerwall','Players earn more than one in-game currency from the same offerwall, hard and soft. We are collecting publisher interest now to bring it to product; Stumble Guys is already logged.'],
    ['CPI billing and tROAS for MR-CPE (Offerwall, demand side)','In testing, Q4 2026. Relevant to your UA team.'],
    ['Ad content control (LevelPlay)','Block bundles and creatives across participating bidding networks, A/B the impact per segment. Early 2027.'],
    ['Google Analytics linking for Vector','Your SDK already qualifies; one permission in the dashboard turns behavioral signals into better pricing on your impressions.'],
@@ -1262,7 +1262,7 @@ V.isx=`
   <div class="cap">Payout by title. Title attribution moved between store listings across the two periods, so the comparison is at network level only.</div></div>
   <div class="card" style="padding:12px 30px">${nlist([
    ['Volume up, yield down.',`Most of the added volume is Wheel of Fortune banners (${M(IAQ.find(t=>t.name==='Wheel of Fortune').imp)} impressions at ${usd(IAQ.find(t=>t.name==='Wheel of Fortune').pay/IAQ.find(t=>t.name==='Wheel of Fortune').imp*1000)}), which pulls the blend down without adding much payout.`],
-   ['Stumble Guys held.',`${money(IAQ[1].pay)} against ${money(IAQ[1].ppay)}, the one title where ironSource Ads competes in a live LevelPlay auction.`],
+   ['Stumble Guys is the largest ironSource title.',`${money(IAQ[1].pay)} this window against ${money(IAQ[1].ppay)} prior, and the one title where ironSource Ads competes in a live LevelPlay auction.`],
    ['What to do.','Keep the SDK in the stack (latest 9.6.0) so exchange demand keeps serving and Ad Quality continuity holds, and let the Unity network carry the growth.'],
   ])}</div>
  </div>`;
@@ -1273,11 +1273,11 @@ const owRows=OW.titles.map(r=>`<tr><td class="lead2" style="padding-left:30px">$
 V.ow_perf=`
  <div class="ey">Offerwall · performance</div>
  <div class="lead">Offerwall performance</div>
- <div class="sublead">Tapjoy Offerwall payout against the prior window, and the funnel behind it: who reaches the wall, who converts, and what each converter is worth.</div>
- ${takeaway(`Payout ${pct(NQ.TJ.pay/NQ.TJ.ppay-1)} while conversion held. Fewer than 1 in 100 daily players open the wall (${(OW.overall.duv*100).toFixed(2)}%); those who do convert at ${(OW.overall.duc*100).toFixed(1)}% and are worth ${usd(OW.overall.arpduc)} each. Reach is the lever.`)}
+ <div class="sublead">Tapjoy Offerwall payout against the prior window, and the funnel behind it: who reaches the offerwall, who converts, and what each converter is worth.</div>
+ ${takeaway(`Payout ${pct(NQ.TJ.pay/NQ.TJ.ppay-1)} while conversion held. Fewer than 1 in 100 daily players open the offerwall (${(OW.overall.duv*100).toFixed(2)}%); those who do convert at ${(OW.overall.duc*100).toFixed(1)}% and are worth ${usd(OW.overall.arpduc)} each. Reach is the lever.`)}
  <div class="dstat-grid">
   ${dstat('Payout',money(NQ.TJ.pay),NQ.TJ.pay/NQ.TJ.ppay-1,`Prior ${money(NQ.TJ.ppay)}`,true)}
-  ${dstat('Reach · DUV/DAU',(OW.overall.duv*100).toFixed(2)+'%',null,'Daily players who open the wall')}
+  ${dstat('Reach · DUV/DAU',(OW.overall.duv*100).toFixed(2)+'%',null,'Daily players who open the offerwall')}
   ${dstat('Conversion · DUC/DUV',(OW.overall.duc*100).toFixed(1)+'%',null,'Openers who complete an offer')}
   ${dstat('Value per converter',usd(OW.overall.arpduc),null,'Net payout per daily converter')}
  </div>
@@ -1301,9 +1301,9 @@ V.ow_plan=`
  <div class="sublead">Three reach levers with the uplift we have seen at similar publishers, the levers that worked on your titles before, and what is new on the product.</div>
  ${takeaway('All six live titles meet the SDK floor for the Unity Ads M2E Promo today. Pair it with messaging on every Q4 currency sale and a geo-multiplier test on Stumble Guys.')}
  <div class="benef" style="margin-top:22px">
-  <div class="b"><div class="bi">▶</div><h4>1 · Scale the Unity Ads M2E Promo</h4><div class="big">Up to +10% revenue*</div><p>When a player taps rewarded video and the Offerwall wins the auction, a banner drives them into the wall. New version: custom copy and background image. Needs SDK 4.16.0 (Android) / 4.16.2 (iOS); all six titles qualify.</p></div>
+  <div class="b"><div class="bi">▶</div><h4>1 · Scale the Unity Ads M2E Promo</h4><div class="big">Up to +10% revenue*</div><p>When a player taps rewarded video and the Offerwall wins the auction, a banner drives them into the offerwall. New version: custom copy and background image. Needs SDK 4.16.0 (Android) / 4.16.2 (iOS); all six titles qualify.</p></div>
   <div class="b"><div class="bi">◈</div><h4>2 · Message every currency sale</h4><div class="big">Up to +53% revenue, +100% opens*</div><p>A consistent schedule of multipliers plus in-game messaging ahead of each sale. Sale conversions pay more per conversion, and the halo lifts the regular placement afterwards. Share the Q4 calendar early.</p></div>
-  <div class="b"><div class="bi">◎</div><h4>3 · Country multipliers in tier 2 and 3 geos</h4><div class="big">Up to +20% in those countries*</div><p>Higher exchange rates where IAP is low. Stumble Guys skews global and is the natural first test, measured on ARPDUV and conversion rate.</p></div>
+  <div class="b"><div class="bi">◎</div><h4>3 · Country multipliers in tier 2 to 4 geos</h4><div class="big">Up to +20% in those countries*</div><p>Higher exchange rates where IAP is low. Stumble Guys skews global and is the natural first test, measured on ARPDUV and conversion rate.</p></div>
  </div>
  <div class="note-row">*Projected ranges from similar Unity publishers, not Scopely results. Each is set up as an A/B test.</div>
  ${sec('Coming: multi-currency offerwall','chip','s')}
@@ -1316,7 +1316,7 @@ V.ow_plan=`
    <div class="cap" style="padding:8px 30px 4px">Method: this quarter's offerwall payout per title times the share-of-wallet assumption for the added currency, 45% hard and 30% soft, the same assumptions Unity uses across publishers. An estimate to size interest, not a forecast.</div>
   </div>
   <div class="card" style="padding:12px 30px">${nlist([
-   ['What it is.','Today an offerwall pays out one currency per integration. Multi-currency lets players choose which currency to earn from the same wall, so a second currency does not need a second integration.'],
+   ['What it is.','Today an offerwall pays out one currency per integration. Multi-currency lets players choose which currency to earn from the same offerwall, so a second currency does not need a second integration.'],
    ['Why it fits your titles.','Yahtzee with Buddies already runs bonus rolls and coins, Dice With Buddies the same, and Stumble Guys has gems and a soft economy. Each is a natural second currency.'],
    ['What we need from you.','Which titles and which currency you would add. Interest from publishers like you is what moves this up the product roadmap; Stumble Guys is already on the list.'],
   ])}</div>
@@ -1325,9 +1325,9 @@ V.ow_plan=`
   <div class="card" style="padding:12px 30px">
    <div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;margin:10px 0 4px">Levers we have used with you before</div>
    ${nlist([
-    ['Entry points.','A home-screen or lobby entry point puts the wall one tap from where players are. Modelled at +36% offerwall revenue on Scrabble GO in an earlier review; WWE Champions still has the wall at the bottom of the store.'],
+    ['Entry points.','A home-screen or lobby entry point puts the offerwall one tap from where players are. Modelled at +36% offerwall revenue on Scrabble GO in an earlier review; WWE Champions still has the offerwall at the bottom of the store.'],
     ['Exchange-rate and first-time-converter tests.','Tiered and geo rates, and a multiplier for players who have never converted, each modelled at 10 to 20%. A/B tests, no dev work for the messaging variants.'],
-    ['Live-ops events.','Engagement with the wall lifted during limited-time events on Stumble Guys before. Pair event calendars with offerwall messaging.'],
+    ['Live-ops events.','Engagement with the offerwall lifted during limited-time events on Stumble Guys before. Pair event calendars with offerwall messaging.'],
    ])}</div>
   <div>
    <div class="lp-notes" style="grid-template-columns:1fr;gap:10px">
@@ -1367,7 +1367,7 @@ const BENCH_BLOCK=`
  ${sdkRow("before","SDK 8.10 · Jul 1 to 30")}${sdkRow("after","SDK 9.2 · Aug 6 to 31")}${sdkRow("sep","SDK 9.2 + dynamic loading · Sep 3 to 30")}
  </tbody></table></div>
  <div class="card" style="margin-top:14px">${lines(SDKU.daily.map(x=>x.d.slice(5)),[{name:"Waterfall latency, seconds",v:SDKU.daily.map(x=>x.lat?x.lat/1000:0),c:C.demand,fill:true,w:2.8,endLabel:false}],{smooth:false,fmt:v=>v.toFixed(0)+"s",h:200,ticks:3,marker:SDKU.daily.findIndex(x=>x.d===SDKU.dynDay),markerLabel:"Dynamic loading live"})}</div>
- <div class="cap" style="margin-top:10px">The honest read: the SDK update did not move eCPM or revenue per DAU on its own; July to September revenue per DAU is flat within 5%. It did cut the time to a filled ad by more than half, lifted the auction win rate and added impressions per player. September has fewer players (back to school) which is most of the drop in daily impressions.</div>
+ <div class="cap" style="margin-top:10px">What it did, and did not do: the SDK update did not move eCPM or revenue per DAU on its own; July to September revenue per DAU is flat within 5%. It did cut the time to a filled ad by more than half, lifted the auction win rate and added impressions per player. September has fewer players (back to school) which is most of the drop in daily impressions.</div>
 \n ${sec("Stumble Guys against "+B.genre.toLowerCase()+" video benchmarks","chart","s")}
  <div class="note-row" style="margin-bottom:10px"><span class="tag-live" style="background:var(--demandSoft);color:var(--demandInk)">${B.label}</span> &nbsp; Video only: rewarded and interstitial. Stumble Guys row is the Q3 LevelPlay figure above, blended across the two formats and all geos, so read engagement, usage and impressions per DAU against both format tables; eCPM is not like for like.</div>
  <div class="bench-grid">${B.tables.map(benchSlide).join("")}</div>`;
@@ -1511,7 +1511,7 @@ V.plan=`
  <table class="t" style="min-width:640px"><thead><tr><th style="padding-left:30px;text-align:center;width:44px">#</th><th>Action</th><th>Owner</th><th style="padding-right:30px">Timing</th></tr></thead><tbody>
  <tr><td class="n" style="text-align:center">1</td><td>Root-cause the September fill-rate dip on Scrabble GO, Scrabble and Wheel of Fortune and share the read</td><td class="indigo">Unity</td><td style="padding-right:30px">Next 2 weeks</td></tr>
  <tr><td class="n" style="text-align:center">2</td><td>Ticket the Unity Ads SDK 4.20.1 + mediation adapter update, Scrabble GO first</td><td class="indigo">Scopely engineering</td><td style="padding-right:30px">October</td></tr>
- <tr><td class="n" style="text-align:center">3</td><td>Confirm Stumble Guys' LevelPlay SDK version (9.0+ for dynamic loading on rewarded video); joint review of Android rewarded floors and placements; agree the LevelPlay A/B test title</td><td class="indigo">Unity + Scopely</td><td style="padding-right:30px">October</td></tr>
+ <tr><td class="n" style="text-align:center">3</td><td>Joint review of Stumble Guys Android rewarded floors and placements; agree the LevelPlay A/B test title and the success metric</td><td class="indigo">Unity + Scopely</td><td style="padding-right:30px">October</td></tr>
  <tr><td class="n" style="text-align:center">4</td><td>Scale the M2E Promo on all six titles; share the Q4 currency-sale calendar</td><td class="indigo">Scopely + Unity</td><td style="padding-right:30px">October</td></tr>
  <tr><td class="n" style="text-align:center">5</td><td>Enable Ad Quality on Stumble Guys now and on each title as it reaches 4.19+; first churn and competitor-ad read within 30 days</td><td class="indigo">Unity + Scopely</td><td style="padding-right:30px">Q4</td></tr>
  <tr><td class="n" style="text-align:center">6</td><td>Align MONOPOLY GO rewarded and interstitial placements with the SDK integration; scope the Offerwall for Bingo Bash</td><td class="indigo">Unity + Scopely</td><td style="padding-right:30px">Q4</td></tr>
@@ -1533,7 +1533,7 @@ V.twoway=`
    ['Planning cycle.','When do Q1 roadmap and engineering priorities lock, and where does an SDK or mediation ticket need to land to make the cut?'],
    ['Share.','Which networks or mediation partners are gaining share on your titles, and what would make you consolidate more with one?'],
    ['What is changing.','New titles, MONOPOLY GO ad placements, platform or privacy changes we should plan around?'],
-   ['Offerwall.','How has the player experience with the offerwall been, have competitors approached you, and which second currency would you add per title if the wall supported more than one?'],
+   ['Offerwall.','How has the player experience with the offerwall been, have competitors approached you, and which second currency would you add per title if the offerwall supported more than one?'],
    ['Friction.','Where are we hardest to work with: reporting, payments, SDK cadence, support?'],
   ])}</div>
   <div class="card" style="padding:12px 30px">
@@ -1613,7 +1613,7 @@ V.apx_bench=`
    <tr><td class="lead2" style="padding-left:30px">ARPDAU</td><td class="n">0.80¢</td><td class="n">1.70¢</td><td class="n" style="padding-right:30px">3.37¢</td></tr>
    <tr><td class="lead2" style="padding-left:30px">ARPDEU</td><td class="n">2.02¢</td><td class="n">3.54¢</td><td class="n" style="padding-right:30px">6.26¢</td></tr></tbody></table></div>
  </div>
- <div class="cap" style="margin-top:12px">Stumble Guys reads against these once its LevelPlay metrics are pulled; the word and dice titles once DAU is shared.</div>`;
+ <div class="cap" style="margin-top:12px">Stumble Guys Q3 on LevelPlay, both platforms: eCPM $2.36 worldwide, engagement 52%, 2.6 impressions per DAU. The arcade comparison is on the LevelPlay page.</div>`;
 
 function platRows(){
  return Object.entries(pT).filter(([k,v])=>((v.iOS?.pay||0)+(v.Android?.pay||0))>3000).sort((x,y)=>((y[1].iOS?.pay||0)+(y[1].Android?.pay||0))-((x[1].iOS?.pay||0)+(x[1].Android?.pay||0))).map(([k,v])=>{const i=v.iOS||{pay:0,imp:0},an=v.Android||{pay:0,imp:0};const nm=k.replace('YUX','Yahtzee with Buddies').replace('Scrabble Go','Scrabble GO').replace('Scrabble Mobile','Scrabble').replace('™','');
@@ -1759,10 +1759,10 @@ V.offerwall=`
  <div class="ey">Offerwall</div>
  <div class="lead">Offerwall</div>
  <div class="sublead">Payout against the prior window, the funnel you cannot see in your own data, three reach levers, and what is coming.</div>
- ${takeaway(`Payout ${pct(NQ.TJ.pay/NQ.TJ.ppay-1)} while conversion held. Fewer than 1 in 100 daily players open the wall (${(OW.overall.duv*100).toFixed(2)}%); those who do convert at ${(OW.overall.duc*100).toFixed(1)}% and are worth ${usd(OW.overall.arpduc)} each. Reach is the lever, and every move below is a reach move.`)}
+ ${takeaway(`Payout ${pct(NQ.TJ.pay/NQ.TJ.ppay-1)} while conversion held. Fewer than 1 in 100 daily players open the offerwall (${(OW.overall.duv*100).toFixed(2)}%); those who do convert at ${(OW.overall.duc*100).toFixed(1)}% and are worth ${usd(OW.overall.arpduc)} each. Reach is the lever, and every move below is a reach move.`)}
  <div class="dstat-grid">
   ${dstat('Payout',money(NQ.TJ.pay),NQ.TJ.pay/NQ.TJ.ppay-1,`Prior ${money(NQ.TJ.ppay)} · impressions ${pct(NQ.TJ.imp/NQ.TJ.pimp-1)}`,true)}
-  ${dstat('Reach · DUV/DAU',(OW.overall.duv*100).toFixed(2)+'%',null,'Daily players who open the wall')}
+  ${dstat('Reach · DUV/DAU',(OW.overall.duv*100).toFixed(2)+'%',null,'Daily players who open the offerwall')}
   ${dstat('Conversion · DUC/DUV',(OW.overall.duc*100).toFixed(1)+'%',null,'Openers who complete an offer')}
   ${dstat('Value per converter',usd(OW.overall.arpduc),null,'Net payout per daily converter')}
  </div>
@@ -1777,15 +1777,15 @@ V.offerwall=`
   <div class="card" style="padding:12px 30px">
    <div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;margin:10px 0 4px">Three reach moves, with the uplift seen at similar publishers*</div>
    ${nlist([
-    ['Scale the Unity Ads M2E Promo, up to +10% revenue.','Rewarded video drives players into the wall; new version has custom copy and art. All six titles meet the SDK floor.'],
+    ['Scale the Unity Ads M2E Promo, up to +10% revenue.','Rewarded video drives players into the offerwall; new version has custom copy and art. All six titles meet the SDK floor.'],
     ['Message every currency sale, up to +53% revenue and +100% opens.','Multipliers plus in-game messaging ahead of each sale; the halo lifts the regular placement afterwards. Share the Q4 calendar early.'],
-    ['Country multipliers in tier 2 and 3, up to +20% there.','Higher exchange rates where IAP is low; Stumble Guys first.'],
+    ['Country multipliers in tier 2 to 4 markets, up to +20% there.','Higher exchange rates where IAP is low; Stumble Guys first.'],
    ])}
    <div class="reco" style="margin-top:10px">Lifting reach from ${(OW.overall.duv*100).toFixed(2)}% to 1.2% of DAU at today's conversion and value is <b>${pct(owLift)}</b> payout, about <b>${money(NQ.TJ.pay*owLift)} a quarter</b>. Confidence: medium.</div>
   </div>
  </div>
  ${sec('Offerwall benchmarks: each title against its genre on the Unity network','chart','s')}
- <div class="note-row" style="margin-bottom:10px"><span class="tag-live" style="background:var(--demandSoft);color:var(--demandInk)">Unity Offerwall network, all publishers, Jul 1 to Sep 30, 2026 · genre as tagged in the dashboard</span> &nbsp; Green is at or above the genre average, red below. Reach is the share of daily players who open the wall; conversion is the share of openers who complete an offer; value is net payout per daily converter.</div>
+ <div class="note-row" style="margin-bottom:10px"><span class="tag-live" style="background:var(--demandSoft);color:var(--demandInk)">Unity Offerwall network, all publishers, Jul 1 to Sep 30, 2026 · genre as tagged in the dashboard</span> &nbsp; Green is at or above the genre average, red below. Reach is the share of daily players who open the offerwall; conversion is the share of openers who complete an offer; value is net payout per daily converter.</div>
  <div class="card" style="padding:6px 0;overflow-x:auto"><table class="t sg-table owb" style="font-size:12.5px"><thead><tr><th style="padding-left:20px">Title</th><th>Genre</th><th style="text-align:right">Reach · DUV/DAU</th><th style="text-align:right">Genre</th><th style="text-align:right">Conversion · DUC/DUV</th><th style="text-align:right">Genre</th><th style="text-align:right">Value · ARPDUC</th><th style="text-align:right">Genre</th><th style="text-align:right">ARPDAU</th><th style="text-align:right">Genre</th></tr></thead><tbody>
  ${owbRows()}
  </tbody></table></div>
@@ -1793,15 +1793,15 @@ V.offerwall=`
  ${sec('Offerwall optimization checklist, 2026 edition','star','s')}
  <div class="card" style="padding:6px 0;overflow-x:auto"><table class="t ow-check" style="font-size:12.5px"><thead><tr><th style="padding-left:20px">Lever</th><th>What it does</th><th>Seen elsewhere*</th><th style="text-align:right">Scopely</th></tr></thead><tbody>
  ${[
-  ["Visible entry point","Wall button on the home or store screen, not buried in settings. Where the button sits matters more than the copy; most of the gap between 0.8% and 2% reach is here.","Only about 1 in 10 monthly players open a buried wall","Review per title"],
+  ["Visible entry point","Offerwall button on the home or store screen, not buried in settings. Where the button sits matters more than the copy; most of the gap between 0.8% and 2% reach is here.","Only about 1 in 10 monthly players open a buried offerwall","Review per title"],
   ["Offer maturity setting","Currency maturity set to Medium (13+) or higher where the store rating allows. Stricter than needed silently filters out part of the offer pool. Already in place on all six titles (Scrabble GO, Yahtzee and GSN at High).","+16% to +22% more offers; +93% incremental on one RPG","Done"],
-  ["Country multipliers","Higher exchange rate in tier 2 to 4 markets where IAP is low: 2x tier 2, up to 4x tier 4. A/B 70/30 for two weeks, DUC/DUV primary, IAP per DAU as guardrail.","+82% conversions, +181% wall revenue in those geos, no IAP impact","Stumble Guys only; other titles are US-heavy"],
-  ["Tiered exchange rate","Richer reward on high-value offers, standard on the rest, so the economy stays balanced while deeper completions pay more.","+13% wall revenue","Scrabble GO, Yahtzee"],
-  ["Currency sales + messaging","Preset sales (holiday weekends, Black Friday, World Cup) at 2x to 3x, each with in-app message and push deep-linked to the wall. Sale plus message beats sale alone.","Up to +53% revenue, +100% opens during a sale","Share Q4 calendar"],
-  ["Messaging-to-earn","In-app message and push for players who opened but never converted, deep-linked back to the wall.","3x to 5x more effective than promoting without a deep link","Yahtzee, Dice"],
-  ["Player tags","Publisher sends tags (payer, non-payer, geo, VIP) on init; wall exchange rate and content vary per segment, all on your side.","Standard on top offerwall publishers","Discuss"],
-  ["Unity Ads M2E Promo","Rewarded video placement promotes the wall with the top live offers in the creative. Players tap straight into an offer.","Up to +10% wall revenue","All six titles eligible"],
-  ["Multi-currency wall","Hard and soft currency from the same wall. Stumble Guys is logged; Yahtzee, Dice and Scrabble GO are natural adds.","Sizing only","Logged"],
+  ["Country multipliers","Higher exchange rate in tier 2 to 4 markets where IAP is low: 2x tier 2, up to 4x tier 4. A/B 70/30 for two weeks, DUC/DUV primary, IAP per DAU as guardrail.","+82% conversions, +181% offerwall revenue in those geos, no IAP impact","Stumble Guys only; other titles are US-heavy"],
+  ["Tiered exchange rate","Richer reward on high-value offers, standard on the rest, so the economy stays balanced while deeper completions pay more.","+13% offerwall revenue","Scrabble GO, Yahtzee"],
+  ["Currency sales + messaging","Preset sales (holiday weekends, Black Friday, World Cup) at 2x to 3x, each with in-app message and push deep-linked to the offerwall. Sale plus message beats sale alone.","Up to +53% revenue, +100% opens during a sale","Share Q4 calendar"],
+  ["Messaging-to-earn","In-app message and push for players who opened but never converted, deep-linked back to the offerwall.","3x to 5x more effective than promoting without a deep link","Yahtzee, Dice"],
+  ["Player tags","Publisher sends tags (payer, non-payer, geo, VIP) on init; offerwall exchange rate and content vary per segment, all on your side.","Standard on top offerwall publishers","Discuss"],
+  ["Unity Ads M2E Promo","Rewarded video placement promotes the offerwall with the top live offers in the creative. Players tap straight into an offer.","Up to +10% offerwall revenue","All six titles eligible"],
+  ["Multi-currency offerwall","Hard and soft currency from the same offerwall. Stumble Guys is logged; Yahtzee, Dice and Scrabble GO are natural adds.","Sizing only","Logged"],
  ].map(r=>`<tr><td class="lead2" style="padding-left:20px">${r[0]}</td><td style="color:var(--body)">${r[1]}</td><td style="color:var(--body)">${r[2]}</td><td class="n" style="color:var(--demandInk);font-weight:700">${r[3]}</td></tr>`).join("")}
  </tbody></table></div>
  <div class="cap" style="margin-top:8px">Under the hood this year, no action on your side: offer ranking moved to a new model on iOS US (+2.3% revenue per user), a mixture-of-experts conversion model on iOS US (+4.0%), and a staged onboarding that shows new players only high-quality offers first (+5.6% per user, +11% per visit). Android and other markets follow.</div>
@@ -1809,7 +1809,7 @@ V.offerwall=`
  <div class="lp-notes" style="grid-template-columns:repeat(3,1fr)">
   <div class="lp-note"><span class="lp-badge live">Updated</span><h4>Unity Ads M2E Promo</h4><p>Custom copy and background image for the rewarded-video-to-offerwall banner.</p></div>
   <div class="lp-note"><span class="lp-badge ea">Alpha Q4 2026 · Beta Q1 2027</span><h4>Rewarded Offers</h4><p>A new offers product inside Unity Ads, same SDK, new offer types, Vector integration. Additive: the Tapjoy Offerwall continues, no forced migration.</p></div>
-  <div class="lp-note"><span class="lp-badge soon">Collecting interest</span><h4>Multi-currency offerwall</h4><p>More than one in-game currency from the same wall. Stumble Guys is logged (hard currency); Yahtzee, Dice and Scrabble GO are natural soft-currency adds, together about ${money([['Stumble Guys',0.45],['Yahtzee with Buddies',0.30],['Dice With Buddies',0.30],['Scrabble GO',0.30],['WWE Champions',0.45]].reduce((s,[n,w])=>s+((TJQ.find(x=>x.name===n)||{pay:0}).pay*w),0))} a quarter at Unity's share-of-wallet assumptions.</p></div>
+  <div class="lp-note"><span class="lp-badge soon">Collecting interest</span><h4>Multi-currency offerwall</h4><p>More than one in-game currency from the same offerwall. Stumble Guys is logged (hard currency); Yahtzee, Dice and Scrabble GO are natural soft-currency adds, together about ${money([['Stumble Guys',0.45],['Yahtzee with Buddies',0.30],['Dice With Buddies',0.30],['Scrabble GO',0.30],['WWE Champions',0.45]].reduce((s,[n,w])=>s+((TJQ.find(x=>x.name===n)||{pay:0}).pay*w),0))} a quarter at Unity's share-of-wallet assumptions.</p></div>
  </div>
  <div class="note-row">*Projected ranges from similar Unity publishers, not Scopely results; each is set up as an A/B test. Multi-currency figure is sizing only.</div>`;
 
@@ -1864,13 +1864,8 @@ V.appendix=`
    <div class="chk-item"><span class="cic">◻︎</span><div><b>Runtime diagnostics, Unity IAP SDK, Developer Data Framework <span class="tag-ask" style="margin-left:6px">to confirm</span></b><span>Each adds a signal Vector uses to price your impressions.</span></div></div>
   </div>
  </div>
- ${sec('Casual-category mediation benchmarks, US (gross, all networks)','chart','s')}
- <div class="card" style="padding:10px 0;overflow-x:auto"><table class="t" style="min-width:520px"><thead><tr><th style="padding-left:30px">KPI</th><th style="text-align:right">25th</th><th style="text-align:right">Median</th><th style="text-align:right;padding-right:30px">75th</th></tr></thead><tbody>
-  <tr><td class="lead2" style="padding-left:30px">eCPM</td><td class="n">$16.42</td><td class="n">$21.61</td><td class="n" style="padding-right:30px">$34.53</td></tr>
-  <tr><td class="lead2" style="padding-left:30px">Engagement rate</td><td class="n">35.8%</td><td class="n">46.7%</td><td class="n" style="padding-right:30px">58.6%</td></tr>
-  <tr><td class="lead2" style="padding-left:30px">Impressions per DAU</td><td class="n">1.6</td><td class="n">2.8</td><td class="n" style="padding-right:30px">5.5</td></tr>
-  <tr><td class="lead2" style="padding-left:30px">ARPDAU</td><td class="n">2.75¢</td><td class="n">4.56¢</td><td class="n" style="padding-right:30px">7.71¢</td></tr></tbody></table>
-  <div class="cap" style="padding:8px 30px 4px">Stumble Guys reads against these once its LevelPlay metrics are pulled.</div></div>`;
+ ${sec('Benchmarks','chart','s')}
+ <div class="cap">Stumble Guys against the arcade genre (video, US, Jan to Apr 2026) is on the LevelPlay page. Every offerwall title against its genre on the Unity network (Jul 1 to Sep 30, 2026) is on the Offerwall page.</div>`;
 
 /* ---------- chapters, rail, nav ---------- */
 function chapterView(g,gi){
