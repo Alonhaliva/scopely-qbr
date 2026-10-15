@@ -1111,13 +1111,11 @@ V.roadmap=`
   ])}
   ${rmCol('Rolling out now','ea','Changing',[
    ['Unity Ads SDK 4.20.1','Current release: up to 10% more impression opportunities and up to 15% more revenue per impression, plus dashboard activation of Ad Quality.'],
-   ['Dynamic bid floors (LevelPlay)','Q4, closed beta. Floors that adjust automatically to live auction conditions, pushing the auction to surface higher-value demand on every impression.'],
-   ['Smart segmentation (LevelPlay)','Q4, early access. Use in conjunction with our new ad UX controls, dynamically segment players based on predicted value and align the ad experience accordingly to maximise revenue and retention.'],
-   ['A bidding-first demand stack (LevelPlay)','New bidders live: PubMatic, with LINE and YSO ramping. Legacy non-bidding instances are being retired - fewer wasted calls, lower latency, cleaner auctions.'],
+   ['Dynamic Bid Floors (LevelPlay)','Q4, closed beta. Maximum yield on every impression, removing dependency on external floors.'],
+   ['Smart Segmentation (LevelPlay)','Q4, early access. Tailor monetization per player: retention-optimized ads, smarter gating, via ML-driven segments.'],
    ['Ad UX control (LevelPlay)','Early access. A retention-optimized ad experience only for your most ad-sensitive players, measured with A/B.'],
    ['Unity Exchange buyers','Index Exchange, Nexxen and Attain pipes; brand partnerships from Kraft to McDonald’s.'],
-   ['Unified dashboard','LevelPlay is moving to Unity\'s new monetization dashboard - a single platform for accessing LevelPlay, Ad Quality, Offerwall, and Unity Ads. ETA Q4.'],
-   ['Modular Ads SDK','LevelPlay, Unity Ads and Ad Quality packaged as modules of one Ads SDK - a single dependency. Moving over is one change: swap your app key for your Game ID. ETA Q4.'],
+   ['Unified Dashboard','LevelPlay is moving to Unity\'s new monetization dashboard - a single platform for accessing LevelPlay, Ad Quality, Offerwall, and Unity Ads. Q1 2027.'],
   ])}
   ${rmCol('Coming','soon','Next',[
    ['Rewarded Offers','A new offers product built for greater flexibility and scale. Not a direct replacement for Tapjoy Offerwall. Early Alpha Q4 2026, Beta Q1 2027.'],
@@ -1126,7 +1124,7 @@ V.roadmap=`
    ['Offer Currency Filtering','Let players filter offers by how much they pay in your currency. Currently in testing.'],
    ['Multi-Currency Support','Reward players in more than one currency from a single app. Availability expected in December 2026. Stumble Guys is already logged.'],
    ['CPI billing and tROAS for MR-CPE (Offerwall, demand side)','In testing, Q4 2026. Relevant to your UA team.'],
-   ['Ad content control (LevelPlay)','Block bundles and creatives across participating bidding networks from the LevelPlay platform. A/B test the blocking impact per segment. ETA Q4.'],
+   ['Ad content control (LevelPlay)','Block bundles and creatives across participating bidding networks from the LevelPlay platform. Ensure network compliance using Ad Quality reporting. Early 2027.'],
    ['Google Analytics linking for Vector','Your SDK already qualifies; one permission in the dashboard turns behavioral signals into better pricing on your impressions.'],
    ['Unity Vector, continued','Network spend ×2.5 since Vector; US D28 ad-revenue ARPU up 140% in a year. More spend through the network means more demand for your inventory.'],
   ])}
@@ -1391,40 +1389,35 @@ V.levelplay=`
  <div class="ey">LevelPlay · mediation</div>
  <div class="lead">LevelPlay</div>
  <div class="sublead">Live on Stumble Guys today, the one place Unity competes in a live auction for your impressions. Where the platform is investing, what is live, and a proposal for a second title.</div>
- ${takeaway(`Stumble Guys Unity Ads payout grew ${pct(STG.chg)} inside LevelPlay. Three investment areas drive the roadmap: intelligent management, competitive demand and publisher ad controls. Dynamic bid floors are built for the Android rewarded gap (${usd(ecpm(stgA.fmt.Rewarded))} vs ${usd(ecpm(stgI.fmt.Rewarded))} on iOS).`)}
+ ${takeaway(`Stumble Guys Unity Ads payout grew ${pct(STG.chg)} inside LevelPlay. Three areas of investment drive the roadmap: monetization yield, publisher ad controls and intelligent management. Dynamic bid floors are built for the Android rewarded gap (${usd(ecpm(stgA.fmt.Rewarded))} vs ${usd(ecpm(stgI.fmt.Rewarded))} on iOS).`)}
  ${sec('Where LevelPlay is investing','star','s')}
  <div class="strip">
-  <div class="st"><div class="lbl">01</div><div class="val" style="font-size:20px">Intelligent Management</div><div class="note">Automation and AI for setup, optimization, decisioning. Less manual ops.</div></div>
-  <div class="st"><div class="lbl">02</div><div class="val" style="font-size:20px">Competitive Demand</div><div class="note">Smart Auction, network certification.</div></div>
-  <div class="st"><div class="lbl">03</div><div class="val" style="font-size:20px">Publisher Ad Controls</div><div class="note">Content blocking, UX controls, segment-level ad experience.</div></div>
+  <div class="st"><div class="lbl">01</div><div class="val" style="font-size:20px">Monetization Yield</div><div class="note">Dynamic bid floors, Vector improvements.</div></div>
+  <div class="st"><div class="lbl">02</div><div class="val" style="font-size:20px">Publisher Ad Controls</div><div class="note">Content blocking, UX controls, segment-level ad experience.</div></div>
+  <div class="st"><div class="lbl">03</div><div class="val" style="font-size:20px">Intelligent Management</div><div class="note">Automation and AI for setup, optimization, decisioning. Less manual ops.</div></div>
  </div>
+ <div class="note-row" style="margin-top:10px"><b>How we think about our flywheel.</b> Signal in: LevelPlay and Ad Quality data strengthen Vector and UA performance. ML out: Vector's ML powers more intelligent monetization features inside LevelPlay.</div>
  ${sec('The roadmap, by timing','chip','s')}
  <div class="roadmap" style="grid-template-columns:repeat(3,1fr)">
   <div class="rq"><h4>Live</h4>
  ${rItem("AI-assistance integration","Ask the Unity AI Assistant to monetize your game and it integrates LevelPlay for you - from package install to a live ad in one guided session. Also available as a public LevelPlay skill for Claude Code and other coding agents.","Q3 · LIVE","live")}
- ${rItem("LevelPlay SDK v9.6.0","Privacy & GDPR simplified - Single boolean consent replaces network-level mapping. Impression-Level Revenue API split - now two dedicated APIs, one for publishers and one for MMPs (migration required via Subscriber ID). Swift Package Manager now official - supported iOS integration method (requires SDK v9.3+).","Q3 · LIVE","live")}
- ${rItem("Network adapters","Improved reliability and overall performance by refactoring all networks' adapters (Unity Ads, Mintegral, InMobi, Moloco, Applovin and more), plus new support for Google's Next Gen Ads SDK via AdMob adapter v5.10.0.","Q3 · LIVE","live")}
+   <div class="ai-vid"><video class="ai-vid-el" src="assets/levelplay_assistant.mp4" poster="assets/levelplay_poster.jpg" controls playsinline preload="none"></video></div>
+ ${rItem("LevelPlay SDK 9.6","Improved the SDK initialization functionality for greater resilience under poor network conditions. Saved ~5% of inits and DAU.","Q3 · LIVE","live")}
+ ${rItem("Network adapters","Improved reliability and overall performance by refactoring all networks' adapters (Unity Ads, Mintegral, InMobi, Moloco, Applovin and more), plus new support for Google's Next Gen Ads SDK","Q3 · LIVE","live")}
  ${rItem("Dynamic loading on rewarded video","Rewarded instances load in parallel instead of one at a time, and load times are down about 70%. Live since Sep 3 on SDK 9.0+, nothing to set up.","LIVE","live")}
- ${rItem("A bidding-first demand stack","New bidders live: PubMatic, with LINE and YSO ramping. Legacy non-bidding instances are being retired - fewer wasted calls, lower latency, cleaner auctions.","ROLLING OUT THROUGH 2026","live")}
   </div>
   <div class="rq"><h4>Early access and closed beta</h4>
- ${rItem("Ad UX control","A retention-optimized ad experience, applied only to the most ad-sensitive users. Measured via LevelPlay A/B (starting with Unity Ads only in the auction).","LIVE · EARLY ACCESS","alpha")}
- ${rItem("Dynamic bid floors","Floors that adjust automatically to live auction conditions, pushing the auction to surface higher-value demand on every impression.","Q4 · CLOSED BETA","alpha")}
- ${rItem("Smart segmentation","Use in conjunction with our new ad UX controls, dynamically segment players based on predicted value and align the ad experience accordingly to maximise revenue and retention.","Q4 · EARLY ACCESS","alpha")}
+ ${rItem("Ad UX Controls","A retention-optimized ad experience, applied only to the most ad-sensitive users. Measured via LevelPlay A/B (starting with Unity Ads only in the auction).","LIVE · EARLY ACCESS","alpha")}
+ ${rItem("Dynamic Bid Floors","Maximum Yield: Adjusts the floor for every impression opportunity. Deployment: Enable at a group level, supporting custom segments. A/B testing: Measure uplift using LevelPlay's A/B testing features. Good to know: Dynamic floors replace all floors in that group.","Q4 · CLOSED BETA","alpha")}
+ ${rItem("Smart Segmentation","Tailor monetization per player: retention-optimized ads, smarter gating, via ML-driven segments.","Q4 · EARLY ACCESS","alpha")}
   </div>
   <div class="rq"><h4>Coming</h4>
- ${rItem("Unified dashboard","LevelPlay is moving to Unity's new monetization dashboard - a single platform for accessing LevelPlay, Ad Quality, Offerwall, and Unity Ads.","ETA Q4","")}
- ${rItem("Modular Ads SDK","LevelPlay, Unity Ads and Ad Quality packaged as modules of one Ads SDK - a single dependency. Each product keeps its role - only the packaging collapses. Moving over is one change: swap your app key for your Game ID.","ETA Q4","")}
- ${rItem("Ad content control","Block bundles and creatives across participating bidding networks from the LevelPlay platform. A/B test the blocking impact per segment. Ensure network compliance using Ad Quality reporting.","ETA Q4","")}
+ ${rItem("Unified Dashboard","LevelPlay is moving to Unity's new monetization dashboard - a single platform for accessing LevelPlay, Ad Quality, Offerwall, and Unity Ads.","Q1 2027","")}
+ ${rItem("Ad content control","Block bundles and creatives across participating bidding networks from the LevelPlay platform. Ensure network compliance using Ad Quality reporting.","EARLY 2027","")}
+ ${rItem("Optimized Configuration","Ensure every mediation configuration is optimal based on that device, player and session. Goal is to provide deeper signal and control, enabling optimization of total player LTV, not just ad ARPDAU.","FUTURE","")}
   </div>
  </div>
- <div class="note-row">Signal in: LevelPlay and Ad Quality data strengthen Vector and UA performance. ML out: Vector's ML powers more intelligent monetization features inside LevelPlay. We do not believe in conditional feature access. Roadmap items reflect current intentions, not commitments.</div>
- ${sec('Building this with you','star','s')}
- <div class="strip">
-  <div class="st"><div class="lbl">01</div><div class="val" style="font-size:20px">Market is converging</div><div class="note">Ad-heavy and IAP-heavy are landing in the same middle: Holistic Monetization.</div></div>
-  <div class="st"><div class="lbl">02</div><div class="val" style="font-size:20px">Publishers want control + signal</div><div class="note">Actively manage the full monetization system - per segment, per player.</div></div>
-  <div class="st"><div class="lbl">03</div><div class="val" style="font-size:20px">LevelPlay is built for both</div><div class="note">Smart Auction, UX controls, agentic flows on one platform.</div></div>
- </div>
+ <div class="note-row">Roadmap items reflect current intentions, not commitments.</div>
  ${BENCH_BLOCK}
  ${sec('Stumble Guys today, and the next title','plan','s')}
  <div>
