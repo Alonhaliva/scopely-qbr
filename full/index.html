@@ -773,6 +773,8 @@ body.onpage-on .pagenav{right:0}
 .owb td.n{white-space:nowrap}
 .ow-road{margin:8px 0 0;padding-left:18px;color:var(--body);font-size:12.5px;line-height:1.5}.ow-road li{margin:3px 0}
 
+.aq-kpi td{padding:6px 8px;font-size:13px}.aq-kpi td:first-child,.aq-kpi td:nth-child(3){color:var(--muted)}.aq-kpi td.n{font-weight:700}
+
 </style>
 </head>
 <body>
@@ -983,8 +985,8 @@ const AGENDA_FULL=[
  {id:'exchange',t:'Unity Exchange',d:'New buyers, identity and measurement on your inventory.',m:3,g:'What is changing'},
  {id:'adquality',t:'Ad Quality',d:'See what your players see, and the plan to switch it on.',m:4,g:'What is changing'},
  {id:'ow_plan',t:'Offerwall: new product and reach levers',d:'M2E Promo, Rewarded Offers, multi-currency, three reach levers.',m:4,g:'What is changing'},
- {id:'ua_demand',t:'Who buys your inventory',d:'Unity network vs ironSource Ads, advertiser mix, benchmarks.',m:5,g:'What you cannot see in your own data'},
- {id:'ow_perf',t:'Offerwall funnel',d:'Reach, conversion and value per converter, by title.',m:5,g:'What you cannot see in your own data'},
+ {id:'ua_demand',t:'Who buys your inventory',d:'Unity network vs ironSource Ads, advertiser mix, benchmarks.',m:5,g:'Seen from our side'},
+ {id:'ow_perf',t:'Offerwall funnel',d:'Reach, conversion and value per converter, by title.',m:5,g:'Seen from our side'},
  {id:'ua_perf',t:'Unity Ads, briefly',d:'Every title and format against last quarter.',m:4,g:'The quarter, briefly'},
  {id:'isx',t:'ironSource Ads, briefly',d:'What changed, by title.',m:2,g:'The quarter, briefly'},
  {id:'gsn',t:'GSN Games, briefly',d:'Unity across MAX mediation, Q3 against Q2.',m:3,g:'The quarter, briefly'},
@@ -1000,8 +1002,8 @@ const AGENDA_FULL=[
 ];
 const FULL=!!window.QBR_FULL;
 if(FULL){ AGENDA.length=0; AGENDA_FULL.forEach(x=>AGENDA.push(x)); }
-const GROUPS=FULL?['Overview','What is changing','What you cannot see in your own data','The quarter, briefly','Plan','Appendix']:['Overview','Products','Plan','Appendix'];
-const GTHEME=FULL?{Overview:'The quarter in one page, and the one decision we are asking for','What is changing':'Product changes that affect your yield, shipped, rolling out and coming','What you cannot see in your own data':'Demand, benchmarks and the offerwall funnel from the Unity side','The quarter, briefly':'The numbers you already have, with what we would call out',Plan:'Three priorities, your questions, one page to forward',Appendix:'Backup detail, for when a question comes up'}:{Overview:'The quarter in one page, and the one decision we are asking for',Products:'One page per product: what changed, what is changing, what we see that you cannot',Plan:'Three priorities, your questions, one page to forward',Appendix:'Backup detail, for when a question comes up'};
+const GROUPS=FULL?['Overview','What is changing','Seen from our side','The quarter, briefly','Plan','Appendix']:['Overview','Products','Plan','Appendix'];
+const GTHEME=FULL?{Overview:'The quarter in one page, and the one decision we are asking for','What is changing':'Product changes that affect your yield, shipped, rolling out and coming','Seen from our side':'Demand, benchmarks and the offerwall funnel from the Unity side','The quarter, briefly':'The numbers you already have, with what we would call out',Plan:'Three priorities, your questions, one page to forward',Appendix:'Backup detail, for when a question comes up'}:{Overview:'The quarter in one page, and the one decision we are asking for',Products:'One page per product: what changed, what is changing, what we see from the demand side',Plan:'Three priorities, your questions, one page to forward',Appendix:'Backup detail, for when a question comes up'};
 if(FULL){ document.addEventListener('DOMContentLoaded',()=>{}); const rt=document.querySelector('.rail-top'); if(rt){ const bd=document.createElement('div'); bd.className='tag-todo'; bd.style.cssText='margin-top:10px;display:inline-block'; bd.textContent='FULL VERSION · internal'; rt.appendChild(bd);} }
 const NQ=DATA.NETQ, IAQ=DATA.iAdsQ, TJQ=DATA.tjQ, OW=DATA.OW, FQ=DATA.FQ, ADV=DATA.ADV;
 const fq=k=>FQ.fmt[k]||{rev:0,prev:0,imp:0,pimp:0}; const fqE=(o,p)=>p?(o.pimp?o.prev/o.pimp*1000:0):(o.imp?o.rev/o.imp*1000:0);
@@ -1036,7 +1038,7 @@ V.agenda=(function(){
  const bar=groups.map(gr=>`<div class="rs-seg" style="flex:${gr.mins}" data-tip="${gr.g}: ${gr.mins} min"><span>${gr.g}</span><b>${gr.mins} min</b></div>`).join('');
  const cols=groups.map(gr=>`<div class="ag-col"><div class="ag-colhead"><span class="ag-cn">0${gr.gi+1}</span><div><div class="ag-cg">${gr.g}</div><div class="ag-ct">${GTHEME[gr.g]}</div></div></div>${gr.items.map(it=>`<button class="ag-it" onclick="go('${it.id}')"><span class="ag-in">${('0'+(main.indexOf(it)+1)).slice(-2)}</span><span class="ag-itt">${it.t}</span><span class="ag-im">${it.m}m</span></button>`).join('')}</div>`).join('');
  return `<div class="agenda2"><div class="agenda-label">Agenda</div><h2 class="ap-title" style="margin-bottom:6px">What we'll cover today</h2>
-  <div class="ag-sub">One page per product, in the order you asked for. Each page covers what changed, what is changing and what we see that you cannot. About ${total} minutes across ${main.length} pages, with room in the hour for discussion.</div>
+  <div class="ag-sub">One page per product, in the order you asked for. Each page covers what changed, what is changing and what we see from the demand side. About ${total} minutes across ${main.length} pages, with room in the hour for discussion.</div>
   <div class="rs-bar">${bar}<div class="rs-seg rs-disc" style="flex:15"><span>Discussion</span><b>15+ min</b></div></div>
   <div class="ag-cols">${cols}</div>
   <div class="ag-foot">Halfway mark: into Unity Ads. 15 minutes left: at the plan. Appendix sits behind the last chapter for questions.</div></div>`;
@@ -1195,7 +1197,7 @@ V.ua_sdk=`
  <div class="grid g2">
   <div class="card">
    <div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px">4.20.1 on this quarter's base</div>
-   ${hbars([{label:'Base · this window',v:T.rev,c:C.prev},{label:'+10% impression opportunities',v:ASK_LOW,c:C.demandL},{label:'+15% revenue per impression',v:ASK_MID,c:C.demand},{label:'Both, compounded',v:ASK_HIGH,c:C.demand}],{fmt:v=>money(v),lblW:300,rh:50,fs:14,max:T.rev*1.1})}
+   ${hbars([{label:'Payout this quarter',v:T.rev,c:C.prev},{label:'+10% impression opportunities',v:ASK_LOW,c:C.demandL},{label:'+15% revenue per impression',v:ASK_MID,c:C.demand},{label:'Both, compounded',v:ASK_HIGH,c:C.demand}],{fmt:v=>money(v),lblW:300,rh:50,fs:14,max:T.rev*1.1})}
    <div class="cap">Additional quarterly payout if the published "up to" ranges hold on your inventory*. Assumes the full ${money(T.rev)} base, no change in traffic or ad load. Plan on the low end; measure the rest on Scrabble GO first with a two-week side-by-side read.</div>
   </div>
   <div class="card" style="padding:12px 30px">${nlist([
@@ -1253,7 +1255,7 @@ V.ua_demand=`
   <div class="card" style="padding:12px 30px">${nlist([
    ['How to read it.','These are gross, all-network mediation numbers, so they sit above the payout-basis Unity Ads eCPM elsewhere in this review. Use them for shape, not for a one-to-one comparison.'],
    ['Where Stumble Guys lands.','Once we pull its LevelPlay ARPDAU, engagement and impressions per DAU, it reads directly against this table. The word and dice titles follow once DAU is shared.'],
-   ['Why it is here.','You asked for insights you cannot get from your own data. Where your titles sit in the casual quartiles is exactly that, and it tells us which lever (ad load, engagement or price) has the most room.'],
+   ['Why it is here.','You asked for insights from our side of the auction. Where your titles sit in the casual quartiles is exactly that, and it tells us which lever (ad load, engagement or price) has the most room.'],
   ])}</div>
  </div>`;
 
@@ -1475,7 +1477,7 @@ V.adquality=`
  <div class="ey">Ad Quality · player experience</div>
  <div class="lead">Ad Quality</div>
  <div class="sublead">More ads should not mean less control over the player experience. Ad Quality shows you the ads your players actually see, which ones cost you players, and lets you act.</div>
- ${takeaway('Nearly half of players say a poor ad experience would make them stop playing. Ad Quality is free, works with any mediation, and on Unity Ads SDK 4.19 or newer it switches on from the dashboard. The 4.20.1 move pays twice.')}
+ ${takeaway('Nearly half of players say a poor ad experience would make them stop playing. Ad Quality is free, works with any mediation, and on Unity Ads SDK 4.19 or newer it switches on from the dashboard. It is already reporting on Stumble Guys and Scrabble GO; the 4.20.1 move widens what it sees.')}
  ${sec('Why it matters','star','s')}
  <div class="strip">
   <div class="st"><div class="lbl">Would very likely stop playing over a poor ad experience</div><div class="val">47%</div><div class="note">Unity survey, July 2025, 2,200 US players</div></div>
@@ -1488,12 +1490,60 @@ V.adquality=`
   <div class="b"><div class="bi">↯</div><h4>Find the friction</h4><div class="big">Churn by advertiser, source, creative</div><p>Where monetization value comes with a retention cost. Genuine clicks separated from auto-redirects to the store.</p></div>
   <div class="b"><div class="bi">⚑</div><h4>Act on it</h4><div class="big">AI tagging, alerts, blocking</div><p>AI tags violence, nudity, drugs and other sensitive content; custom tags catch competitor ads. Alerts fire; block Unity Ads creatives in one click.</p></div>
  </div>
+
+ ${sec('What it looks like','eye','s')}
+ <div class="grid g3 shotme" style="gap:14px">
+  <div class="card" style="padding:0;overflow:hidden"><img src="../assets/aq_creatives.png" style="width:100%;display:block" alt="Creatives gallery"><div style="padding:10px 16px 12px"><div style="font-size:13px;font-weight:800">Creatives gallery</div><div class="cap" style="padding:3px 0 0">Every ad shown in your app, with revenue, impressions, CTR and churn next to each creative.</div></div></div>
+  <div class="card" style="padding:0;overflow:hidden"><img src="../assets/aq_churn.png" style="width:100%;display:block" alt="Analysis: revenue against churn"><div style="padding:10px 16px 12px"><div style="font-size:13px;font-weight:800">Analysis: revenue against churn</div><div class="cap" style="padding:3px 0 0">Churn rate, churned users and churn yield by advertiser, ad source and creative.</div></div></div>
+  <div class="card" style="padding:0;overflow:hidden"><img src="../assets/aq_redirects.png" style="width:100%;display:block" alt="Genuine clicks against redirects"><div style="padding:10px 16px 12px"><div style="font-size:13px;font-weight:800">Genuine clicks against redirects</div><div class="cap" style="padding:3px 0 0">CTR next to quality CTR separates real interest from auto-redirects to the store.</div></div></div>
+  <div class="card" style="padding:0;overflow:hidden"><img src="../assets/aq_tagging.png" style="width:100%;display:block" alt="AI and custom tags"><div style="padding:10px 16px 12px"><div style="font-size:13px;font-weight:800">AI and custom tags</div><div class="cap" style="padding:3px 0 0">Sensitive content tagged automatically; custom tags for competitor titles.</div></div></div>
+  <div class="card" style="padding:0;overflow:hidden"><img src="../assets/aq_alerts.png" style="width:100%;display:block" alt="Notifications"><div style="padding:10px 16px 12px"><div style="font-size:13px;font-weight:800">Notifications</div><div class="cap" style="padding:3px 0 0">Alerts when a creative, advertiser or content rating shows up in your app.</div></div></div>
+  <div class="card" style="padding:0;overflow:hidden"><img src="../assets/aq_adcontrols.png" style="width:100%;display:block" alt="Ad Controls link"><div style="padding:10px 16px 12px"><div style="font-size:13px;font-weight:800">Ad Controls link</div><div class="cap" style="padding:3px 0 0">Store IDs blocked on Unity Ads that still reach your players through other networks.</div></div></div>
+ </div>
+ <div class="cap" style="margin-top:8px">Product views from the Ad Quality 2026 overview; the data in them is illustrative. Your own numbers are below.</div>
+
+ ${sec('Already reporting on two of your titles','chart','s')}
+ <div class="note-row">Ad Quality is collecting data on Stumble Guys and Scrabble GO today. Both views below are your Analysis page, Jul 17 to Oct 17, 2026, broken down by advertiser. Churn is measured at day 7.</div>
+ <div class="grid g2">
+  <div class="card" style="padding:12px 30px">
+   <div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;margin:10px 0 6px">Stumble Guys · iOS and Android</div>
+   <table class="t aq-kpi"><tbody>
+   <tr><td>Impressions</td><td class="n">206M</td><td>Churn rate D7</td><td class="n">1.53%</td></tr>
+   <tr><td>Clicks</td><td class="n">56.6M</td><td>Churned users D7</td><td class="n">2.24M</td></tr>
+   <tr><td>Revenue</td><td class="n">$528K</td><td>Churn yield D7</td><td class="n">$0.24</td></tr>
+   <tr><td>CTR · quality CTR</td><td class="n">27.4% · 6.54%</td><td>Bounce rate</td><td class="n">39.3%</td></tr>
+   <tr><td>Ad escape rate</td><td class="n">7.63%</td><td>Avg ad duration</td><td class="n">7 sec</td></tr>
+   </tbody></table>
+   <div class="shotme" style="margin-top:12px;border:1px solid var(--line);border-radius:10px;overflow:hidden"><img src="../assets/adquality_stumble.png" style="width:100%;display:block" alt="Ad Quality analysis, Stumble Guys"></div>
+   ${nlist([
+    ['Two shopping-app advertisers churn players at 5.9% and 6.1%,','about four times the title average, on 7M to 8M impressions each. They are the first names to put through the churn-by-advertiser read.'],
+    ['Quality CTR is 6.5% against a 27.4% CTR.','Roughly three clicks in four are not deliberate; a 39% bounce rate says the same thing from the other side.'],
+    ['Average ad duration is 7 seconds; the shopping advertisers run 17 to 18.','Longer creatives with higher churn are where a blocklist decision pays for itself.'],
+   ])}
+  </div>
+  <div class="card" style="padding:12px 30px">
+   <div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;margin:10px 0 6px">Scrabble GO · 4 apps</div>
+   <table class="t aq-kpi"><tbody>
+   <tr><td>Impressions</td><td class="n">1.94M</td><td>Churn rate D7</td><td class="n">0.52%</td></tr>
+   <tr><td>Clicks</td><td class="n">805K</td><td>Churned users D7</td><td class="n">5.77K</td></tr>
+   <tr><td>Revenue</td><td class="n">$12.3K</td><td>Churn yield D7</td><td class="n">$2.13</td></tr>
+   <tr><td>CTR · quality CTR</td><td class="n">41.5% · 5.37%</td><td>Bounce rate</td><td class="n">14.9%</td></tr>
+   <tr><td>Ad escape rate</td><td class="n">13.7%</td><td>Avg ad duration</td><td class="n">11 sec</td></tr>
+   </tbody></table>
+   <div class="shotme" style="margin-top:12px;border:1px solid var(--line);border-radius:10px;overflow:hidden"><img src="../assets/adquality_scrabble.png" style="width:100%;display:block" alt="Ad Quality analysis, Scrabble GO"></div>
+   ${nlist([
+    ['1.94M impressions is a small slice of what Scrabble GO serves.','The Unity Ads side is not in the data yet: it needs SDK 4.19 or newer. That is the second reason for 4.20.1.'],
+    ['Three merge and puzzle advertisers churn at 2.1% to 2.5%,','four to five times the 0.52% title average, from a few tens of thousands of impressions each.'],
+    ['One advertiser shows a 28% ad escape rate against 13.7% for the title.','Worth opening the creative before deciding anything.'],
+   ])}
+  </div>
+ </div>
  ${sec('The plan for your titles','plan','s')}
  <div class="grid g2">
   <div class="card" style="padding:10px 0;overflow-x:auto">
    <div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;padding:8px 30px 6px">Enable order and path</div>
    <table class="t" style="min-width:420px"><thead><tr><th style="padding-left:30px">Title</th><th style="text-align:right">Path</th><th style="text-align:right;padding-right:30px">Status</th></tr></thead><tbody>
-   ${TT.filter(t=>t.rev>3000&&t.name!=='Wheel of Fortune 2').map(t=>`<tr><td class="lead2" style="padding-left:30px">${gimg(t.icon,20)}${t.name}</td><td class="n" style="font-weight:600;color:var(--body)">${t.name==='Stumble Guys'?'LevelPlay, no integration':'4.20.1, then dashboard'}</td><td class="n" style="padding-right:30px"><span class="tag-ask">to confirm</span></td></tr>`).join('')}
+   ${TT.filter(t=>t.rev>3000&&t.name!=='Wheel of Fortune 2').map(t=>`<tr><td class="lead2" style="padding-left:30px">${gimg(t.icon,20)}${t.name}</td><td class="n" style="font-weight:600;color:var(--body)">${t.name==='Stumble Guys'?'Live through LevelPlay':t.name==='Scrabble GO'?'Live; 4.20.1 adds the Unity Ads side':'4.20.1, then dashboard'}</td><td class="n" style="padding-right:30px">${t.name==='Stumble Guys'||t.name==='Scrabble GO'?'<span class="tag-live">reporting</span>':'<span class="tag-ask">to confirm</span>'}</td></tr>`).join('')}
    <tr><td class="lead2" style="padding-left:30px">WWE Champions</td><td class="n" style="font-weight:600;color:var(--body)">Standalone SDK</td><td class="n" style="padding-right:30px"><span class="tag-ask">to confirm</span></td></tr>
    </tbody></table>
    <div class="cap" style="padding:8px 30px 4px">Where Ad Quality was initialized through the ironSource SDK, keep that SDK for continuity. Your request for finer genre categories in notifications is logged with product.</div>
@@ -1746,7 +1796,7 @@ V.unity=`
    <div class="cap" style="padding:8px 30px 4px">Jun 24 to Sep 23 vs prior 92 days, publisher payout. Wheel of Fortune 2 wound down into Wheel of Fortune.</div>
   </div>
  </div>
- ${sec('What you cannot see: who buys your inventory, and at what price','users','s')}
+ ${sec('Who buys your inventory, and at what price','users','s')}
  <div class="grid g2">
   <div class="card">
    <div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Unity Ads vs ironSource Ads eCPM, same title, same window</div>
@@ -1761,7 +1811,7 @@ V.unity=`
  </div>
  ${sec('The ask: SDK 4.20.1 on every title in Q4, Scrabble GO first','star','s')}
  <div class="grid g2">
-  <div class="card">${hbars([{label:'Base · this window',v:T.rev,c:C.prev},{label:'+10% impression opportunities',v:ASK_LOW,c:C.demandL},{label:'+15% revenue per impression',v:ASK_MID,c:C.demand},{label:'Both, compounded',v:ASK_HIGH,c:C.demand}],{fmt:v=>money(v),lblW:300,rh:46,fs:14,max:T.rev*1.1})}
+  <div class="card">${hbars([{label:'Payout this quarter',v:T.rev,c:C.prev},{label:'+10% impression opportunities',v:ASK_LOW,c:C.demandL},{label:'+15% revenue per impression',v:ASK_MID,c:C.demand},{label:'Both, compounded',v:ASK_HIGH,c:C.demand}],{fmt:v=>money(v),lblW:300,rh:46,fs:14,max:T.rev*1.1})}
   <div class="cap">Additional quarterly payout if Unity's published "up to" ranges hold on your inventory*. Plan on the low end; measure on Scrabble GO first with a two-week side-by-side.</div></div>
   <div class="callbox"><h4>One upgrade, two wins</h4><p>Faster delivery and cleaner signals lift the clearing price on every impression, and on 4.19 or newer Ad Quality switches on from the dashboard with no separate SDK.</p><p style="margin-bottom:0"><b>What we need today:</b> an engineering owner and a first-title date. One ticket per title: the Unity Ads SDK and the mediation adapters, updated together. We bring release notes and the test plan.</p></div>
  </div>
@@ -1780,7 +1830,7 @@ function owbRead(){const N=DATA.OWB.net;const o=OW.overall;return 'Scopely reach
 V.offerwall=`
  <div class="ey">Offerwall</div>
  <div class="lead">Offerwall</div>
- <div class="sublead">Payout against the prior window, the funnel you cannot see in your own data, three reach levers, and what is coming.</div>
+ <div class="sublead">Payout against the prior window, the offerwall funnel, three reach levers, and what is coming.</div>
  ${takeaway(`Payout ${pct(NQ.TJ.pay/NQ.TJ.ppay-1)} while conversion held. Fewer than 1 in 100 daily players open the offerwall (${(OW.overall.duv*100).toFixed(2)}%); those who do convert at ${(OW.overall.duc*100).toFixed(1)}% and are worth ${usd(OW.overall.arpduc)} each. Reach is the lever, and every move below is a reach move.`)}
  <div class="dstat-grid">
   ${dstat('Payout',money(NQ.TJ.pay),NQ.TJ.pay/NQ.TJ.ppay-1,`Prior ${money(NQ.TJ.ppay)} · impressions ${pct(NQ.TJ.imp/NQ.TJ.pimp-1)}`,true)}
