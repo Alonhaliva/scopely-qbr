@@ -897,6 +897,7 @@ function flowBar(title, total, parts){
  parts.forEach(pt=>{const pw=pt.v*scale, mid=cx+pw/2;
  g+=`<rect x="${cx}" y="${y}" width="${Math.max(pw-3,1)}" height="${barH}" rx="8" fill="${pt.c}" data-tip="${pt.label}: ${money(pt.v)} · ${(pt.v/total*100).toFixed(0)}%"/>`;
  if(pw>170){g+=`<text x="${mid}" y="${y+barH/2+5}" font-size="14.5" font-weight="700" fill="${pt.dark?C.ink:'#fff'}" text-anchor="middle">${pt.label} · ${money(pt.v)} · ${(pt.v/total*100).toFixed(0)}%</text>`;}
+ else if(pw>62){const fs2=pw>100?11.5:10.5;g+=`<text x="${mid}" y="${y+barH/2-3}" font-size="${fs2}" font-weight="800" fill="${pt.dark?C.ink:'#fff'}" text-anchor="middle">${pt.label}</text><text x="${mid}" y="${y+barH/2+12}" font-size="${fs2}" font-weight="600" fill="${pt.dark?C.ink:'#fff'}" text-anchor="middle">${money(pt.v)} · ${(pt.v/total*100).toFixed(0)}%</text>`;}
  else {const anc=mid>W-110?'end':(mid<110?'start':'middle'), tx=anc==='end'?W:(anc==='start'?cx:mid);
   g+=`<text x="${tx}" y="${y+barH+22+(small%2)*17}" font-size="12.5" font-weight="700" fill="${C.body}" text-anchor="${anc}">${pt.label} · ${money(pt.v)} · ${(pt.v/total*100).toFixed(0)}%</text>`; small++;}
  cx+=pw;});
