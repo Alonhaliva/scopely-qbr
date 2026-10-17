@@ -965,8 +965,8 @@ const V={};
 const AGENDA=[
  {id:'overview',t:'The quarter in one page',d:'The numbers, and the one ask.',m:4,g:'Overview'},
  {id:'levelplay',t:'LevelPlay',d:'Roadmap, what is live on Stumble Guys, the next title.',m:5,g:'Products'},
- {id:'adquality',t:'Ad Quality',d:'See what your players see; the plan to switch it on.',m:4,g:'Products'},
  {id:'unity',t:'Unity Ads',d:'What changed, who buys your inventory, and 4.20.1.',m:8,g:'Products'},
+ {id:'adquality',t:'Ad Quality',d:'See what your players see; the plan to switch it on.',m:4,g:'Products'},
  {id:'isx',t:'ironSource Ads',d:'What changed, by title.',m:3,g:'Products'},
  {id:'exchange',t:'Unity Exchange',d:'New buyers, identity and measurement on your inventory.',m:3,g:'Products'},
  {id:'offerwall',t:'Offerwall',d:'Reach is the lever; three moves and what is coming.',m:8,g:'Products'},
@@ -1025,7 +1025,7 @@ V.welcome=`
   <div class="cv-lock">${gimg('scrabblego',34)}${gimg('stumble',34)}${gimg('yahtzee',34)}${gimg('wof',34)}${gimg('dice',34)}<span style="width:1px;height:28px;background:var(--line);margin:0 6px 0 -3px"></span><img src="${ULOGO}" alt="Unity" style="width:32px;height:32px;object-fit:contain"></div>
   <div class="cv-kick">Unity Ads · Ad Monetization · Quarterly Business Review</div>
   <h1 class="cv-title">Scopely</h1>
-  <div class="cv-meta">Q3 2026 · Unity Ads, ironSource Ads and Tapjoy Offerwall</div>
+  <div class="cv-meta">Q3 2026 Partnership Review · Unity Ads, ironSource Ads and Tapjoy Offerwall</div>
   <div class="cv-teamlbl">Your Unity team</div>
   <div class="cv-team"><div class="cv-p"><img class="cv-av" src="${ALON}" alt=""><div class="cv-n">Alon Haliva</div><div class="cv-r">Client Partner, Ads</div></div></div>
   <div class="cv-btns"><button class="cv-btn primary" onclick="go('agenda')">Agenda →</button><button class="cv-btn ghost" onclick="go('overview')">Skip to the numbers</button></div>
@@ -1091,6 +1091,14 @@ V.overview=`
    </tbody></table>
    <div class="cap" style="padding:8px 30px 4px">Status filled in with you on the call.</div>
   </div>
+ </div>
+ <div class="card" style="padding:12px 30px;margin-top:14px">
+  <div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;margin:10px 0 4px">What you told us in May, and where it shows up here</div>
+  ${nlist([
+   ['LevelPlay.','Parallel bidding with MAX and Nimbus is working well for you, you are exploring Metica, and a wish list of LevelPlay product needs was going to come our way. The LevelPlay page shows what is already moving; the wish list is still the most useful thing we could receive before Q1 planning.'],
+   ['MONOPOLY GO.','Ads are a year or more away and every ad decision is driven by UA. The plan keeps the SDK integration ready without putting a date on it.'],
+   ['Offerwall.','Performance was slipping, the messaging needs a redo, DAU is down and Garden Joy, your biggest offerwall title, is gone; the offerwall is a lower priority today. The Offerwall page is built around reach, with the lightest lifts on your side first.'],
+  ])}
  </div>`;
 
 /* ---------- roadmap: changed / changing / coming ---------- */
@@ -1422,7 +1430,7 @@ V.levelplay=`
  ${BENCH_BLOCK}
  ${sec('Stumble Guys today, and the next title','plan','s')}
  <div>
-  <div class="callbox"><h4>Proposal: A/B test LevelPlay on one more title in Q4</h4><p>Scrabble GO is the largest candidate and already first for 4.20.1, so both tests share one engineering window. Yahtzee with Buddies is the smaller alternative. Success metric: ARPDAU on the LevelPlay arm, retention read alongside through Ad UX control.</p><p><b>Already done:</b> Stumble Guys moved to LevelPlay SDK 9.2 on Aug 4, so dynamic loading on rewarded video has been working for you since Sep 3 (latency more than halved, see above). The same move on the Unity Ads SDK is next: 4.20.1 is the quickest latency win left on the other titles.</p><p style="margin-bottom:0"><b>Where we'd like deeper collaboration.</b> Supply signal value exploration: work together on identifying new signals that can be provided through the mediation layer to improve demand competition and supply. Early feature access and design input: first access to relevant LevelPlay / Vector capabilities, and a real seat shaping how they're built (UX controls, dynamic bid floors). Support for agentic workflows: what expectations do you have of your ad tech partners, and how can LevelPlay support from integration through to optimization?</p></div>
+  <div class="callbox"><h4>Proposal: A/B test LevelPlay on one more title in Q4</h4><p>Scrabble GO is the largest candidate and already first for 4.20.1, so both tests share one engineering window. Yahtzee with Buddies is the smaller alternative. Success metric: ARPDAU on the LevelPlay arm, retention read alongside through Ad UX control.</p><p><b>From our May conversation:</b> parallel bidding with MAX and Nimbus is working for you and you are looking at Metica. The wish list of LevelPlay product needs you offered then is still open; it is the most useful input we could take into Q1 planning.</p><p><b>Already done:</b> Stumble Guys moved to LevelPlay SDK 9.2 on Aug 4, so dynamic loading on rewarded video has been working for you since Sep 3 (latency more than halved, see above). The same move on the Unity Ads SDK is next: 4.20.1 is the quickest latency win left on the other titles.</p><p style="margin-bottom:0"><b>Where we'd like deeper collaboration.</b> Supply signal value exploration: work together on identifying new signals that can be provided through the mediation layer to improve demand competition and supply. Early feature access and design input: first access to relevant LevelPlay / Vector capabilities, and a real seat shaping how they're built (UX controls, dynamic bid floors). Support for agentic workflows: what expectations do you have of your ad tech partners, and how can LevelPlay support from integration through to optimization?</p></div>
  </div>`;
 
 /* ---------- Unity Exchange ---------- */
@@ -1501,7 +1509,7 @@ function priorities(){
  var P=[
  ['01','Move every title to SDK 4.20.1',[['Objective','All six live titles on the current release, Scrabble GO first.'],['Expected impact',`${money(ASK_LOW)} to ${money(ASK_HIGH)} a quarter on top of the 4.16 lift; Ad Quality unlocked from the dashboard.`],['Owner','Scopely engineering + Unity'],['Timing','Q4'],['First action','Ticket the SDK + adapter update; two-week side-by-side read on Scrabble GO.'],['Success metric','100% of payout on 4.20.1 by quarter end; eCPM up on each migrated title.']]],
  ['02','Close the yield gaps',[['Objective','Recover fill on the Scrabble and Wheel of Fortune titles, lift Stumble Guys Android, test LevelPlay on a second title.'],['Expected impact',`Fill back to 99%+; Android rewarded eCPM up from ${usd(ecpm(stgA.fmt.Rewarded))}; a live auction on a second title.`],['Owner','Unity + Scopely ad monetization'],['Timing','October'],['First action','Root-cause the September fill dip; floors and placement review on Stumble Guys Android; agree the LevelPlay test title.'],['Success metric','Fill above 99% by November; Android eCPM +20%; LevelPlay A/B live by December.']]],
- ['03','Grow offerwall reach and the footprint',[['Objective',`Offerwall reach from ${(OW.overall.duv*100).toFixed(2)}% toward 1.2% of DAU; MONOPOLY GO and Bingo Bash onto Unity supply; GA linking restarted.`],['Expected impact',`About ${money(NQ.TJ.pay*owLift)} a quarter in offerwall payout; new inventory on your largest title; richer Vector signals.`],['Owner','Unity + Scopely'],['Timing','Q4 to Q1'],['First action','Scale the M2E Promo on all six titles; share the Q4 sale calendar; align MONOPOLY GO placements with the SDK integration.'],['Success metric','M2E live on six titles; messaging on every Q4 sale; MONOPOLY GO live on Unity Ads.']]],
+ ['03','Grow offerwall reach and the footprint',[['Objective',`Offerwall reach from ${(OW.overall.duv*100).toFixed(2)}% toward 1.2% of DAU; Bingo Bash onto Unity supply; MONOPOLY GO placements scoped for when ads open; GA linking restarted.`],['Expected impact',`About ${money(NQ.TJ.pay*owLift)} a quarter in offerwall payout; new inventory on your largest title; richer Vector signals.`],['Owner','Unity + Scopely'],['Timing','Q4 to Q1'],['First action','Scale the M2E Promo on all six titles; share the Q4 sale calendar; keep the MONOPOLY GO SDK integration ready for when ads open.'],['Success metric','M2E live on six titles; messaging on every Q4 sale; a MONOPOLY GO placement plan agreed, no date attached.']]],
  ];
  var out='<div class="q3prio">';
  P.forEach(function(pr){ out+='<div class="q3card"><div class="q3num">'+pr[0]+'</div><div class="q3title">'+pr[1]+'</div>'; pr[2].forEach(function(f){ out+='<div class="q3f"><div class="q3lab">'+f[0]+'</div><div class="q3val">'+f[1]+'</div></div>'; }); out+='</div>'; });
@@ -1522,10 +1530,11 @@ V.plan=`
  <tr><td class="n" style="text-align:center">3</td><td>Joint review of Stumble Guys Android rewarded floors and placements; agree the LevelPlay A/B test title and the success metric</td><td class="indigo">Unity + Scopely</td><td style="padding-right:30px">October</td></tr>
  <tr><td class="n" style="text-align:center">4</td><td>Scale the M2E Promo on all six titles; share the Q4 currency-sale calendar</td><td class="indigo">Scopely + Unity</td><td style="padding-right:30px">October</td></tr>
  <tr><td class="n" style="text-align:center">5</td><td>Enable Ad Quality on Stumble Guys now and on each title as it reaches 4.19+; first churn and competitor-ad read within 30 days</td><td class="indigo">Unity + Scopely</td><td style="padding-right:30px">Q4</td></tr>
- <tr><td class="n" style="text-align:center">6</td><td>Align MONOPOLY GO rewarded and interstitial placements with the SDK integration; scope the Offerwall for Bingo Bash</td><td class="indigo">Unity + Scopely</td><td style="padding-right:30px">Q4</td></tr>
+ <tr><td class="n" style="text-align:center">6</td><td>Scope the Offerwall for Bingo Bash; keep the MONOPOLY GO placement plan ready for when ads open (a year or more out, per May)</td><td class="indigo">Unity + Scopely</td><td style="padding-right:30px">Q4</td></tr>
  <tr><td class="n" style="text-align:center">7</td><td>Share the Google Analytics linking guide and book a 15-minute walkthrough; confirm the Vector data checklist</td><td class="indigo">Unity + Scopely</td><td style="padding-right:30px">Next 2 weeks</td></tr>
  <tr><td class="n" style="text-align:center">8</td><td>Confirm which titles and currencies to log for multi-currency offerwall support (Stumble Guys already logged)</td><td class="indigo">Scopely</td><td style="padding-right:30px">October</td></tr>
- <tr><td class="n" style="text-align:center">9</td><td>Recap with decisions, owners and dates; six-week checkpoint on 4.20.1 progress</td><td class="indigo">Unity</td><td style="padding-right:30px">Within 24 hours</td></tr>
+ <tr><td class="n" style="text-align:center">9</td><td>Share the LevelPlay product wish list from the May conversation, ahead of Q1 planning</td><td class="indigo">Scopely</td><td style="padding-right:30px">October</td></tr>
+ <tr><td class="n" style="text-align:center">10</td><td>Recap with decisions, owners and dates; six-week checkpoint on 4.20.1 progress</td><td class="indigo">Unity</td><td style="padding-right:30px">Within 24 hours</td></tr>
  </tbody></table></div>
  <div class="foot">Prepared by Alon Haliva · Client Partner, Unity · Ad Monetization<br>Sources and method in the appendix. Publisher payout throughout; eCPM is payout per 1,000 impressions. Figures rounded.</div>`;
 
@@ -1540,7 +1549,7 @@ V.twoway=`
    ['Targets.','Your ad revenue and ARPDAU targets for Q4 and Q1, and how the team is measured on them?'],
    ['Planning cycle.','When do Q1 roadmap and engineering priorities lock, and where does an SDK or mediation ticket need to land to make the cut?'],
    ['Share.','Which networks or mediation partners are gaining share on your titles, and what would make you consolidate more with one?'],
-   ['What is changing.','New titles, MONOPOLY GO ad placements, platform or privacy changes we should plan around?'],
+   ['What is changing.','New titles, the MONOPOLY GO ads timeline, platform or privacy changes we should plan around?'],
    ['Offerwall.','How has the player experience with the offerwall been, have competitors approached you, and which second currency would you add per title if the offerwall supported more than one?'],
    ['Friction.','Where are we hardest to work with: reporting, payments, SDK cadence, support?'],
   ])}</div>
@@ -1774,6 +1783,7 @@ V.offerwall=`
   ${dstat('Conversion · DUC/DUV',(OW.overall.duc*100).toFixed(1)+'%',null,'Openers who complete an offer')}
   ${dstat('Value per converter',usd(OW.overall.arpduc),null,'Net payout per daily converter')}
  </div>
+ <div class="note-row">In May you told us the offerwall had become a lower priority: performance was slipping, the messaging needs a redo, DAU is down and Garden Joy, your biggest offerwall title, is gone. That is why this page is built on reach, and why each move is sized by how little it asks of your team.</div>
  ${sec('By title: reach, conversion, value','chart','s')}
  <div class="grid g2">
   <div class="card" style="padding:10px 0;overflow-x:auto">
