@@ -1491,7 +1491,7 @@ V.adquality=`
  </div>
 
  ${sec('What it looks like','eye','s')}
- <div class="grid g3 shotme" style="gap:14px">
+ <div class="grid g3 shotgrid" style="gap:14px">
   <div class="card" style="padding:0;overflow:hidden"><img src="assets/aq_creatives.png" style="width:100%;display:block" alt="Creatives gallery"><div style="padding:10px 16px 12px"><div style="font-size:13px;font-weight:800">Creatives gallery</div><div class="cap" style="padding:3px 0 0">Every ad shown in your app, with revenue, impressions, CTR and churn next to each creative.</div></div></div>
   <div class="card" style="padding:0;overflow:hidden"><img src="assets/aq_churn.png" style="width:100%;display:block" alt="Analysis: revenue against churn"><div style="padding:10px 16px 12px"><div style="font-size:13px;font-weight:800">Analysis: revenue against churn</div><div class="cap" style="padding:3px 0 0">Churn rate, churned users and churn yield by advertiser, ad source and creative.</div></div></div>
   <div class="card" style="padding:0;overflow:hidden"><img src="assets/aq_redirects.png" style="width:100%;display:block" alt="Genuine clicks against redirects"><div style="padding:10px 16px 12px"><div style="font-size:13px;font-weight:800">Genuine clicks against redirects</div><div class="cap" style="padding:3px 0 0">CTR next to quality CTR separates real interest from auto-redirects to the store.</div></div></div>
@@ -1505,7 +1505,7 @@ V.adquality=`
  <div class="note-row">Ad Quality is collecting data on Stumble Guys and Scrabble GO today. Both views below are your Analysis page, Jul 17 to Oct 17, 2026, broken down by advertiser. Churn is measured at day 7.</div>
  <div class="grid g2">
   <div class="card" style="padding:12px 30px">
-   <div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;margin:10px 0 6px">Stumble Guys · iOS and Android</div>
+   <div class="keep"><div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;margin:10px 0 6px">Stumble Guys · iOS and Android</div>
    <table class="t aq-kpi"><tbody>
    <tr><td>Impressions</td><td class="n">206M</td><td>Churn rate D7</td><td class="n">1.53%</td></tr>
    <tr><td>Clicks</td><td class="n">56.6M</td><td>Churned users D7</td><td class="n">2.24M</td></tr>
@@ -1513,7 +1513,7 @@ V.adquality=`
    <tr><td>CTR · quality CTR</td><td class="n">27.4% · 6.54%</td><td>Bounce rate</td><td class="n">39.3%</td></tr>
    <tr><td>Ad escape rate</td><td class="n">7.63%</td><td>Avg ad duration</td><td class="n">7 sec</td></tr>
    </tbody></table>
-   <div class="shotme" style="margin-top:12px;border:1px solid var(--line);border-radius:10px;overflow:hidden"><img src="assets/adquality_stumble.png" style="width:100%;display:block" alt="Ad Quality analysis, Stumble Guys"></div>
+   <div class="shotme" style="margin-top:12px;border:1px solid var(--line);border-radius:10px;overflow:hidden"><img src="assets/adquality_stumble.png" style="width:100%;display:block" alt="Ad Quality analysis, Stumble Guys"></div></div>
    ${nlist([
     ['Two shopping-app advertisers churn players at 5.9% and 6.1%,','about four times the title average, on 7M to 8M impressions each. They are the first names to put through the churn-by-advertiser read.'],
     ['Quality CTR is 6.5% against a 27.4% CTR.','Roughly three clicks in four are not deliberate; a 39% bounce rate says the same thing from the other side.'],
@@ -1521,7 +1521,7 @@ V.adquality=`
    ])}
   </div>
   <div class="card" style="padding:12px 30px">
-   <div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;margin:10px 0 6px">Scrabble GO · 4 apps</div>
+   <div class="keep"><div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;margin:10px 0 6px">Scrabble GO · 4 apps</div>
    <table class="t aq-kpi"><tbody>
    <tr><td>Impressions</td><td class="n">1.94M</td><td>Churn rate D7</td><td class="n">0.52%</td></tr>
    <tr><td>Clicks</td><td class="n">805K</td><td>Churned users D7</td><td class="n">5.77K</td></tr>
@@ -1529,7 +1529,7 @@ V.adquality=`
    <tr><td>CTR · quality CTR</td><td class="n">41.5% · 5.37%</td><td>Bounce rate</td><td class="n">14.9%</td></tr>
    <tr><td>Ad escape rate</td><td class="n">13.7%</td><td>Avg ad duration</td><td class="n">11 sec</td></tr>
    </tbody></table>
-   <div class="shotme" style="margin-top:12px;border:1px solid var(--line);border-radius:10px;overflow:hidden"><img src="assets/adquality_scrabble.png" style="width:100%;display:block" alt="Ad Quality analysis, Scrabble GO"></div>
+   <div class="shotme" style="margin-top:12px;border:1px solid var(--line);border-radius:10px;overflow:hidden"><img src="assets/adquality_scrabble.png" style="width:100%;display:block" alt="Ad Quality analysis, Scrabble GO"></div></div>
    ${nlist([
     ['1.94M impressions is a small slice of what Scrabble GO serves.','The Unity Ads side is not in the data yet: it needs SDK 4.19 or newer. That is the second reason for 4.20.1.'],
     ['Three merge and puzzle advertisers churn at 2.1% to 2.5%,','four to five times the 0.52% title average, from a few tens of thousands of impressions each.'],
