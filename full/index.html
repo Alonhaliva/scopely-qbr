@@ -1852,12 +1852,15 @@ V.gsn=(function(){
   ${G.nets.map(n=>row(n.label,n.r)).join('')}
   ${sub('Unity Ads via MAX, by title')}
   ${G.titles.filter(t=>t.uads).map(t=>row(t.name,t.uads)).join('')}
+ </tbody></table></div>
+ <div class="card" style="padding:10px 0;overflow-x:auto;margin-top:14px"><table class="t" style="min-width:560px"><thead><tr><th style="padding-left:30px">Line · title</th><th style="text-align:right">Payout</th><th style="text-align:right">vs Q2</th><th style="text-align:right">eCPM</th><th style="text-align:right">vs Q2</th><th style="text-align:right;padding-right:30px">Impressions</th></tr></thead><tbody>
   ${sub('ironSource Ads via MAX, by title')}
   ${G.titles.filter(t=>t.iads).map(t=>row(t.name,t.iads)).join('')}
   ${sub('Tapjoy Offerwall, by title')}
   ${G.titles.filter(t=>t.tj).map(t=>row(t.name,t.tj)).join('')}
  </tbody></table>
- <div class="cap" style="padding:8px 30px 4px">Publisher payout. Solitaire TriPeaks is ${((tp.uads.pay+tp.iads.pay+tp.nimbus.pay)/o.pay*100).toFixed(0)}% of GSN's Unity payout across the three video lines. Bingo Bash is the title to look at: ${pct(chg(bb.uads.pay,bb.uads.ppay))} on Unity Ads and ${pct(chg(bb.iads.pay,bb.iads.ppay))} on ironSource Ads, with impressions down by half on both.</div></div>
+</div>
+ <div class="cap" style="margin-top:10px">Publisher payout. Solitaire TriPeaks is ${((tp.uads.pay+tp.iads.pay+tp.nimbus.pay)/o.pay*100).toFixed(0)}% of GSN's Unity payout across the three video lines. Bingo Bash is the title to look at: ${pct(chg(bb.uads.pay,bb.uads.ppay))} on Unity Ads and ${pct(chg(bb.iads.pay,bb.iads.ppay))} on ironSource Ads, with impressions down by half on both.</div>
  ${sec('Unity Ads on GSN: rewarded is paying more and showing less','chip','s')}
  <div class="grid g2">
   <div class="card"><div class="ch-t">Rewarded eCPM, weekly average · this quarter vs last</div>${lines(wkLabels,[{name:'Q3',v:wkE,c:C.demand,fill:true,w:2.8},{name:'Q2',v:wkPE,c:C.prev,dash:true,endLabel:false}],{fmt:v=>usd(v),h:220,ticks:3})}</div>
