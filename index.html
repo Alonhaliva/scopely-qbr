@@ -968,7 +968,8 @@ const sepFill=(t)=>t.monthly[t.monthly.length-1].fill;
 const V={};
 const AGENDA=[
  {id:'overview',t:'The quarter in one page',d:'The numbers, and the one ask.',m:4,g:'Overview'},
- {id:'levelplay',t:'LevelPlay',d:'Roadmap, what is live on Stumble Guys, the next title.',m:5,g:'Products'},
+ {id:'lp_roadmap',t:'LevelPlay product roadmap',d:'Three areas of investment, the flywheel, and what is live, in beta and coming.',m:3,g:'Products'},
+ {id:'levelplay',t:'LevelPlay performance',d:'Stumble Guys on LevelPlay: Q3 by platform, SDK 9.2, benchmarks, the next title.',m:4,g:'Products'},
  {id:'unity',t:'Unity Ads',d:'What changed, who buys your inventory, and 4.20.1.',m:8,g:'Products'},
  {id:'adquality',t:'Ad Quality',d:'See what your players see; the plan to switch it on.',m:4,g:'Products'},
  {id:'isx',t:'ironSource Ads',d:'What changed, by title.',m:3,g:'Products'},
@@ -983,7 +984,8 @@ const AGENDA_FULL=[
  {id:'overview',t:'The quarter at a glance',d:'The numbers in one page, and the one ask.',m:5,g:'Overview'},
  {id:'roadmap',t:'What changed, what is changing, what comes next',d:'Across Unity Ads, the Exchange, LevelPlay, the Offerwall and Ad Quality.',m:8,g:'What is changing'},
  {id:'ua_sdk',t:'The SDK story and 4.20.1',d:'What 4.16 did for Scrabble GO, and the next step.',m:6,g:'What is changing'},
- {id:'levelplay',t:'LevelPlay',d:'Roadmap, what is live, and the next title.',m:5,g:'What is changing'},
+ {id:'lp_roadmap',t:'LevelPlay product roadmap',d:'Three areas of investment, the flywheel, and what is live, in beta and coming.',m:3,g:'What is changing'},
+ {id:'levelplay',t:'LevelPlay performance',d:'Stumble Guys on LevelPlay: Q3 by platform, SDK 9.2, benchmarks, the next title.',m:4,g:'What is changing'},
  {id:'exchange',t:'Unity Exchange',d:'New buyers, identity and measurement on your inventory.',m:3,g:'What is changing'},
  {id:'adquality',t:'Ad Quality',d:'See what your players see, and the plan to switch it on.',m:4,g:'What is changing'},
  {id:'ow_plan',t:'Offerwall: new product and reach levers',d:'M2E Promo, Rewarded Offers, multi-currency, three reach levers.',m:4,g:'What is changing'},
@@ -1403,11 +1405,11 @@ function benchSlide(tb){const q=B.sg[tb.os].q3;const sg=[(q.eng*100).toFixed(1)+
 
 /* ---------- 08 LevelPlay ---------- */
 function rItem(t,why,st,cls){return `<div class="r-item"><div class="r-top"><b>${t}</b><span class="r-st ${cls||''}">${st}</span></div><div class="r-why" style="color:var(--body);font-weight:500">${why}</div></div>`;}
-V.levelplay=`
- <div class="ey">LevelPlay · mediation</div>
- <div class="lead">LevelPlay</div>
- <div class="sublead">Live on Stumble Guys today, the one place Unity competes in a live auction for your impressions. Where the platform is investing, what is live, and a proposal for a second title.</div>
- ${takeaway(`Stumble Guys Unity Ads payout grew ${pct(STG.chg)} inside LevelPlay. Three areas of investment drive the roadmap: monetization yield, publisher ad controls and intelligent management. Dynamic bid floors are built for the Android rewarded gap (${usd(ecpm(stgA.fmt.Rewarded))} vs ${usd(ecpm(stgI.fmt.Rewarded))} on iOS).`)}
+V.lp_roadmap=`
+ <div class="ey">LevelPlay · product roadmap</div>
+ <div class="lead">LevelPlay product roadmap</div>
+ <div class="sublead">Where the platform is investing, how the flywheel with Vector works, and what is live, in early access and coming. Wording and timings as shared by the LevelPlay product team, October 2026.</div>
+ ${takeaway(`Three areas of investment drive the roadmap: monetization yield, publisher ad controls and intelligent management. Dynamic bid floors are built for the Android rewarded gap (${usd(ecpm(stgA.fmt.Rewarded))} vs ${usd(ecpm(stgI.fmt.Rewarded))} on iOS).`)}
  ${sec('Where LevelPlay is investing','star','s')}
  <div class="strip">
   <div class="st"><div class="lbl">01</div><div class="val" style="font-size:20px">Monetization Yield</div><div class="note">Dynamic bid floors, Vector improvements.</div></div>
@@ -1415,6 +1417,7 @@ V.levelplay=`
   <div class="st"><div class="lbl">03</div><div class="val" style="font-size:20px">Intelligent Management</div><div class="note">Automation and AI for setup, optimization, decisioning. Less manual ops.</div></div>
  </div>
  <div class="note-row" style="margin-top:10px"><b>How we think about our flywheel.</b> Signal in: LevelPlay and Ad Quality data strengthen Vector and UA performance. ML out: Vector's ML powers more intelligent monetization features inside LevelPlay.</div>
+ <div class="shotme" style="margin-top:12px;border-radius:14px;overflow:hidden;border:1px solid var(--line)"><img src="assets/levelplay_flywheel.png" style="width:100%;display:block" alt="How we think about our flywheel"></div>
  ${sec('The roadmap, by timing','chip','s')}
  <div class="roadmap" style="grid-template-columns:repeat(3,1fr)">
   <div class="rq"><h4>Live</h4>
@@ -1436,6 +1439,13 @@ V.levelplay=`
   </div>
  </div>
  <div class="note-row">Roadmap items reflect current intentions, not commitments.</div>
+`;
+
+V.levelplay=`
+ <div class="ey">LevelPlay · performance</div>
+ <div class="lead">LevelPlay performance</div>
+ <div class="sublead">Live on Stumble Guys today, the one place Unity competes in a live auction for your impressions. The quarter by platform and month, what SDK 9.2 changed, the arcade benchmarks, and a proposal for a second title.</div>
+ ${takeaway(`Stumble Guys Unity Ads payout grew ${pct(STG.chg)} inside LevelPlay. iOS clears at ${usd(sgI.ecpm)} against ${usd(sgA.ecpm)} on Android; SDK 9.2 with dynamic loading cut waterfall latency by more than half. The next step is a LevelPlay A/B test on one more title.`)}
  ${BENCH_BLOCK}
  ${sec('Stumble Guys today, and the next title','plan','s')}
  <div>
