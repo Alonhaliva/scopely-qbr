@@ -1420,8 +1420,8 @@ const BENCH_BLOCK=`
  ${sec("Rewarded and interstitial on Stumble Guys: what moved, price or depth","chart","s")}
  <div class="cap" style="margin-bottom:10px">LevelPlay per-format exports, May 1 to Jul 31, 2026, worldwide. The window runs up to the start of Q3 so the quarter has a baseline. Depth is impressions per daily active user.</div>
  ${(()=>{const F=B.fmt;const lab=F.rv.weeks.map(w=>w.label);const n=Math.min(F.rv.weeks.length,F.is.weeks.length);const L=lab.slice(0,n);
-  const ser=(k,p,c,dash)=>({name:(k==="rv"?"Rewarded":"Interstitial")+" · "+p,v:F[k].weeks.slice(0,n).map(w=>+w[p].ecpm.toFixed(2)),c,dash});
-  const dser=(k,p,c,dash)=>({name:(k==="rv"?"Rewarded":"Interstitial")+" · "+p,v:F[k].weeks.slice(0,n).map(w=>+w[p].impdau.toFixed(2)),c,dash});
+  const ser=(k,p,c,dash)=>({name:(k==="rv"?"Rewarded":"Interstitial")+" "+p,v:F[k].weeks.slice(0,n).map(w=>+w[p].ecpm.toFixed(2)),c,dash});
+  const dser=(k,p,c,dash)=>({name:(k==="rv"?"Rewarded":"Interstitial")+" "+p,v:F[k].weeks.slice(0,n).map(w=>+w[p].impdau.toFixed(2)),c,dash});
   return '<div class="grid g2">'+
    '<div class="card"><div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;margin:4px 0 8px">eCPM by format, weekly</div>'+lines(L,[ser("rv","iOS",C.demand),ser("is","iOS",C.demand,true),ser("rv","Android",C.orange),ser("is","Android",C.orange,true)],{fmt:v=>usd(v),h:280})+'</div>'+
    '<div class="card"><div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;margin:4px 0 8px">Impressions per DAU by format, weekly</div>'+lines(L,[dser("rv","iOS",C.demand),dser("is","iOS",C.demand,true),dser("rv","Android",C.orange),dser("is","Android",C.orange,true)],{fmt:v=>v.toFixed(2),max:2.1,h:280})+'</div></div>';})()}
