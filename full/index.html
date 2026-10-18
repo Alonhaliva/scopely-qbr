@@ -1430,9 +1430,9 @@ const BENCH_BLOCK=`
  ${["iOS","Android"].map(p=>B.rv.months.map((m,i)=>`<tr><td class="lead2" style="padding-left:24px">${p} · ${["May","June","July"][i]}</td><td class="n">${bk(m[p].rev)}</td><td class="n" style="font-weight:800">${usd(m[p].ecpm)}</td><td class="n">${m[p].impdau.toFixed(2)}</td><td class="n">${bDau(m[p].dau)}</td></tr>`).join("")).join("")}
  </tbody></table></div>
  <div class="card" style="padding:12px 30px;margin-top:12px">${nlist([
-  ["Depth is flat.","Rewarded impressions per DAU sat at about ${B.rv.months[0].iOS.impdau.toFixed(2)} on iOS and ${B.rv.months[0].Android.impdau.toFixed(2)} on Android all three months. Players are watching the same number of rewarded ads; placements and reward values did not move."],
-  ["Price is what fell.","iOS rewarded eCPM climbed to ${usd(Math.max(...B.rv.weeks.map(w=>w.iOS.ecpm)))} in early June and ended July at ${usd(B.rv.weeks[B.rv.weeks.length-1].iOS.ecpm)}; Android went from ${usd(B.rv.months[0].Android.ecpm)} in May to ${usd(B.rv.months[2].Android.ecpm)} in July. With usage flat, the revenue change is demand-side: what bidders paid per impression."],
-  ["Questions for you.","Did anything change in the rewarded setup in late June, such as floors, a new bidder or a reward change? If not, the June peak looks like a demand event, and the right read is July against May, not July against June."],
+  ["Depth is flat.",`Rewarded impressions per DAU sat at about ${B.rv.months[0].iOS.impdau.toFixed(2)} on iOS and ${B.rv.months[0].Android.impdau.toFixed(2)} on Android all three months. Players are watching the same number of rewarded ads; placements and reward values did not move.`],
+  ["Price is what fell.",`iOS rewarded eCPM climbed to ${usd(Math.max(...B.rv.weeks.map(w=>w.iOS.ecpm)))} in early June and ended July at ${usd(B.rv.weeks[B.rv.weeks.length-1].iOS.ecpm)}; Android went from ${usd(B.rv.months[0].Android.ecpm)} in May to ${usd(B.rv.months[2].Android.ecpm)} in July. With usage flat, the revenue change is demand-side: what bidders paid per impression.`],
+  ["Questions for you.",`Did anything change in the rewarded setup in late June, such as floors, a new bidder or a reward change? If not, the June peak looks like a demand event, and the right read is July against May, not July against June.`],
  ])}</div>
 
  ${sec("LevelPlay SDK 9.2 on Stumble Guys, what changed","chip","s")}
