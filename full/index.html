@@ -1930,7 +1930,7 @@ V.unity=`
    <table class="t" style="min-width:420px"><thead><tr><th style="padding-left:30px">Title · format</th><th style="text-align:right">Via Nimbus</th><th style="text-align:right">Via MAX</th><th style="text-align:right">Nimbus share</th><th style="text-align:right;padding-right:30px">Q2 share</th></tr></thead><tbody>
    ${DATA.MED.nimbus.filter(r=>r.nim>500).map(r=>'<tr><td class="lead2" style="padding-left:30px">'+r.title+' · '+r.fmt.toLowerCase()+'</td><td class="n">'+money(r.nim)+'</td><td class="n">'+money(r.max)+'</td><td class="n" style="font-weight:800">'+(r.nimShare*100).toFixed(0)+'%</td><td class="n" style="padding-right:30px;color:var(--muted)">'+(r.pnimShare!=null?(r.pnimShare*100).toFixed(0)+'%':'–')+'</td></tr>').join('')}
    </tbody></table>
-   <div class="cap" style="padding:8px 30px 4px">Share is Unity Ads payout on that title and format that arrived through Nimbus rather than MAX. It is rising on every title where both run.</div>
+   <div class="cap" style="padding:8px 30px 4px">Share is Unity Ads payout on that title and format that arrived through Nimbus rather than MAX. It is flat on Scrabble GO and rising on every other title where both run.</div>
   </div>
  </div>
  <div class="card" style="padding:12px 30px;margin-top:12px">
