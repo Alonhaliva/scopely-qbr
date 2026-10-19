@@ -1885,7 +1885,7 @@ V.unity=`
    <div class="cap">7-day trailing average. 4.17.00 (Scrabble, Wheel of Fortune) and 4.16.06 (Stumble Guys) start in September; 4.12.04 on Stumble Guys retires in early August.</div>
   </div>
   <div class="card" style="padding:10px 0;overflow-x:auto">
-   <div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;padding:8px 30px 4px">Q3 payout by SDK version · ${money(DATA.SDKQ3.tot.rev)} total, ${pct(DATA.SDKQ3.tot.rev/DATA.SDKQ3.tot.prev-1)} vs Q2</div>
+   <div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;padding:8px 30px 4px">Q3 payout by SDK version · ${money(FQ.tot.rev)} total, ${pct(FQ.tot.rev/FQ.tot.prev-1)} vs Q2</div>
    <table class="t" style="min-width:420px"><thead><tr><th style="padding-left:30px">Version</th><th style="text-align:right">Payout</th><th style="text-align:right">Share of Q3</th><th style="text-align:right">Share of Sep</th><th style="text-align:right;padding-right:30px">eCPM</th></tr></thead><tbody>
    ${DATA.SDKQ3.top.slice(0,6).map(t=>'<tr><td class="lead2" style="padding-left:30px"><span class="sdk-chip '+(/^4\.(0|1[0-5])\./.test(t.v)?'warn':'cur')+'">'+t.v+'</span></td><td class="n">'+money(t.rev)+'</td><td class="n">'+(t.share*100).toFixed(0)+'%</td><td class="n" style="font-weight:800">'+(t.sepShare*100).toFixed(0)+'%</td><td class="n" style="padding-right:30px">'+usd(t.ecpm)+'</td></tr>').join('')}
    </tbody></table>
