@@ -1008,6 +1008,7 @@ const AGENDA=[
  {id:'levelplay',t:'LevelPlay performance',d:'Stumble Guys on LevelPlay: Q3 by platform, SDK 9.2, benchmarks, the next title.',m:4,g:'Products'},
  {id:'unity',t:'Unity Ads',d:'What changed, who buys your inventory, and 4.20.1.',m:8,g:'Products'},
  {id:'adquality',t:'Ad Quality',d:'See what your players see; the plan to switch it on.',m:4,g:'Products'},
+ {id:'vector',t:'Unity Vector and your data',d:'The learning layer behind every price; the signal checklist; your questions, answered.',m:5,g:'Products'},
  {id:'isx',t:'ironSource Ads',d:'What changed, by title.',m:3,g:'Products'},
  {id:'exchange',t:'Unity Exchange',d:'New buyers, identity and measurement on your inventory.',m:3,g:'Products'},
  {id:'offerwall',t:'Offerwall',d:'Reach is the lever; three moves and what is coming.',m:8,g:'Products'},
@@ -1024,6 +1025,7 @@ const AGENDA_FULL=[
  {id:'levelplay',t:'LevelPlay performance',d:'Stumble Guys on LevelPlay: Q3 by platform, SDK 9.2, benchmarks, the next title.',m:4,g:'What is changing'},
  {id:'exchange',t:'Unity Exchange',d:'New buyers, identity and measurement on your inventory.',m:3,g:'What is changing'},
  {id:'adquality',t:'Ad Quality',d:'See what your players see, and the plan to switch it on.',m:4,g:'What is changing'},
+ {id:'vector',t:'Unity Vector and your data',d:'The learning layer behind every price; the signal checklist; your questions, answered.',m:5,g:'What is changing'},
  {id:'ow_plan',t:'Offerwall: new product and reach levers',d:'M2E Promo, Rewarded Offers, multi-currency, three reach levers.',m:4,g:'What is changing'},
  {id:'ua_demand',t:'Who buys your inventory',d:'Unity network vs ironSource Ads, advertiser mix, benchmarks.',m:5,g:'Seen from our side'},
  {id:'ow_perf',t:'Offerwall funnel',d:'Reach, conversion and value per converter, by title.',m:5,g:'Seen from our side'},
@@ -1560,6 +1562,55 @@ V.exchange=`
  </div>`;
 
 /* ---------- 09 Ad Quality ---------- */
+V.vector=`
+ <div class="ey">Unity Vector · data activation</div>
+ <div class="lead">Unity Vector and your data</div>
+ <div class="sublead">Unity Vector is the continuously learning intelligence layer that helps you optimize user acquisition and monetization using signals across the gaming ecosystem. On the supply side it is the model that prices every impression you serve.</div>
+ ${takeaway('Better signals, better learning. No single signal is the unlock; each adds a piece of the picture of player behavior and game context. For your titles the signal that can move this quarter is Google Analytics linking: no Editor upgrade, just the data you already collect.')}
+ <div class="lp-notes">
+  <div class="lp-note"><span class="lp-badge ea">Remember this</span><h4>Better signals, better learning</h4><p>Signal quality and completeness matter. When data is fragmented or incomplete, the models may have to fill in the blind spots themselves.</p></div>
+  <div class="lp-note"><span class="lp-badge ea">Remember this</span><h4>Connect, don't pick and choose</h4><p>No single signal is the unlock. Each adds context. These signals work together, and each one contributes a different piece of the picture of player behavior and game context.</p></div>
+  <div class="lp-note"><span class="lp-badge ea">Remember this</span><h4>Start now</h4><p>Earlier activation means earlier learning and improvement. A stronger data foundation helps Unity Vector make better decisions over time.</p></div>
+ </div>
+ ${sec('Scale improves as optimization gets smarter','chart','s')}
+ <div class="strip">
+  <div class="st st-a1"><div class="lbl">Unity network spend growth, pre vs post Vector</div><div class="val">× 2.5</div><div class="note">Growth of May 2026 against Feb 2025. Source: Unity. Spend data Jan 1, 2025 to Jun 29, 2026.</div></div>
+  <div class="st st-a2"><div class="lbl">What a stronger data foundation lets Vector do</div><div class="val" style="font-size:18px;line-height:1.3">Reach players with higher long-term value · scale with greater optimization confidence · improve conversion quality over time</div><div class="note">From the Vector data activation one-pager</div></div>
+  <div class="st st-a3"><div class="lbl">Why it matters on the supply side</div><div class="val" style="font-size:18px;line-height:1.3">Better-matched players lift monetization in your apps, and stronger signals support stronger, more stable eCPMs over time</div><div class="note">Impact builds over time and may vary by scale and setup</div></div>
+ </div>
+ ${sec('The signal checklist, with where you stand','plan','s')}
+ <div class="cap" style="margin-bottom:10px">Check whether Unity Vector has the signals it needs to optimize effectively. Missing data creates blind spots. Each row is owned by a different team on your side; the first three need no new permission.</div>
+ <div class="chk-grid">
+  <div class="chk"><h4>Standalone setup</h4>
+   <div class="chk-item"><span class="cic">✅</span><div><b>Unity Ads SDK <span class="tag-live" style="margin-left:6px">live</span></b><span>Provides cleaner ad experience and purchase validation signals. You are on 4.16.05 and 4.17.00, above the 4.16.2 floor; 4.20.1 is the current release.</span></div></div>
+   <div class="chk-item"><span class="cic">◻︎</span><div><b>MMP integration <span class="tag-ask" style="margin-left:6px">to confirm</span></b><span>Attributed, unattributed and organic installs, events and purchases, extended postback window. Connects acquisition, conversion and player value signals. Owned by your UA team.</span></div></div>
+   <div class="chk-item"><span class="cic">◻︎</span><div><b>Android license key <span class="tag-ask" style="margin-left:6px">to confirm</span></b><span>Configured in the Unity Dashboard.</span></div></div>
+  </div>
+  <div class="chk locked"><h4>Additional permission required</h4>
+   <div class="chk-item"><span class="cic">🔒</span><div><b>Google Analytics linking <span class="tag-todo" style="margin-left:6px">the one to do now</span></b><span>Adds behavioral context and player engagement signals that attribution alone cannot provide. Link the GA property in the Unity Dashboard, then grant Unity Ads access through Developer Data. No Editor upgrade, no SDK change.</span></div></div>
+   <div class="chk-item"><span class="cic">◻︎</span><div><b>Runtime data (Diagnostics) <span class="tag-ask" style="margin-left:6px">later</span></b><span>Unlocks runtime signals that help provide additional context on how players experience the game. Available on recent Unity Editor versions; your titles are on earlier versions, so this comes after an Editor upgrade, not before.</span></div></div>
+   <div class="chk-item"><span class="cic">◻︎</span><div><b>Unity IAP SDK <span class="tag-ask" style="margin-left:6px">to confirm</span></b><span>Strengthens purchase validation and revenue visibility.</span></div></div>
+   <div class="chk-item"><span class="cic">◻︎</span><div><b>Developer Data Framework <span class="tag-ask" style="margin-left:6px">with GA</span></b><span>Enables Unity Ads products and services to use eligible runtime and behavioral signals for optimization. One consent in the Unity Dashboard; it is what turns a linked GA property into a signal.</span></div></div>
+  </div>
+ </div>
+ ${sec('Your questions on Vector, answered','users','s')}
+ <div class="cap" style="margin-bottom:10px">Four questions came from your leadership ahead of this review. Straight answers below, including where we do not publish figures.</div>
+ <div class="grid g2">
+  <div class="card" style="padding:14px 24px"><div class="fw-kick">1 · How much runtime data can Vector use now, against early this year?</div><p class="fw-p" style="font-size:14px">We do not publish adoption percentages or forecasts, so we will not put a number on this. Directionally: runtime data integration for Vector was rolled out first through the Unity 6 ecosystem, and sharing runtime data by enabling Diagnostics is available on recent Editor versions. Editor upgrades take time, which is why we are offering a much easier route to engagement signals of similar strength: linking the Google Analytics data you already collect.</p></div>
+  <div class="card" style="padding:14px 24px"><div class="fw-kick">2 · What does runtime give that the ads SDK or a mediation layer cannot?</div><p class="fw-p" style="font-size:14px">Player engagement signals. An ads SDK or a mediation layer sees the player through the ad: requests, impressions, clicks. Runtime and Google Analytics see how the player experiences the game: sessions, progression, what happens between ads. That is the context that lets a model predict value rather than infer it. Today Google Analytics has the potential to provide the deepest engagement signals; Runtime and the Unity Ads SDK are evolving toward the same level of engagement measurement.</p></div>
+  <div class="card" style="padding:14px 24px"><div class="fw-kick">3 · What is the progress, and when does it reach 50% or 70%?</div><p class="fw-p" style="font-size:14px">There is no percentage roadmap we can share. What moves for your titles this quarter does not depend on it: Google Analytics linking plus the Developer Data permission gives Vector engagement signals on your games without waiting for an Editor upgrade. Runtime follows when the Editor does.</p></div>
+  <div class="card" style="padding:14px 24px"><div class="fw-kick">4 · What uplift should we expect, on ads and on UA?</div><p class="fw-p" style="font-size:14px">We have no runtime-specific uplift figure to quote. What Unity publishes: the network grew 2.5 times pre versus post Vector; the current Unity Ads SDK brings up to 10% more impression opportunities and up to 15% more revenue per impression, each with the disclaimers on the Unity Ads page. For Google Analytics the honest statement is that impact builds over time and varies by scale and setup, and that the same signals serve both your UA campaigns and the pricing of your inventory, because it is one model.</p></div>
+ </div>
+ <div class="card" style="padding:12px 30px;margin-top:14px">
+  <div style="font-size:12px;font-weight:800;color:var(--demandInk);text-transform:uppercase;letter-spacing:.04em;margin:10px 0 4px">What we would do next week</div>
+  ${nlist([
+   ['Link Google Analytics on the monetization titles.','One property per app in the Unity Dashboard; we bring the guide and a 15-minute walkthrough with your analytics owner.'],
+   ['Grant the Developer Data permission for Unity Ads.','The consent that lets Vector use the linked signals. Same session.'],
+   ['Confirm the MMP postbacks and the Android license key.','Two checks with your UA team; both are standard setup, no permission needed.'],
+  ])}
+ </div>
+ <div class="note-row">Wording follows Unity's Vector data activation one-pager (July 2026). Where a figure is not published, we say so rather than estimate.</div>`;
+
 V.adquality=`
  <div class="ey">Ad Quality · player experience</div>
  <div class="lead">Ad Quality</div>
